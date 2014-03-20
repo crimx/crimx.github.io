@@ -241,80 +241,80 @@
 <h2 id="_2">实现</h2>
 <hr />
 <p>首先是数据存储格式，使用json存储NFA的五元组：</p>
-<div class='highlight'><pre><code class='json'><span class='lineno'> 1</span> <span class='p'>{</span>
-<span class='lineno'> 2</span> 	<span class='nt'>&quot;k&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>,</span><span class='s2'>&quot;1&quot;</span><span class='p'>,</span><span class='s2'>&quot;2&quot;</span><span class='p'>,</span><span class='s2'>&quot;3&quot;</span><span class='p'>,</span><span class='s2'>&quot;4&quot;</span><span class='p'>,</span><span class='s2'>&quot;5&quot;</span><span class='p'>,</span><span class='s2'>&quot;6&quot;</span><span class='p'>,</span><span class='s2'>&quot;7&quot;</span><span class='p'>,</span><span class='s2'>&quot;8&quot;</span><span class='p'>,</span><span class='s2'>&quot;9&quot;</span><span class='p'>,</span><span class='s2'>&quot;10&quot;</span><span class='p'>],</span>
-<span class='lineno'> 3</span> 	<span class='nt'>&quot;e&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;a&quot;</span><span class='p'>,</span><span class='s2'>&quot;b&quot;</span><span class='p'>],</span>
-<span class='lineno'> 4</span> 	<span class='nt'>&quot;f&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'> 5</span> 		<span class='nt'>&quot;0&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'> 6</span> 			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;1&quot;</span><span class='p'>,</span> <span class='s2'>&quot;7&quot;</span><span class='p'>]</span>
-<span class='lineno'> 7</span> 		<span class='p'>},</span>
-<span class='lineno'> 8</span> 		<span class='nt'>&quot;1&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'> 9</span> 			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;2&quot;</span><span class='p'>,</span> <span class='s2'>&quot;4&quot;</span><span class='p'>]</span>
-<span class='lineno'>10</span> 		<span class='p'>},</span>
-<span class='lineno'>11</span> 		<span class='nt'>&quot;2&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>12</span> 			<span class='nt'>&quot;a&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;3&quot;</span><span class='p'>]</span>
-<span class='lineno'>13</span> 		<span class='p'>},</span>
-<span class='lineno'>14</span> 		<span class='nt'>&quot;3&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>15</span> 			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;6&quot;</span><span class='p'>]</span>
-<span class='lineno'>16</span> 		<span class='p'>},</span>
-<span class='lineno'>17</span> 		<span class='nt'>&quot;4&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>18</span> 			<span class='nt'>&quot;b&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;5&quot;</span><span class='p'>]</span>
-<span class='lineno'>19</span> 		<span class='p'>},</span>
-<span class='lineno'>20</span> 		<span class='nt'>&quot;5&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>21</span> 			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;6&quot;</span><span class='p'>]</span>
-<span class='lineno'>22</span> 		<span class='p'>},</span>
-<span class='lineno'>23</span> 		<span class='nt'>&quot;6&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>24</span> 			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;1&quot;</span><span class='p'>,</span> <span class='s2'>&quot;7&quot;</span><span class='p'>]</span>
-<span class='lineno'>25</span> 		<span class='p'>},</span>
-<span class='lineno'>26</span> 		<span class='nt'>&quot;7&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>27</span> 			<span class='nt'>&quot;a&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;8&quot;</span><span class='p'>]</span>
-<span class='lineno'>28</span> 		<span class='p'>},</span>
-<span class='lineno'>29</span> 		<span class='nt'>&quot;8&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>30</span> 			<span class='nt'>&quot;b&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;9&quot;</span><span class='p'>]</span>
-<span class='lineno'>31</span> 		<span class='p'>},</span>
-<span class='lineno'>32</span> 		<span class='nt'>&quot;9&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>33</span> 			<span class='nt'>&quot;b&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;10&quot;</span><span class='p'>]</span>
-<span class='lineno'>34</span> 		<span class='p'>}</span>
-<span class='lineno'>35</span> 	<span class='p'>},</span>
-<span class='lineno'>36</span> 	<span class='nt'>&quot;s&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>],</span>
-<span class='lineno'>37</span> 	<span class='nt'>&quot;z&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;10&quot;</span><span class='p'>]</span>
-<span class='lineno'>38</span> <span class='p'>}</span>
+<div class='highlight'><pre><code class='json'><span class='p'>{</span>
+	<span class='nt'>&quot;k&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>,</span><span class='s2'>&quot;1&quot;</span><span class='p'>,</span><span class='s2'>&quot;2&quot;</span><span class='p'>,</span><span class='s2'>&quot;3&quot;</span><span class='p'>,</span><span class='s2'>&quot;4&quot;</span><span class='p'>,</span><span class='s2'>&quot;5&quot;</span><span class='p'>,</span><span class='s2'>&quot;6&quot;</span><span class='p'>,</span><span class='s2'>&quot;7&quot;</span><span class='p'>,</span><span class='s2'>&quot;8&quot;</span><span class='p'>,</span><span class='s2'>&quot;9&quot;</span><span class='p'>,</span><span class='s2'>&quot;10&quot;</span><span class='p'>],</span>
+	<span class='nt'>&quot;e&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;a&quot;</span><span class='p'>,</span><span class='s2'>&quot;b&quot;</span><span class='p'>],</span>
+	<span class='nt'>&quot;f&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+		<span class='nt'>&quot;0&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;1&quot;</span><span class='p'>,</span> <span class='s2'>&quot;7&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;1&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;2&quot;</span><span class='p'>,</span> <span class='s2'>&quot;4&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;2&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;3&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;3&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;6&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;4&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;b&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;5&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;5&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;6&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;6&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;#&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;1&quot;</span><span class='p'>,</span> <span class='s2'>&quot;7&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;7&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;8&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;8&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;b&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;9&quot;</span><span class='p'>]</span>
+		<span class='p'>},</span>
+		<span class='nt'>&quot;9&quot;</span> <span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;b&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;10&quot;</span><span class='p'>]</span>
+		<span class='p'>}</span>
+	<span class='p'>},</span>
+	<span class='nt'>&quot;s&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>],</span>
+	<span class='nt'>&quot;z&quot;</span> <span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;10&quot;</span><span class='p'>]</span>
+<span class='p'>}</span>
 </code></pre></div>
 <p>读入时做了一些简单的判断，其实还可以做得更加周全，比如初始集s和终结集z是否被状态集k包含，等等。<code>read()</code>了之后就会把五元组包装返回。</p>
-<div class='highlight'><pre><code class='python'><span class='lineno'> 1</span> <span class='k'>def</span> <span class='nf'>read</span><span class='p'>(</span><span class='nb'>input</span><span class='p'>):</span>
-<span class='lineno'> 2</span> 	<span class='k'>try</span><span class='p'>:</span>
-<span class='lineno'> 3</span> 		<span class='n'>nfa</span> <span class='o'>=</span> <span class='n'>json</span><span class='o'>.</span><span class='n'>load</span><span class='p'>(</span><span class='nb'>open</span><span class='p'>(</span><span class='nb'>input</span><span class='p'>,</span><span class='s'>&quot;r&quot;</span><span class='p'>))</span>
-<span class='lineno'> 4</span> 		<span class='k'>for</span> <span class='n'>i</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>]:</span>
-<span class='lineno'> 5</span> 			<span class='k'>if</span> <span class='ow'>not</span> <span class='n'>i</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]:</span>
-<span class='lineno'> 6</span> 				<span class='k'>raise</span> <span class='ne'>Exception</span><span class='p'>(</span><span class='s'>&quot;Set f contains iterms that not belongs to set k.&quot;</span><span class='p'>)</span>
-<span class='lineno'> 7</span> 			<span class='k'>for</span> <span class='n'>j</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]:</span>
-<span class='lineno'> 8</span> 				<span class='k'>if</span> <span class='ow'>not</span> <span class='n'>j</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;e&quot;</span><span class='p'>]</span> <span class='ow'>and</span> <span class='ow'>not</span> <span class='n'>j</span> <span class='o'>==</span> <span class='s'>&#39;#&#39;</span><span class='p'>:</span>
-<span class='lineno'> 9</span> 					<span class='k'>raise</span> <span class='ne'>Exception</span><span class='p'>(</span><span class='s'>&quot;Set f contains iterms that not belongs to set e.&quot;</span><span class='p'>)</span>
-<span class='lineno'>10</span> 		<span class='k'>return</span> <span class='p'>(</span><span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]),</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;e&quot;</span><span class='p'>]),</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>],</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]),</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]))</span>
-<span class='lineno'>11</span> 	<span class='k'>except</span> <span class='ne'>IOError</span><span class='p'>:</span>
-<span class='lineno'>12</span> 		<span class='k'>print</span> <span class='s'>&quot;File no found!&quot;</span>
-<span class='lineno'>13</span> 		<span class='n'>sys</span><span class='o'>.</span><span class='n'>exit</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
-<span class='lineno'>14</span> 	<span class='k'>except</span> <span class='p'>(</span><span class='ne'>KeyError</span><span class='p'>,</span> <span class='ne'>TypeError</span><span class='p'>):</span>
-<span class='lineno'>15</span> 		<span class='k'>print</span> <span class='s'>&quot;Input data error!&quot;</span>
-<span class='lineno'>16</span> 		<span class='n'>sys</span><span class='o'>.</span><span class='n'>exit</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
-<span class='lineno'>17</span> 	<span class='k'>except</span> <span class='ne'>Exception</span><span class='p'>,</span> <span class='n'>e</span><span class='p'>:</span>
-<span class='lineno'>18</span> 		<span class='k'>print</span><span class='p'>(</span><span class='n'>e</span><span class='o'>.</span><span class='n'>args</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>])</span>
-<span class='lineno'>19</span> 		<span class='n'>sys</span><span class='o'>.</span><span class='n'>exit</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
+<div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>read</span><span class='p'>(</span><span class='nb'>input</span><span class='p'>):</span>
+	<span class='k'>try</span><span class='p'>:</span>
+		<span class='n'>nfa</span> <span class='o'>=</span> <span class='n'>json</span><span class='o'>.</span><span class='n'>load</span><span class='p'>(</span><span class='nb'>open</span><span class='p'>(</span><span class='nb'>input</span><span class='p'>,</span><span class='s'>&quot;r&quot;</span><span class='p'>))</span>
+		<span class='k'>for</span> <span class='n'>i</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>]:</span>
+			<span class='k'>if</span> <span class='ow'>not</span> <span class='n'>i</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]:</span>
+				<span class='k'>raise</span> <span class='ne'>Exception</span><span class='p'>(</span><span class='s'>&quot;Set f contains iterms that not belongs to set k.&quot;</span><span class='p'>)</span>
+			<span class='k'>for</span> <span class='n'>j</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>][</span><span class='n'>i</span><span class='p'>]:</span>
+				<span class='k'>if</span> <span class='ow'>not</span> <span class='n'>j</span> <span class='ow'>in</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;e&quot;</span><span class='p'>]</span> <span class='ow'>and</span> <span class='ow'>not</span> <span class='n'>j</span> <span class='o'>==</span> <span class='s'>&#39;#&#39;</span><span class='p'>:</span>
+					<span class='k'>raise</span> <span class='ne'>Exception</span><span class='p'>(</span><span class='s'>&quot;Set f contains iterms that not belongs to set e.&quot;</span><span class='p'>)</span>
+		<span class='k'>return</span> <span class='p'>(</span><span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]),</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;e&quot;</span><span class='p'>]),</span> <span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>],</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]),</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>nfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]))</span>
+	<span class='k'>except</span> <span class='ne'>IOError</span><span class='p'>:</span>
+		<span class='k'>print</span> <span class='s'>&quot;File no found!&quot;</span>
+		<span class='n'>sys</span><span class='o'>.</span><span class='n'>exit</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
+	<span class='k'>except</span> <span class='p'>(</span><span class='ne'>KeyError</span><span class='p'>,</span> <span class='ne'>TypeError</span><span class='p'>):</span>
+		<span class='k'>print</span> <span class='s'>&quot;Input data error!&quot;</span>
+		<span class='n'>sys</span><span class='o'>.</span><span class='n'>exit</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
+	<span class='k'>except</span> <span class='ne'>Exception</span><span class='p'>,</span> <span class='n'>e</span><span class='p'>:</span>
+		<span class='k'>print</span><span class='p'>(</span><span class='n'>e</span><span class='o'>.</span><span class='n'>args</span><span class='p'>[</span><span class='mi'>0</span><span class='p'>])</span>
+		<span class='n'>sys</span><span class='o'>.</span><span class='n'>exit</span><span class='p'>(</span><span class='mi'>1</span><span class='p'>)</span>
 </code></pre></div>
 <p>使用<code>creat_memo()</code>接下来为计算创建缓存，因为计算闭包有大量的重复计算。<code>memo</code>是一个字典，以e集合（弧集合）的元素为键，每一个键对应的值也是一个字典，在计算闭包的过程中缓存该状态的闭包。（见<code>closure()</code>）</p>
-<div class='highlight'><pre><code class='python'><span class='lineno'>1</span> <span class='k'>def</span> <span class='nf'>creat_memo</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>):</span>
-<span class='lineno'>2</span> 	<span class='n'>memo</span> <span class='o'>=</span> <span class='p'>{}</span>
-<span class='lineno'>3</span> 	<span class='k'>for</span> <span class='n'>i</span> <span class='ow'>in</span> <span class='n'>e_set</span><span class='p'>:</span>
-<span class='lineno'>4</span> 		<span class='n'>memo</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
-<span class='lineno'>5</span> 	<span class='n'>memo</span><span class='p'>[</span><span class='s'>&#39;#&#39;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
-<span class='lineno'>6</span> 	<span class='k'>return</span> <span class='n'>memo</span>
+<div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>creat_memo</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>):</span>
+	<span class='n'>memo</span> <span class='o'>=</span> <span class='p'>{}</span>
+	<span class='k'>for</span> <span class='n'>i</span> <span class='ow'>in</span> <span class='n'>e_set</span><span class='p'>:</span>
+		<span class='n'>memo</span><span class='p'>[</span><span class='n'>i</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
+	<span class='n'>memo</span><span class='p'>[</span><span class='s'>&#39;#&#39;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
+	<span class='k'>return</span> <span class='n'>memo</span>
 </code></pre></div>
 <p>从文章开始时提到的转换方法很容易可以看到，两个操作有很大的相似性，所以我把它们封装成一个函数<code>closure()</code>了，调用时使用各自的接口。对应上面提到的弧转换操作，<code>move()</code>中的参数s和arc表示求move(s,arc)，而<code>ph_closure()</code>的arc默认为ε，这里用<code>&quot;#&quot;</code>表示。</p>
-<div class='highlight'><pre><code class='python'><span class='lineno'>1</span> <span class='k'>def</span> <span class='nf'>move</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>s</span><span class='p'>,</span> <span class='n'>arc</span><span class='p'>):</span>
-<span class='lineno'>2</span> 	<span class='k'>return</span> <span class='n'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>[</span><span class='n'>arc</span><span class='p'>],</span> <span class='n'>s</span><span class='p'>,</span> <span class='n'>arc</span><span class='p'>)</span>
-<span class='lineno'>3</span> 
-<span class='lineno'>4</span> <span class='k'>def</span> <span class='nf'>ep_closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>s</span><span class='p'>):</span>
-<span class='lineno'>5</span> 	<span class='k'>return</span> <span class='n'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>[</span><span class='s'>&quot;#&quot;</span><span class='p'>],</span> <span class='n'>s</span><span class='p'>,</span> <span class='s'>&#39;#&#39;</span><span class='p'>)</span>
+<div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>move</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>s</span><span class='p'>,</span> <span class='n'>arc</span><span class='p'>):</span>
+	<span class='k'>return</span> <span class='n'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>[</span><span class='n'>arc</span><span class='p'>],</span> <span class='n'>s</span><span class='p'>,</span> <span class='n'>arc</span><span class='p'>)</span>
+
+<span class='k'>def</span> <span class='nf'>ep_closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>s</span><span class='p'>):</span>
+	<span class='k'>return</span> <span class='n'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>[</span><span class='s'>&quot;#&quot;</span><span class='p'>],</span> <span class='n'>s</span><span class='p'>,</span> <span class='s'>&#39;#&#39;</span><span class='p'>)</span>
 </code></pre></div>
 <p><code>closure()</code>是本程序的核心部分，当它接受了一个集合<code>c_set</code>时，会对<code>c_set</code>中的元素一一进行求闭包或者弧转换，再合并集合。在进行计算之前先查看缓存<code>memo</code>，看看之前有没有计算过，有就直接合并，没有就先计算出结果，在<code>memo</code>记录之后再进行合并。对于求闭包，因为是ε，所以每次要先包含本身，而弧转换则不需要。</p>
 
@@ -327,114 +327,114 @@
 
 <li>弧转换情况：由于弧只需要判断状态<code>s</code>的下个一个<code>arc</code>弧连接的状态，所以不需要递归，直接得出结果。</li>
 </ol>
-<div class='highlight'><pre><code class='python'><span class='lineno'> 1</span> <span class='k'>def</span> <span class='nf'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>c_set</span><span class='p'>,</span> <span class='n'>arc</span><span class='p'>):</span>
-<span class='lineno'> 2</span> 	<span class='n'>res</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>()</span>
-<span class='lineno'> 3</span> 	<span class='k'>for</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>c_set</span><span class='p'>:</span>
-<span class='lineno'> 4</span> 		<span class='k'>if</span> <span class='ow'>not</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>memo</span><span class='p'>:</span>
-<span class='lineno'> 5</span> 			<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>()</span>
-<span class='lineno'> 6</span> 			<span class='k'>if</span> <span class='n'>arc</span> <span class='o'>==</span> <span class='s'>&#39;#&#39;</span><span class='p'>:</span>
-<span class='lineno'> 7</span> 				<span class='c'>#Attention here. Has to be a list</span>
-<span class='lineno'> 8</span> 				<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>([</span><span class='n'>s</span><span class='p'>])</span>
-<span class='lineno'> 9</span> 			<span class='k'>if</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>f</span><span class='p'>:</span>
-<span class='lineno'>10</span> 				<span class='k'>if</span> <span class='n'>arc</span> <span class='ow'>in</span> <span class='n'>f</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]:</span>
-<span class='lineno'>11</span> 					<span class='k'>if</span> <span class='n'>arc</span> <span class='o'>==</span> <span class='s'>&#39;#&#39;</span><span class='p'>:</span>
-<span class='lineno'>12</span> 						<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>|=</span> <span class='n'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>f</span><span class='p'>[</span><span class='n'>s</span><span class='p'>][</span><span class='n'>arc</span><span class='p'>]),</span> <span class='n'>arc</span><span class='p'>)</span>
-<span class='lineno'>13</span> 					<span class='k'>else</span><span class='p'>:</span>
-<span class='lineno'>14</span> 						<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>f</span><span class='p'>[</span><span class='n'>s</span><span class='p'>][</span><span class='n'>arc</span><span class='p'>])</span>
-<span class='lineno'>15</span> 		<span class='n'>res</span> <span class='o'>|=</span> <span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span>
-<span class='lineno'>16</span> 	<span class='k'>return</span> <span class='n'>res</span>
+<div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>c_set</span><span class='p'>,</span> <span class='n'>arc</span><span class='p'>):</span>
+	<span class='n'>res</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>()</span>
+	<span class='k'>for</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>c_set</span><span class='p'>:</span>
+		<span class='k'>if</span> <span class='ow'>not</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>memo</span><span class='p'>:</span>
+			<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>()</span>
+			<span class='k'>if</span> <span class='n'>arc</span> <span class='o'>==</span> <span class='s'>&#39;#&#39;</span><span class='p'>:</span>
+				<span class='c'>#Attention here. Has to be a list</span>
+				<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>([</span><span class='n'>s</span><span class='p'>])</span>
+			<span class='k'>if</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>f</span><span class='p'>:</span>
+				<span class='k'>if</span> <span class='n'>arc</span> <span class='ow'>in</span> <span class='n'>f</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]:</span>
+					<span class='k'>if</span> <span class='n'>arc</span> <span class='o'>==</span> <span class='s'>&#39;#&#39;</span><span class='p'>:</span>
+						<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>|=</span> <span class='n'>closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>f</span><span class='p'>[</span><span class='n'>s</span><span class='p'>][</span><span class='n'>arc</span><span class='p'>]),</span> <span class='n'>arc</span><span class='p'>)</span>
+					<span class='k'>else</span><span class='p'>:</span>
+						<span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>set</span><span class='p'>(</span><span class='n'>f</span><span class='p'>[</span><span class='n'>s</span><span class='p'>][</span><span class='n'>arc</span><span class='p'>])</span>
+		<span class='n'>res</span> <span class='o'>|=</span> <span class='n'>memo</span><span class='p'>[</span><span class='n'>s</span><span class='p'>]</span>
+	<span class='k'>return</span> <span class='n'>res</span>
 </code></pre></div>
 <p><code>creat_dfa</code>返回一个空的dfa结构，<code>calc_dfa</code>代表了上面提到的表格的运算过程，并把表格的内容保存到dfa结构中。先对初始状态集k求闭包，接下来为每个弧求弧转换闭包ε-closure(move(s, arc))。出现新集合就交给<code>queue</code>队列，并在<code>dfa[&quot;k&quot;]</code>中做记录。我这里是利用集合在<code>dfa[&quot;k&quot;]</code>中的index作为dfa状态的命名。</p>
-<div class='highlight'><pre><code class='python'><span class='lineno'> 1</span> <span class='k'>def</span> <span class='nf'>creat_dfa</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>):</span>
-<span class='lineno'> 2</span> 	<span class='n'>dfa</span> <span class='o'>=</span> <span class='p'>{}</span>
-<span class='lineno'> 3</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>[]</span>
-<span class='lineno'> 4</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;e&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>list</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>)</span>
-<span class='lineno'> 5</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
-<span class='lineno'> 6</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>[]</span>
-<span class='lineno'> 7</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>[]</span>
-<span class='lineno'> 8</span> 	<span class='k'>return</span> <span class='n'>dfa</span>
-<span class='lineno'> 9</span> 
-<span class='lineno'>10</span> <span class='k'>def</span> <span class='nf'>calc_dfa</span><span class='p'>(</span><span class='n'>k_set</span><span class='p'>,</span> <span class='n'>e_set</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>,</span> <span class='n'>z_set</span><span class='p'>):</span>
-<span class='lineno'>11</span> 	<span class='n'>dfa</span> <span class='o'>=</span> <span class='n'>creat_dfa</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>)</span>
-<span class='lineno'>12</span> 	<span class='n'>dfa_set</span> <span class='o'>=</span> <span class='p'>[]</span>
-<span class='lineno'>13</span> 	<span class='n'>memo</span> <span class='o'>=</span> <span class='n'>creat_memo</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>)</span>
-<span class='lineno'>14</span> 	<span class='n'>ep</span> <span class='o'>=</span> <span class='n'>ep_closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>)</span>
-<span class='lineno'>15</span> 	<span class='c'>#Attention here. Has to be a list</span>
-<span class='lineno'>16</span> 	<span class='n'>queue</span> <span class='o'>=</span> <span class='n'>deque</span><span class='p'>([</span><span class='n'>ep</span><span class='p'>])</span>
-<span class='lineno'>17</span> 
-<span class='lineno'>18</span> 	<span class='n'>dfa_set</span><span class='o'>.</span><span class='n'>append</span><span class='p'>([</span><span class='n'>ep</span><span class='p'>])</span>
-<span class='lineno'>19</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='s'>&quot;0&quot;</span><span class='p'>)</span>
-<span class='lineno'>20</span> 	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='s'>&quot;0&quot;</span><span class='p'>)</span>
-<span class='lineno'>21</span> 	<span class='k'>if</span> <span class='ow'>not</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>ep</span><span class='o'>&amp;</span><span class='n'>z_set</span><span class='p'>)</span> <span class='o'>==</span> <span class='mi'>0</span><span class='p'>:</span>
-<span class='lineno'>22</span> 		<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='s'>&quot;0&quot;</span><span class='p'>)</span>
-<span class='lineno'>23</span> 	<span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span>
-<span class='lineno'>24</span> 
-<span class='lineno'>25</span> 	<span class='k'>while</span> <span class='n'>queue</span><span class='p'>:</span>
-<span class='lineno'>26</span> 		<span class='n'>T</span> <span class='o'>=</span> <span class='n'>queue</span><span class='o'>.</span><span class='n'>popleft</span><span class='p'>()</span>
-<span class='lineno'>27</span> 		<span class='n'>j</span> <span class='o'>=</span> <span class='s'>&quot;&quot;</span>
-<span class='lineno'>28</span> 		<span class='n'>index</span> <span class='o'>=</span> <span class='nb'>str</span><span class='p'>(</span><span class='n'>i</span><span class='p'>)</span>
-<span class='lineno'>29</span> 		<span class='n'>i</span> <span class='o'>=</span> <span class='n'>i</span> <span class='o'>+</span> <span class='mi'>1</span>
-<span class='lineno'>30</span> 		<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>][</span><span class='n'>index</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
-<span class='lineno'>31</span> 		<span class='k'>for</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>e_set</span><span class='p'>:</span>
-<span class='lineno'>32</span> 			<span class='n'>t</span> <span class='o'>=</span> <span class='n'>ep_closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>move</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>T</span><span class='p'>,</span> <span class='n'>s</span><span class='p'>))</span>
-<span class='lineno'>33</span> 			<span class='k'>try</span><span class='p'>:</span>
-<span class='lineno'>34</span> 				<span class='n'>j</span> <span class='o'>=</span> <span class='nb'>str</span><span class='p'>(</span><span class='n'>dfa_set</span><span class='o'>.</span><span class='n'>index</span><span class='p'>(</span><span class='n'>t</span><span class='p'>))</span>
-<span class='lineno'>35</span> 			<span class='k'>except</span> <span class='ne'>ValueError</span><span class='p'>:</span>
-<span class='lineno'>36</span> 				<span class='n'>queue</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>t</span><span class='p'>)</span>
-<span class='lineno'>37</span> 				<span class='n'>j</span> <span class='o'>=</span> <span class='nb'>str</span><span class='p'>(</span><span class='nb'>len</span><span class='p'>(</span><span class='n'>dfa_set</span><span class='p'>))</span>
-<span class='lineno'>38</span> 				<span class='n'>dfa_set</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>t</span><span class='p'>)</span>
-<span class='lineno'>39</span> 				<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>j</span><span class='p'>)</span>
-<span class='lineno'>40</span> 			<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>][</span><span class='n'>index</span><span class='p'>][</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='n'>j</span>
-<span class='lineno'>41</span> 			<span class='k'>if</span> <span class='ow'>not</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>t</span><span class='o'>&amp;</span><span class='n'>s_set</span><span class='p'>)</span> <span class='o'>==</span> <span class='mi'>0</span><span class='p'>:</span>
-<span class='lineno'>42</span> 				<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>j</span><span class='p'>)</span>
-<span class='lineno'>43</span> 			<span class='k'>if</span> <span class='ow'>not</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>t</span><span class='o'>&amp;</span><span class='n'>z_set</span><span class='p'>)</span> <span class='o'>==</span> <span class='mi'>0</span><span class='p'>:</span>
-<span class='lineno'>44</span> 				<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>j</span><span class='p'>)</span>
-<span class='lineno'>45</span> 
-<span class='lineno'>46</span> 	<span class='k'>return</span> <span class='n'>dfa</span>
+<div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>creat_dfa</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>):</span>
+	<span class='n'>dfa</span> <span class='o'>=</span> <span class='p'>{}</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>[]</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;e&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='nb'>list</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>)</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>[]</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>[]</span>
+	<span class='k'>return</span> <span class='n'>dfa</span>
+
+<span class='k'>def</span> <span class='nf'>calc_dfa</span><span class='p'>(</span><span class='n'>k_set</span><span class='p'>,</span> <span class='n'>e_set</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>,</span> <span class='n'>z_set</span><span class='p'>):</span>
+	<span class='n'>dfa</span> <span class='o'>=</span> <span class='n'>creat_dfa</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>)</span>
+	<span class='n'>dfa_set</span> <span class='o'>=</span> <span class='p'>[]</span>
+	<span class='n'>memo</span> <span class='o'>=</span> <span class='n'>creat_memo</span><span class='p'>(</span><span class='n'>e_set</span><span class='p'>)</span>
+	<span class='n'>ep</span> <span class='o'>=</span> <span class='n'>ep_closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>)</span>
+	<span class='c'>#Attention here. Has to be a list</span>
+	<span class='n'>queue</span> <span class='o'>=</span> <span class='n'>deque</span><span class='p'>([</span><span class='n'>ep</span><span class='p'>])</span>
+
+	<span class='n'>dfa_set</span><span class='o'>.</span><span class='n'>append</span><span class='p'>([</span><span class='n'>ep</span><span class='p'>])</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='s'>&quot;0&quot;</span><span class='p'>)</span>
+	<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='s'>&quot;0&quot;</span><span class='p'>)</span>
+	<span class='k'>if</span> <span class='ow'>not</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>ep</span><span class='o'>&amp;</span><span class='n'>z_set</span><span class='p'>)</span> <span class='o'>==</span> <span class='mi'>0</span><span class='p'>:</span>
+		<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='s'>&quot;0&quot;</span><span class='p'>)</span>
+	<span class='n'>i</span> <span class='o'>=</span> <span class='mi'>0</span>
+
+	<span class='k'>while</span> <span class='n'>queue</span><span class='p'>:</span>
+		<span class='n'>T</span> <span class='o'>=</span> <span class='n'>queue</span><span class='o'>.</span><span class='n'>popleft</span><span class='p'>()</span>
+		<span class='n'>j</span> <span class='o'>=</span> <span class='s'>&quot;&quot;</span>
+		<span class='n'>index</span> <span class='o'>=</span> <span class='nb'>str</span><span class='p'>(</span><span class='n'>i</span><span class='p'>)</span>
+		<span class='n'>i</span> <span class='o'>=</span> <span class='n'>i</span> <span class='o'>+</span> <span class='mi'>1</span>
+		<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>][</span><span class='n'>index</span><span class='p'>]</span> <span class='o'>=</span> <span class='p'>{}</span>
+		<span class='k'>for</span> <span class='n'>s</span> <span class='ow'>in</span> <span class='n'>e_set</span><span class='p'>:</span>
+			<span class='n'>t</span> <span class='o'>=</span> <span class='n'>ep_closure</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>move</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='n'>memo</span><span class='p'>,</span> <span class='n'>T</span><span class='p'>,</span> <span class='n'>s</span><span class='p'>))</span>
+			<span class='k'>try</span><span class='p'>:</span>
+				<span class='n'>j</span> <span class='o'>=</span> <span class='nb'>str</span><span class='p'>(</span><span class='n'>dfa_set</span><span class='o'>.</span><span class='n'>index</span><span class='p'>(</span><span class='n'>t</span><span class='p'>))</span>
+			<span class='k'>except</span> <span class='ne'>ValueError</span><span class='p'>:</span>
+				<span class='n'>queue</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>t</span><span class='p'>)</span>
+				<span class='n'>j</span> <span class='o'>=</span> <span class='nb'>str</span><span class='p'>(</span><span class='nb'>len</span><span class='p'>(</span><span class='n'>dfa_set</span><span class='p'>))</span>
+				<span class='n'>dfa_set</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>t</span><span class='p'>)</span>
+				<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;k&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>j</span><span class='p'>)</span>
+			<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;f&quot;</span><span class='p'>][</span><span class='n'>index</span><span class='p'>][</span><span class='n'>s</span><span class='p'>]</span> <span class='o'>=</span> <span class='n'>j</span>
+			<span class='k'>if</span> <span class='ow'>not</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>t</span><span class='o'>&amp;</span><span class='n'>s_set</span><span class='p'>)</span> <span class='o'>==</span> <span class='mi'>0</span><span class='p'>:</span>
+				<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;s&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>j</span><span class='p'>)</span>
+			<span class='k'>if</span> <span class='ow'>not</span> <span class='nb'>len</span><span class='p'>(</span><span class='n'>t</span><span class='o'>&amp;</span><span class='n'>z_set</span><span class='p'>)</span> <span class='o'>==</span> <span class='mi'>0</span><span class='p'>:</span>
+				<span class='n'>dfa</span><span class='p'>[</span><span class='s'>&quot;z&quot;</span><span class='p'>]</span><span class='o'>.</span><span class='n'>append</span><span class='p'>(</span><span class='n'>j</span><span class='p'>)</span>
+
+	<span class='k'>return</span> <span class='n'>dfa</span>
 </code></pre></div>
 <p>生成json的<code>write_dfa</code>和程序的其余代码：</p>
-<div class='highlight'><pre><code class='python'><span class='lineno'> 1</span> <span class='k'>def</span> <span class='nf'>write_dfa</span><span class='p'>(</span><span class='n'>dfa</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>):</span>
-<span class='lineno'> 2</span> 	<span class='n'>f</span> <span class='o'>=</span> <span class='nb'>open</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='s'>&quot;w&quot;</span><span class='p'>)</span>
-<span class='lineno'> 3</span> 	<span class='n'>f</span><span class='o'>.</span><span class='n'>write</span><span class='p'>(</span><span class='n'>json</span><span class='o'>.</span><span class='n'>dumps</span><span class='p'>(</span><span class='n'>dfa</span><span class='p'>))</span>
-<span class='lineno'> 4</span> 	<span class='n'>f</span><span class='o'>.</span><span class='n'>close</span><span class='p'>()</span>
-<span class='lineno'> 5</span> 
-<span class='lineno'> 6</span> <span class='k'>def</span> <span class='nf'>main</span><span class='p'>():</span>
-<span class='lineno'> 7</span> 	<span class='p'>(</span><span class='n'>k_set</span><span class='p'>,</span> <span class='n'>e_set</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>,</span> <span class='n'>z_set</span><span class='p'>)</span> <span class='o'>=</span> <span class='n'>read</span><span class='p'>(</span><span class='s'>&quot;NFA.json&quot;</span><span class='p'>)</span>
-<span class='lineno'> 8</span> 	<span class='n'>dfa</span> <span class='o'>=</span> <span class='n'>calc_dfa</span><span class='p'>(</span><span class='n'>k_set</span><span class='p'>,</span> <span class='n'>e_set</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>,</span> <span class='n'>z_set</span><span class='p'>)</span>
-<span class='lineno'> 9</span> 	<span class='n'>write_dfa</span><span class='p'>(</span><span class='n'>dfa</span><span class='p'>,</span> <span class='s'>&quot;DFA.json&quot;</span><span class='p'>)</span>
-<span class='lineno'>10</span> 	
-<span class='lineno'>11</span> 
-<span class='lineno'>12</span> <span class='k'>if</span> <span class='n'>__name__</span> <span class='o'>==</span> <span class='s'>&#39;__ma</span>
+<div class='highlight'><pre><code class='python'><span class='k'>def</span> <span class='nf'>write_dfa</span><span class='p'>(</span><span class='n'>dfa</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>):</span>
+	<span class='n'>f</span> <span class='o'>=</span> <span class='nb'>open</span><span class='p'>(</span><span class='n'>f</span><span class='p'>,</span> <span class='s'>&quot;w&quot;</span><span class='p'>)</span>
+	<span class='n'>f</span><span class='o'>.</span><span class='n'>write</span><span class='p'>(</span><span class='n'>json</span><span class='o'>.</span><span class='n'>dumps</span><span class='p'>(</span><span class='n'>dfa</span><span class='p'>))</span>
+	<span class='n'>f</span><span class='o'>.</span><span class='n'>close</span><span class='p'>()</span>
+
+<span class='k'>def</span> <span class='nf'>main</span><span class='p'>():</span>
+	<span class='p'>(</span><span class='n'>k_set</span><span class='p'>,</span> <span class='n'>e_set</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>,</span> <span class='n'>z_set</span><span class='p'>)</span> <span class='o'>=</span> <span class='n'>read</span><span class='p'>(</span><span class='s'>&quot;NFA.json&quot;</span><span class='p'>)</span>
+	<span class='n'>dfa</span> <span class='o'>=</span> <span class='n'>calc_dfa</span><span class='p'>(</span><span class='n'>k_set</span><span class='p'>,</span> <span class='n'>e_set</span><span class='p'>,</span> <span class='n'>f</span><span class='p'>,</span> <span class='n'>s_set</span><span class='p'>,</span> <span class='n'>z_set</span><span class='p'>)</span>
+	<span class='n'>write_dfa</span><span class='p'>(</span><span class='n'>dfa</span><span class='p'>,</span> <span class='s'>&quot;DFA.json&quot;</span><span class='p'>)</span>
+	
+
+<span class='k'>if</span> <span class='n'>__name__</span> <span class='o'>==</span> <span class='s'>&#39;__ma</span>
 </code></pre></div>
 <p>附上最后生成的json代码，就是上面的图DFA M</p>
-<div class='highlight'><pre><code class='json'><span class='lineno'> 1</span> <span class='p'>{</span>
-<span class='lineno'> 2</span> 	<span class='nt'>&quot;k&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>,</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> <span class='s2'>&quot;2&quot;</span><span class='p'>,</span> <span class='s2'>&quot;3&quot;</span><span class='p'>,</span> <span class='s2'>&quot;4&quot;</span><span class='p'>],</span> 
-<span class='lineno'> 3</span> 	<span class='nt'>&quot;z&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;4&quot;</span><span class='p'>],</span> 
-<span class='lineno'> 4</span> 	<span class='nt'>&quot;e&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;a&quot;</span><span class='p'>,</span> <span class='s2'>&quot;b&quot;</span><span class='p'>],</span> 
-<span class='lineno'> 5</span> 	<span class='nt'>&quot;s&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>],</span> 
-<span class='lineno'> 6</span> 	<span class='nt'>&quot;f&quot;</span><span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'> 7</span> 		<span class='nt'>&quot;1&quot;</span><span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'> 8</span> 			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
-<span class='lineno'> 9</span> 			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;3&quot;</span>
-<span class='lineno'>10</span> 		<span class='p'>},</span> 
-<span class='lineno'>11</span> 		<span class='nt'>&quot;0&quot;</span><span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>12</span> 			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
-<span class='lineno'>13</span> 			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;2&quot;</span>
-<span class='lineno'>14</span> 		<span class='p'>},</span> 
-<span class='lineno'>15</span> 		<span class='nt'>&quot;3&quot;</span><span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>16</span> 			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
-<span class='lineno'>17</span> 			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;4&quot;</span>
-<span class='lineno'>18</span> 		<span class='p'>},</span> 
-<span class='lineno'>19</span> 		<span class='nt'>&quot;2&quot;</span><span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>20</span> 			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
-<span class='lineno'>21</span> 			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;2&quot;</span>
-<span class='lineno'>22</span> 		<span class='p'>},</span> 
-<span class='lineno'>23</span> 		<span class='nt'>&quot;4&quot;</span><span class='p'>:</span> <span class='p'>{</span>
-<span class='lineno'>24</span> 			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
-<span class='lineno'>25</span> 			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;2&quot;</span>
-<span class='lineno'>26</span> 		<span class='p'>}</span>
-<span class='lineno'>27</span> 	<span class='p'>}</span>
-<span class='lineno'>28</span> <span class='p'>}</span>
+<div class='highlight'><pre><code class='json'><span class='p'>{</span>
+	<span class='nt'>&quot;k&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>,</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> <span class='s2'>&quot;2&quot;</span><span class='p'>,</span> <span class='s2'>&quot;3&quot;</span><span class='p'>,</span> <span class='s2'>&quot;4&quot;</span><span class='p'>],</span> 
+	<span class='nt'>&quot;z&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;4&quot;</span><span class='p'>],</span> 
+	<span class='nt'>&quot;e&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;a&quot;</span><span class='p'>,</span> <span class='s2'>&quot;b&quot;</span><span class='p'>],</span> 
+	<span class='nt'>&quot;s&quot;</span><span class='p'>:</span> <span class='p'>[</span><span class='s2'>&quot;0&quot;</span><span class='p'>],</span> 
+	<span class='nt'>&quot;f&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+		<span class='nt'>&quot;1&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
+			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;3&quot;</span>
+		<span class='p'>},</span> 
+		<span class='nt'>&quot;0&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
+			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;2&quot;</span>
+		<span class='p'>},</span> 
+		<span class='nt'>&quot;3&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
+			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;4&quot;</span>
+		<span class='p'>},</span> 
+		<span class='nt'>&quot;2&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
+			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;2&quot;</span>
+		<span class='p'>},</span> 
+		<span class='nt'>&quot;4&quot;</span><span class='p'>:</span> <span class='p'>{</span>
+			<span class='nt'>&quot;a&quot;</span><span class='p'>:</span> <span class='s2'>&quot;1&quot;</span><span class='p'>,</span> 
+			<span class='nt'>&quot;b&quot;</span><span class='p'>:</span> <span class='s2'>&quot;2&quot;</span>
+		<span class='p'>}</span>
+	<span class='p'>}</span>
+<span class='p'>}</span>
 </code></pre></div>
 <p><br /><br /><br /><br /><a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'><img align='center' alt='知识共享许可协议' src='/assets/files/cc-licenses.png' style='border-width:0' /></a><br />本作品采用<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'>知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a>进行许可。</p>
     <hr>
@@ -444,7 +444,7 @@
       
         <a class="btn" href="/archive.html">Archive</a>
       
-        <a class="btn next disabled">Next &rarr;</a>
+        <a class="btn next" href="/jekyll/2014/03/19/jekyll-bootstrap-not-updating" title="Jekyll-bootstrap Not Updating Problem Fixed">Next &rarr;</a>
       
     </div>
     <hr>

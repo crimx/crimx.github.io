@@ -70,7 +70,7 @@ tags:
 
 首先是`Token`类，扫描时就会将字符串生成一个个`Token`。
 
-{% highlight java linenos %}
+{% highlight java %}
 private TokenType type; // 该token的类型
 private double number;  // 数字
 private String op;      // 操作符
@@ -78,7 +78,7 @@ private String op;      // 操作符
 
 我这里是图省事把`Token`也当做中间代码的结点，所以里面还实现树相关的属性和方法，为中间代码的结点单独设计类会更好。
 
-{% highlight java linenos %}
+{% highlight java %}
 private ArrayList<Token> children = null; // 孩子
 
 public void addChild(Token token){......}
@@ -86,7 +86,7 @@ public void addChild(Token token){......}
 
 接下来看`TokenType`类，这里枚举了所有可能的类型。
 
-{% highlight java linenos %}
+{% highlight java %}
 public enum TokenType {
 	
 	//数字
@@ -105,7 +105,7 @@ public enum TokenType {
 {% endhighlight %}
 
 有了`Token`和`TokenType`，`Scanner`类负责扫描一遍表达式并提取一个个`Token`。因为这里的符号（Token）只有数字与负号（见上面的`TokenType`），所以判断起来并不复杂，注意一下处理小数点。
-{% highlight java linenos %}
+{% highlight java %}
 // 数字处理
 if(Character.isDigit(currentChar) || currentChar == '.') {
 	return extractNumber();
@@ -128,7 +128,7 @@ else {
 
 生成中间代码后，在后端实现一个`Calculator`去计算中间代码，更加简单，自上往下递归计算即可。
 
-{% highlight java linenos %}
+{% highlight java %}
 private double calculate(Token token) throws Exception {
 	
 	if(token != null) {
@@ -155,7 +155,7 @@ private double calculate(Token token) throws Exception {
 
 其中使用正则表达式隐藏异常中不必要的信息。
 
-{% highlight java linenos %}
+{% highlight java %}
 Pattern.compile("^.*Exception:").matcher(e1.toString()).replaceAll("")
 {% endhighlight %}
 

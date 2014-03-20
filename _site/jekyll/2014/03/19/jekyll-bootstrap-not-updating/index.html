@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>
       
-        「黄杰华」 - 
+        Jekyll-bootstrap Not Updating Problem Fixed - 
       
       码田寻虫
     </title>
@@ -142,19 +142,16 @@
       <div class="container">
         <div class="content">
           
-<div class="page-header-wrapper">
-	<div class="page-header">
-  		<h1>「黄杰华」  <small>The dust of the dead codes clings to thee. Wash thy soul with debugging.</small></h1>
-  	</div>
+<div class="page-header">
+  <h1>
+    Jekyll-bootstrap Not Updating Problem Fixed 
+    
+  </h1>
 </div>
 
 <div class="row">
-  <div class="span12">
-    <link href='/assets/files/favicon.ico' rel='shortcut icon' /><ul>
-  
-    <li>
-      <h2><a href='/jekyll/2014/03/19/jekyll-bootstrap-not-updating'>Jekyll-bootstrap Not Updating Problem Fixed</a></h2>
-      <p>I had a jekyll blog on the github and changed it to Jekyll-bootstrap yesterday. <br />I tested it locally, everything was ok. Pushed successfully. But my github pages didn’t change.</p>
+  <div class="span8">
+    <p>I had a jekyll blog on the github and changed it to Jekyll-bootstrap yesterday. <br />I tested it locally, everything was ok. Pushed successfully. But my github pages didn’t change.</p>
 
 <p>After debugging, I realised that the problem occured right after the theme <code>hooligan</code> was installed.</p>
 
@@ -188,97 +185,75 @@
 <p>如果上面的办法没用的话，我建议删掉仓库重新来一遍，我就是这样成功的，注意发布之后有可能要等一会才有效哦。</p>
 
 <p><br /><br /><br /><br /><a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'><img align='center' alt='知识共享许可协议' src='/assets/files/cc-licenses.png' style='border-width:0' /></a><br />本作品采用<a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'>知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a>进行许可。</p>
-      <br />
-      <a href='/jekyll/2014/03/19/jekyll-bootstrap-not-updating'><code> --==Read More==-- </code></a>
-      <br /><br /><br />
+    <hr>
+    <div class="pagination btn-group">
+      
+        <a class="btn prev" href="/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa" title="NFA与DFA的转换与优化">&larr; Previous</a>
+      
+        <a class="btn" href="/archive.html">Archive</a>
+      
+        <a class="btn next disabled">Next &rarr;</a>
+      
+    </div>
+    <hr>
+    
 
-    </li>
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'crimx'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
   
-    <li>
-      <h2><a href='/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa'>NFA与DFA的转换与优化</a></h2>
-      <p>上一节《编译原理》课讲到了NFA（不确定的有穷自动机）向DFA（确定的有穷自动机）转换。考试要考，所以要手写变换过程，很繁琐，也很有趣。所以周末用python给实现了，并利用动态规划进行优化。</p>
+  <div class="span4">
+    <section>
+      <h4>Published</h4>
+      <div class="date"><span>19 March 2014</span></div>
+    </section>
+    
+      <section>
+        <h4>Category</h4>
+        <span class="category">
+          jekyll
+        </span>
+      </section>
+         
+    
+      <section>
+        <h4>Tags</h4>
+        <ul class="tag_box">
+          
+          
 
-<h2 id=''>转换方法</h2>
-<hr />
-<p>这里主要涉及到对状态集合I的两个操作：</p>
 
-<ol>
-<li>求ε-闭包。表示为ε-closure(I)，是指I中的任何状态S经过任意条ε弧能到达的状态的集合。</li>
-
-<li>求I的α弧转换。表示为move(I,α)，是指I中某一状态经过一条α弧到达的状态的集合。</li>
-</ol>
-
-<p>比如说这里有一个NFA N：</p>
-
-<p><img alt='NFA' src='/assets/files/2014-3-16-nfa-to-dfa/nfa.jpg' /></p>
-
-<p>因为NFA是一个五元组，N=(K,E,f,S,Z),即为(状态集合，弧集合，转换集合，开始状态集合，终结状态集合)，所以由图可知：</p>
-
-<p>NFA N = ({0,1,2,3,4,5,6,7,8,9,10},{a,b},f,{0},{10})，其中</p>
-
-<ul>
-<li>f(0,ε) = {1}</li>
-
-<li>f(1,ε) = {2,4}</li>
-
-<li>f(2,a) = {3}</li>
-
-<li>f(3,ε) = {6}</li>
-
-<li>f(4,b) = {5}</li>
-
-<li>f(5,ε) = {6}</li>
-
-<li>f(6,ε) = {1,7}</li>
-
-<li>f{7,a} = {8}</li>
-
-<li>f(8,b) = {9}</li>
-
-<li>f(9,b) = {10}</li>
-</ul>
-
-<p>那么ε-closure(0)={0,1,2,4,7}</p>
-
-<p>move({0,1,2,4,7},a) = {3,8}</p>
-
-<p>ε-closure({3,8})={1,2,3,4,6,7,8}</p>
-      <br />
-      <a href='/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa'><code> --==Read More==-- </code></a>
-      <br /><br /><br />
-
-    </li>
   
-    <li>
-      <h2><a href='/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator'>编译原理与计算器</a></h2>
-      <p>上次交流会师弟演讲了栈式计算器，这在《数据结构》里也有提到，当时是用C实现了。而这学期学《编译原理》，里面也涉及到数学表达式。两者对比用栈更快，但是使用中间代码可以使到条理更清晰，还可以做很多有趣的扩展。所以这次交流会的内容有着落了。</p>
-
-<p>因为想顺便做个简单的GUI看看效果，所以打算用Qt或pyQt，但是之前重装了系统，去下载Qt校园网速又渣渣，省事点还是用Java好了。</p>
-
-<h2 id=''>语法图</h2>
-<hr />
-<p>先简单的递归定义数学表达式<code>文法</code>，用<code>EBNF</code>会比较精炼，但是演讲效果不够图像明显。</p>
-
-<h3 id='_2'>表达式：</h3>
-
-<p><img alt='expression' src='/assets/files/2014-3-15-simple-calculator/expression.png' /></p>
-
-<h3 id='_3'>项：</h3>
-
-<p><img alt='term' src='/assets/files/2014-3-15-simple-calculator/term.png' /></p>
-
-<h3 id='_4'>因子：</h3>
-
-<p><img alt='factor' src='/assets/files/2014-3-15-simple-calculator/factor.png' /></p>
-      <br />
-      <a href='/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator'><code> --==Read More==-- </code></a>
-      <br /><br /><br />
-
-    </li>
+     
+    	<li><a href="/tags.html#jekyll-ref">jekyll <span>1</span></a></li>
+    
   
-</ul>
+
+
+
+        </ul>
+      </section>
+             
   </div>
 </div>
+
 
 
 <!-- goolge analytics -->

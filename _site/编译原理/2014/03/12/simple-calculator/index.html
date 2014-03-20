@@ -206,78 +206,78 @@
 <p>太懒没弄UML图，不过类也不多，直接讲吧，完整源码在<a href="/assets/files/2014-3-15-simple-calculator/files/calc.tar.gz">这里</a>。</p>
 
 <p>首先是<code>Token</code>类，扫描时就会将字符串生成一个个<code>Token</code>。</p>
-<div class='highlight'><pre><code class='java'><span class='lineno'>1</span> <span class='kd'>private</span> <span class='n'>TokenType</span> <span class='n'>type</span><span class='o'>;</span> <span class='c1'>// 该token的类型</span>
-<span class='lineno'>2</span> <span class='kd'>private</span> <span class='kt'>double</span> <span class='n'>number</span><span class='o'>;</span>  <span class='c1'>// 数字</span>
-<span class='lineno'>3</span> <span class='kd'>private</span> <span class='n'>String</span> <span class='n'>op</span><span class='o'>;</span>      <span class='c1'>// 操作符</span>
+<div class='highlight'><pre><code class='java'><span class='kd'>private</span> <span class='n'>TokenType</span> <span class='n'>type</span><span class='o'>;</span> <span class='c1'>// 该token的类型</span>
+<span class='kd'>private</span> <span class='kt'>double</span> <span class='n'>number</span><span class='o'>;</span>  <span class='c1'>// 数字</span>
+<span class='kd'>private</span> <span class='n'>String</span> <span class='n'>op</span><span class='o'>;</span>      <span class='c1'>// 操作符</span>
 </code></pre></div>
 <p>我这里是图省事把<code>Token</code>也当做中间代码的结点，所以里面还实现树相关的属性和方法，为中间代码的结点单独设计类会更好。</p>
-<div class='highlight'><pre><code class='java'><span class='lineno'>1</span> <span class='kd'>private</span> <span class='n'>ArrayList</span><span class='o'>&lt;</span><span class='n'>Token</span><span class='o'>&gt;</span> <span class='n'>children</span> <span class='o'>=</span> <span class='kc'>null</span><span class='o'>;</span> <span class='c1'>// 孩子</span>
-<span class='lineno'>2</span> 
-<span class='lineno'>3</span> <span class='kd'>public</span> <span class='kt'>void</span> <span class='nf'>addChild</span><span class='o'>(</span><span class='n'>Token</span> <span class='n'>token</span><span class='o'>){......}</span>
+<div class='highlight'><pre><code class='java'><span class='kd'>private</span> <span class='n'>ArrayList</span><span class='o'>&lt;</span><span class='n'>Token</span><span class='o'>&gt;</span> <span class='n'>children</span> <span class='o'>=</span> <span class='kc'>null</span><span class='o'>;</span> <span class='c1'>// 孩子</span>
+
+<span class='kd'>public</span> <span class='kt'>void</span> <span class='nf'>addChild</span><span class='o'>(</span><span class='n'>Token</span> <span class='n'>token</span><span class='o'>){......}</span>
 </code></pre></div>
 <p>接下来看<code>TokenType</code>类，这里枚举了所有可能的类型。</p>
-<div class='highlight'><pre><code class='java'><span class='lineno'> 1</span> <span class='kd'>public</span> <span class='kd'>enum</span> <span class='n'>TokenType</span> <span class='o'>{</span>
-<span class='lineno'> 2</span> 	
-<span class='lineno'> 3</span> 	<span class='c1'>//数字</span>
-<span class='lineno'> 4</span> 	<span class='n'>NUMBER</span><span class='o'>,</span>
-<span class='lineno'> 5</span> 	
-<span class='lineno'> 6</span> 	<span class='c1'>//操作符</span>
-<span class='lineno'> 7</span> 	<span class='n'>PLUS</span><span class='o'>,</span> <span class='n'>MINUS</span><span class='o'>,</span> <span class='n'>STAR</span><span class='o'>,</span> <span class='n'>SLASH</span><span class='o'>,</span>
-<span class='lineno'> 8</span> 	<span class='n'>LEFT_PAREN</span><span class='o'>,</span> <span class='n'>RIGHT_PAREN</span><span class='o'>,</span>
-<span class='lineno'> 9</span>     
-<span class='lineno'>10</span> 	<span class='c1'>//负数</span>
-<span class='lineno'>11</span> 	<span class='n'>NEGATE</span><span class='o'>,</span>
-<span class='lineno'>12</span> 	
-<span class='lineno'>13</span> 	<span class='c1'>//结束</span>
-<span class='lineno'>14</span> 	<span class='n'>EOF</span><span class='o'>;</span>
-<span class='lineno'>15</span> <span class='o'>}</span>
+<div class='highlight'><pre><code class='java'><span class='kd'>public</span> <span class='kd'>enum</span> <span class='n'>TokenType</span> <span class='o'>{</span>
+	
+	<span class='c1'>//数字</span>
+	<span class='n'>NUMBER</span><span class='o'>,</span>
+	
+	<span class='c1'>//操作符</span>
+	<span class='n'>PLUS</span><span class='o'>,</span> <span class='n'>MINUS</span><span class='o'>,</span> <span class='n'>STAR</span><span class='o'>,</span> <span class='n'>SLASH</span><span class='o'>,</span>
+	<span class='n'>LEFT_PAREN</span><span class='o'>,</span> <span class='n'>RIGHT_PAREN</span><span class='o'>,</span>
+    
+	<span class='c1'>//负数</span>
+	<span class='n'>NEGATE</span><span class='o'>,</span>
+	
+	<span class='c1'>//结束</span>
+	<span class='n'>EOF</span><span class='o'>;</span>
+<span class='o'>}</span>
 </code></pre></div>
 <p>有了<code>Token</code>和<code>TokenType</code>，<code>Scanner</code>类负责扫描一遍表达式并提取一个个<code>Token</code>。因为这里的符号（Token）只有数字与负号（见上面的<code>TokenType</code>），所以判断起来并不复杂，注意一下处理小数点。</p>
-<div class='highlight'><pre><code class='java'><span class='lineno'> 1</span> <span class='c1'>// 数字处理</span>
-<span class='lineno'> 2</span> <span class='k'>if</span><span class='o'>(</span><span class='n'>Character</span><span class='o'>.</span><span class='na'>isDigit</span><span class='o'>(</span><span class='n'>currentChar</span><span class='o'>)</span> <span class='o'>||</span> <span class='n'>currentChar</span> <span class='o'>==</span> <span class='sc'>&#39;.&#39;</span><span class='o'>)</span> <span class='o'>{</span>
-<span class='lineno'> 3</span> 	<span class='k'>return</span> <span class='nf'>extractNumber</span><span class='o'>();</span>
-<span class='lineno'> 4</span> <span class='o'>}</span>
-<span class='lineno'> 5</span> <span class='k'>else</span> <span class='o'>{</span>
-<span class='lineno'> 6</span> 	<span class='n'>nextChar</span><span class='o'>();</span> <span class='c1'>// 先消耗掉这个字符</span>
-<span class='lineno'> 7</span> 	<span class='k'>switch</span><span class='o'>(</span><span class='n'>currentChar</span><span class='o'>)</span> <span class='o'>{</span>
-<span class='lineno'> 8</span> 	<span class='k'>case</span> <span class='sc'>&#39;+&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>PLUS</span><span class='o'>,</span> <span class='sc'>&#39;+&#39;</span><span class='o'>);</span> 
-<span class='lineno'> 9</span> 	<span class='k'>case</span> <span class='sc'>&#39;-&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>MINUS</span><span class='o'>,</span> <span class='sc'>&#39;-&#39;</span><span class='o'>);</span> 
-<span class='lineno'>10</span> 	<span class='k'>case</span> <span class='sc'>&#39;*&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>STAR</span><span class='o'>,</span> <span class='sc'>&#39;*&#39;</span><span class='o'>);</span>
-<span class='lineno'>11</span> 	<span class='k'>case</span> <span class='sc'>&#39;/&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>SLASH</span><span class='o'>,</span> <span class='sc'>&#39;/&#39;</span><span class='o'>);</span> 
-<span class='lineno'>12</span> 	<span class='k'>case</span> <span class='sc'>&#39;(&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>LEFT_PAREN</span><span class='o'>,</span> <span class='sc'>&#39;(&#39;</span><span class='o'>);</span> 
-<span class='lineno'>13</span> 	<span class='k'>case</span> <span class='sc'>&#39;)&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>RIGHT_PAREN</span><span class='o'>,</span> <span class='sc'>&#39;)&#39;</span><span class='o'>);</span>  
-<span class='lineno'>14</span> 	<span class='k'>case</span> <span class='o'>(</span><span class='kt'>char</span><span class='o'>)</span><span class='mi'>0</span><span class='o'>:</span><span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>EOF</span><span class='o'>);</span> 
-<span class='lineno'>15</span> 	<span class='k'>default</span> <span class='o'>:</span> <span class='k'>throw</span> <span class='k'>new</span> <span class='n'>Exception</span><span class='o'>(</span><span class='s'>&quot;有未识别的字符 \&quot;&quot;</span><span class='o'>+</span> <span class='n'>currentChar</span> <span class='o'>+</span> <span class='s'>&quot;\&quot; !&quot;</span><span class='o'>);</span>
-<span class='lineno'>16</span> <span class='o'>}</span>
+<div class='highlight'><pre><code class='java'><span class='c1'>// 数字处理</span>
+<span class='k'>if</span><span class='o'>(</span><span class='n'>Character</span><span class='o'>.</span><span class='na'>isDigit</span><span class='o'>(</span><span class='n'>currentChar</span><span class='o'>)</span> <span class='o'>||</span> <span class='n'>currentChar</span> <span class='o'>==</span> <span class='sc'>&#39;.&#39;</span><span class='o'>)</span> <span class='o'>{</span>
+	<span class='k'>return</span> <span class='nf'>extractNumber</span><span class='o'>();</span>
+<span class='o'>}</span>
+<span class='k'>else</span> <span class='o'>{</span>
+	<span class='n'>nextChar</span><span class='o'>();</span> <span class='c1'>// 先消耗掉这个字符</span>
+	<span class='k'>switch</span><span class='o'>(</span><span class='n'>currentChar</span><span class='o'>)</span> <span class='o'>{</span>
+	<span class='k'>case</span> <span class='sc'>&#39;+&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>PLUS</span><span class='o'>,</span> <span class='sc'>&#39;+&#39;</span><span class='o'>);</span> 
+	<span class='k'>case</span> <span class='sc'>&#39;-&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>MINUS</span><span class='o'>,</span> <span class='sc'>&#39;-&#39;</span><span class='o'>);</span> 
+	<span class='k'>case</span> <span class='sc'>&#39;*&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>STAR</span><span class='o'>,</span> <span class='sc'>&#39;*&#39;</span><span class='o'>);</span>
+	<span class='k'>case</span> <span class='sc'>&#39;/&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>SLASH</span><span class='o'>,</span> <span class='sc'>&#39;/&#39;</span><span class='o'>);</span> 
+	<span class='k'>case</span> <span class='sc'>&#39;(&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>LEFT_PAREN</span><span class='o'>,</span> <span class='sc'>&#39;(&#39;</span><span class='o'>);</span> 
+	<span class='k'>case</span> <span class='sc'>&#39;)&#39;</span><span class='o'>:</span> <span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>RIGHT_PAREN</span><span class='o'>,</span> <span class='sc'>&#39;)&#39;</span><span class='o'>);</span>  
+	<span class='k'>case</span> <span class='o'>(</span><span class='kt'>char</span><span class='o'>)</span><span class='mi'>0</span><span class='o'>:</span><span class='k'>return</span> <span class='k'>new</span> <span class='n'>Token</span><span class='o'>(</span><span class='n'>EOF</span><span class='o'>);</span> 
+	<span class='k'>default</span> <span class='o'>:</span> <span class='k'>throw</span> <span class='k'>new</span> <span class='n'>Exception</span><span class='o'>(</span><span class='s'>&quot;有未识别的字符 \&quot;&quot;</span><span class='o'>+</span> <span class='n'>currentChar</span> <span class='o'>+</span> <span class='s'>&quot;\&quot; !&quot;</span><span class='o'>);</span>
+<span class='o'>}</span>
 </code></pre></div>
 <p><code>Parser</code>类就完全是对应着上面的语法图去实现了，遇到<code>非终结符</code>便递归，逻辑非常清晰，可以参看<a href="/assets/files/2014-3-15-simple-calculator/files/calc.tar.gz">源码</a></p>
 
 <p>生成中间代码后，在后端实现一个<code>Calculator</code>去计算中间代码，更加简单，自上往下递归计算即可。</p>
-<div class='highlight'><pre><code class='java'><span class='lineno'> 1</span> <span class='kd'>private</span> <span class='kt'>double</span> <span class='nf'>calculate</span><span class='o'>(</span><span class='n'>Token</span> <span class='n'>token</span><span class='o'>)</span> <span class='kd'>throws</span> <span class='n'>Exception</span> <span class='o'>{</span>
-<span class='lineno'> 2</span> 	
-<span class='lineno'> 3</span> 	<span class='k'>if</span><span class='o'>(</span><span class='n'>token</span> <span class='o'>!=</span> <span class='kc'>null</span><span class='o'>)</span> <span class='o'>{</span>
-<span class='lineno'> 4</span> 		<span class='n'>ArrayList</span><span class='o'>&lt;</span><span class='n'>Token</span><span class='o'>&gt;</span> <span class='n'>children</span> <span class='o'>=</span> <span class='n'>token</span><span class='o'>.</span><span class='na'>getChildren</span><span class='o'>();</span>
-<span class='lineno'> 5</span> 		<span class='k'>if</span><span class='o'>(</span><span class='n'>children</span> <span class='o'>==</span> <span class='kc'>null</span><span class='o'>)</span> <span class='o'>{</span>
-<span class='lineno'> 6</span> 			<span class='k'>return</span> <span class='n'>token</span><span class='o'>.</span><span class='na'>getNumber</span><span class='o'>();</span>
-<span class='lineno'> 7</span> 		<span class='o'>}</span>
-<span class='lineno'> 8</span> 		<span class='k'>else</span> <span class='o'>{</span>
-<span class='lineno'> 9</span> 			<span class='k'>switch</span><span class='o'>(</span><span class='n'>token</span><span class='o'>.</span><span class='na'>getType</span><span class='o'>())</span> <span class='o'>{</span>
-<span class='lineno'>10</span> 			<span class='k'>case</span> <span class='n'>PLUS</span>   <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>+</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
-<span class='lineno'>11</span> 			<span class='k'>case</span> <span class='n'>MINUS</span>  <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>-</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
-<span class='lineno'>12</span> 			<span class='k'>case</span> <span class='n'>STAR</span>   <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>*</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
-<span class='lineno'>13</span> 			<span class='k'>case</span> <span class='n'>SLASH</span>  <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>/</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
-<span class='lineno'>14</span> 			<span class='k'>case</span> <span class='n'>NEGATE</span> <span class='o'>:</span> <span class='k'>return</span> <span class='o'>-</span><span class='mi'>1</span> <span class='o'>*</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>));</span>
-<span class='lineno'>15</span> 			<span class='k'>default</span>     <span class='o'>:</span> <span class='k'>throw</span> <span class='k'>new</span> <span class='n'>Exception</span><span class='o'>(</span><span class='s'>&quot;计算出错！&quot;</span> <span class='o'>+</span> <span class='n'>token</span><span class='o'>.</span><span class='na'>getType</span><span class='o'>().</span><span class='na'>toString</span><span class='o'>());</span>
-<span class='lineno'>16</span> 			<span class='o'>}</span>
-<span class='lineno'>17</span> 		<span class='o'>}</span>
-<span class='lineno'>18</span> 	<span class='o'>}</span>
-<span class='lineno'>19</span> 	<span class='k'>return</span> <span class='mi'>0</span><span class='o'>;</span>
-<span class='lineno'>20</span> <span class='o'>}</span>
+<div class='highlight'><pre><code class='java'><span class='kd'>private</span> <span class='kt'>double</span> <span class='nf'>calculate</span><span class='o'>(</span><span class='n'>Token</span> <span class='n'>token</span><span class='o'>)</span> <span class='kd'>throws</span> <span class='n'>Exception</span> <span class='o'>{</span>
+	
+	<span class='k'>if</span><span class='o'>(</span><span class='n'>token</span> <span class='o'>!=</span> <span class='kc'>null</span><span class='o'>)</span> <span class='o'>{</span>
+		<span class='n'>ArrayList</span><span class='o'>&lt;</span><span class='n'>Token</span><span class='o'>&gt;</span> <span class='n'>children</span> <span class='o'>=</span> <span class='n'>token</span><span class='o'>.</span><span class='na'>getChildren</span><span class='o'>();</span>
+		<span class='k'>if</span><span class='o'>(</span><span class='n'>children</span> <span class='o'>==</span> <span class='kc'>null</span><span class='o'>)</span> <span class='o'>{</span>
+			<span class='k'>return</span> <span class='n'>token</span><span class='o'>.</span><span class='na'>getNumber</span><span class='o'>();</span>
+		<span class='o'>}</span>
+		<span class='k'>else</span> <span class='o'>{</span>
+			<span class='k'>switch</span><span class='o'>(</span><span class='n'>token</span><span class='o'>.</span><span class='na'>getType</span><span class='o'>())</span> <span class='o'>{</span>
+			<span class='k'>case</span> <span class='n'>PLUS</span>   <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>+</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
+			<span class='k'>case</span> <span class='n'>MINUS</span>  <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>-</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
+			<span class='k'>case</span> <span class='n'>STAR</span>   <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>*</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
+			<span class='k'>case</span> <span class='n'>SLASH</span>  <span class='o'>:</span> <span class='k'>return</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>))</span> <span class='o'>/</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>1</span><span class='o'>));</span>
+			<span class='k'>case</span> <span class='n'>NEGATE</span> <span class='o'>:</span> <span class='k'>return</span> <span class='o'>-</span><span class='mi'>1</span> <span class='o'>*</span> <span class='n'>calculate</span><span class='o'>(</span><span class='n'>children</span><span class='o'>.</span><span class='na'>get</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>));</span>
+			<span class='k'>default</span>     <span class='o'>:</span> <span class='k'>throw</span> <span class='k'>new</span> <span class='n'>Exception</span><span class='o'>(</span><span class='s'>&quot;计算出错！&quot;</span> <span class='o'>+</span> <span class='n'>token</span><span class='o'>.</span><span class='na'>getType</span><span class='o'>().</span><span class='na'>toString</span><span class='o'>());</span>
+			<span class='o'>}</span>
+		<span class='o'>}</span>
+	<span class='o'>}</span>
+	<span class='k'>return</span> <span class='mi'>0</span><span class='o'>;</span>
+<span class='o'>}</span>
 </code></pre></div>
 <p>就这样表达式计算就完成了。用<code>CalcMachine</code>类测试效果。</p>
 
 <p>其中使用正则表达式隐藏异常中不必要的信息。</p>
-<div class='highlight'><pre><code class='java'><span class='lineno'>1</span> <span class='n'>Pattern</span><span class='o'>.</span><span class='na'>compile</span><span class='o'>(</span><span class='s'>&quot;^.*Exception:&quot;</span><span class='o'>).</span><span class='na'>matcher</span><span class='o'>(</span><span class='n'>e1</span><span class='o'>.</span><span class='na'>toString</span><span class='o'>()).</span><span class='na'>replaceAll</span><span class='o'>(</span><span class='s'>&quot;&quot;</span><span class='o'>)</span>
+<div class='highlight'><pre><code class='java'><span class='n'>Pattern</span><span class='o'>.</span><span class='na'>compile</span><span class='o'>(</span><span class='s'>&quot;^.*Exception:&quot;</span><span class='o'>).</span><span class='na'>matcher</span><span class='o'>(</span><span class='n'>e1</span><span class='o'>.</span><span class='na'>toString</span><span class='o'>()).</span><span class='na'>replaceAll</span><span class='o'>(</span><span class='s'>&quot;&quot;</span><span class='o'>)</span>
 </code></pre></div>
 <h2 id="_9">总结</h2>
 <hr />

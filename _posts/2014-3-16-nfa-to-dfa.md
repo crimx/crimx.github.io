@@ -92,7 +92,7 @@ move({0,1,2,4,7},a) = {3,8}
 
 首先是数据存储格式，使用json存储NFA的五元组：
 
-{% highlight json linenos %}
+{% highlight json %}
 {
 	"k" : ["0","1","2","3","4","5","6","7","8","9","10"],
 	"e" : ["a","b"],
@@ -135,7 +135,7 @@ move({0,1,2,4,7},a) = {3,8}
 
 读入时做了一些简单的判断，其实还可以做得更加周全，比如初始集s和终结集z是否被状态集k包含，等等。`read()`了之后就会把五元组包装返回。
 
-{% highlight python linenos %}
+{% highlight python %}
 def read(input):
 	try:
 		nfa = json.load(open(input,"r"))
@@ -159,7 +159,7 @@ def read(input):
 
 使用`creat_memo()`接下来为计算创建缓存，因为计算闭包有大量的重复计算。`memo`是一个字典，以e集合（弧集合）的元素为键，每一个键对应的值也是一个字典，在计算闭包的过程中缓存该状态的闭包。（见`closure()`）
 
-{% highlight python linenos %}
+{% highlight python %}
 def creat_memo(e_set):
 	memo = {}
 	for i in e_set:
@@ -170,7 +170,7 @@ def creat_memo(e_set):
 
 从文章开始时提到的转换方法很容易可以看到，两个操作有很大的相似性，所以我把它们封装成一个函数`closure()`了，调用时使用各自的接口。对应上面提到的弧转换操作，`move()`中的参数s和arc表示求move(s,arc)，而`ph_closure()`的arc默认为&#949;，这里用`"#"`表示。
 
-{% highlight python linenos %}
+{% highlight python %}
 def move(f, memo, s, arc):
 	return closure(f, memo[arc], s, arc)
 
@@ -186,7 +186,7 @@ def ep_closure(f, memo, s):
 1. 闭包情况：深度优先递归的计算集合f(s,arc)的闭包，将它们合并回来。比如上面的NFA例子，一开始求&#949;-closure(0)的时候，发现f(0,&#949;)={1,7}，所以继续计算&#949;-closure(1)和&#949;-closure(7)。.....一直计算到尽头。每次递归计算过程中也会在`memo`上记录，所以整个计算过程会越来越快。
 2. 弧转换情况：由于弧只需要判断状态`s`的下个一个`arc`弧连接的状态，所以不需要递归，直接得出结果。
 
-{% highlight python linenos %}
+{% highlight python %}
 def closure(f, memo, c_set, arc):
 	res = set()
 	for s in c_set:
@@ -207,7 +207,7 @@ def closure(f, memo, c_set, arc):
 
 `creat_dfa`返回一个空的dfa结构，`calc_dfa`代表了上面提到的表格的运算过程，并把表格的内容保存到dfa结构中。先对初始状态集k求闭包，接下来为每个弧求弧转换闭包&#949;-closure(move(s, arc))。出现新集合就交给`queue`队列，并在`dfa["k"]`中做记录。我这里是利用集合在`dfa["k"]`中的index作为dfa状态的命名。
 
-{% highlight python linenos %}
+{% highlight python %}
 def creat_dfa(e_set):
 	dfa = {}
 	dfa["k"] = []
@@ -258,7 +258,7 @@ def calc_dfa(k_set, e_set, f, s_set, z_set):
 
 生成json的`write_dfa`和程序的其余代码：
 
-{% highlight python linenos %}
+{% highlight python %}
 def write_dfa(dfa, f):
 	f = open(f, "w")
 	f.write(json.dumps(dfa))
@@ -275,7 +275,7 @@ if __name__ == '__ma
 
 附上最后生成的json代码，就是上面的图DFA M
 
-{% highlight json linenos %}
+{% highlight json %}
 {
 	"k": ["0", "1", "2", "3", "4"], 
 	"z": ["4"], 

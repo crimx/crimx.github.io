@@ -1,12 +1,13 @@
 
-http://crimx.github.io/categories.html
-http://crimx.github.io/archive.html
-http://crimx.github.io/rss.xml
-http://crimx.github.io/index.html
-http://crimx.github.io/atom.xml
-http://crimx.github.io/tags.html
-http://crimx.github.io/sitemap.txt
-http://crimx.github.io/pages.html
+http://www.crimx.com/categories.html
+http://www.crimx.com/archive.html
+http://www.crimx.com/rss.xml
+http://www.crimx.com/index.html
+http://www.crimx.com/atom.xml
+http://www.crimx.com/tags.html
+http://www.crimx.com/sitemap.txt
+http://www.crimx.com/pages.html
 
-http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa
-http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator
+http://www.crimx.com/jekyll/2014/03/19/jekyll-bootstrap-not-updating
+http://www.crimx.com/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa
+http://www.crimx.com/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator
