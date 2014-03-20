@@ -8,4 +8,5 @@ http://crimx.github.io/tags.html
 http://crimx.github.io/sitemap.txt
 http://crimx.github.io/pages.html
 
-http://crimx.github.io/lessons/2011/12/29/jekyll-introduction
+http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa
+http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator

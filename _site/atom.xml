@@ -4,7 +4,7 @@
  <title>码田寻虫</title>
  <link href="http://crimx.github.io/" rel="self"/>
  <link href="http://crimx.github.io"/>
- <updated>2014-03-20T19:14:23+08:00</updated>
+ <updated>2014-03-20T19:26:51+08:00</updated>
  <id>http://crimx.github.io</id>
  <author>
    <name>Jesse Wong</name>
@@ -13,324 +13,448 @@
 
  
  <entry>
-   <title>Jekyll Introduction</title>
-   <link href="http://crimx.github.io/lessons/2011/12/29/jekyll-introduction"/>
-   <updated>2011-12-29T00:00:00+08:00</updated>
-   <id>http://crimx.github.io/lessons/2011/12/29/jekyll-introduction</id>
-   <content type="html">&lt;p&gt;This Jekyll introduction will outline specifically what Jekyll is and why you would want to use it. Directly following the intro we’ll learn exactly &lt;em&gt;how&lt;/em&gt; Jekyll does what it does.&lt;/p&gt;
+   <title>NFA与DFA的转换与优化</title>
+   <link href="http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa"/>
+   <updated>2014-03-16T02:38:56Z</updated>
+   <id>http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/16/nfa-to-dfa</id>
+   <content type="html">&lt;p&gt;上一节《编译原理》课讲到了NFA（不确定的有穷自动机）向DFA（确定的有穷自动机）转换。考试要考，所以要手写变换过程，很繁琐，也很有趣。所以周末用python给实现了，并利用动态规划进行优化。&lt;/p&gt;
 
-&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
-
-&lt;h3 id=&quot;what_is_jekyll&quot;&gt;What is Jekyll?&lt;/h3&gt;
-
-&lt;p&gt;Jekyll is a parsing engine bundled as a ruby gem used to build static websites from dynamic components such as templates, partials, liquid code, markdown, etc. Jekyll is known as “a simple, blog aware, static site generator”.&lt;/p&gt;
-
-&lt;h3 id=&quot;examples&quot;&gt;Examples&lt;/h3&gt;
-
-&lt;p&gt;This website is created with Jekyll. &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/Sites&quot;&gt;Other Jekyll websites&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;what_does_jekyll_do&quot;&gt;What does Jekyll Do?&lt;/h3&gt;
-
-&lt;p&gt;Jekyll is a ruby gem you install on your local system. Once there you can call &lt;code&gt;jekyll --server&lt;/code&gt; on a directory and provided that directory is setup in a way jekyll expects, it will do magic stuff like parse markdown/textile files, compute categories, tags, permalinks, and construct your pages from layout templates and partials.&lt;/p&gt;
-
-&lt;p&gt;Once parsed, Jekyll stores the result in a self-contained static &lt;code&gt;_site&lt;/code&gt; folder. The intention here is that you can serve all contents in this folder statically from a plain static web-server.&lt;/p&gt;
-
-&lt;p&gt;You can think of Jekyll as a normalish dynamic blog but rather than parsing content, templates, and tags on each request, Jekyll does this once &lt;em&gt;beforehand&lt;/em&gt; and caches the &lt;em&gt;entire website&lt;/em&gt; in a folder for serving statically.&lt;/p&gt;
-
-&lt;h3 id=&quot;jekyll_is_not_blogging_software&quot;&gt;Jekyll is Not Blogging Software&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Jekyll is a parsing engine.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Jekyll does not come with any content nor does it have any templates or design elements. This is a common source of confusion when getting started. Jekyll does not come with anything you actually use or see on your website - you have to make it.&lt;/p&gt;
-
-&lt;h3 id=&quot;why_should_i_care&quot;&gt;Why Should I Care?&lt;/h3&gt;
-
-&lt;p&gt;Jekyll is very minimalistic and very efficient. The most important thing to realize about Jekyll is that it creates a static representation of your website requiring only a static web-server. Traditional dynamic blogs like Wordpress require a database and server-side code. Heavily trafficked dynamic blogs must employ a caching layer that ultimately performs the same job Jekyll sets out to do; serve static content.&lt;/p&gt;
-
-&lt;p&gt;Therefore if you like to keep things simple and you prefer the command-line over an admin panel UI then give Jekyll a try.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Developers like Jekyll because we can write content like we write code:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Ability to write content in markdown or textile in your favorite text-editor.&lt;/li&gt;
-
-&lt;li&gt;Ability to write and preview your content via localhost.&lt;/li&gt;
-
-&lt;li&gt;No internet connection required.&lt;/li&gt;
-
-&lt;li&gt;Ability to publish via git.&lt;/li&gt;
-
-&lt;li&gt;Ability to host your blog on a static web-server.&lt;/li&gt;
-
-&lt;li&gt;Ability to host freely on GitHub Pages.&lt;/li&gt;
-
-&lt;li&gt;No database required.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;how_jekyll_works&quot;&gt;How Jekyll Works&lt;/h1&gt;
-
-&lt;p&gt;The following is a complete but concise outline of exactly how Jekyll works.&lt;/p&gt;
-
-&lt;p&gt;Be aware that core concepts are introduced in rapid succession without code examples. This information is not intended to specifically teach you how to do anything, rather it is intended to give you the &lt;em&gt;full picture&lt;/em&gt; relative to what is going on in Jekyll-world.&lt;/p&gt;
-
-&lt;p&gt;Learning these core concepts should help you avoid common frustrations and ultimately help you better understand the code examples contained throughout Jekyll-Bootstrap.&lt;/p&gt;
-
-&lt;h2 id=&quot;initial_setup&quot;&gt;Initial Setup&lt;/h2&gt;
-
-&lt;p&gt;After &lt;a href=&quot;/index.html#start-now&quot;&gt;installing jekyll&lt;/a&gt; you’ll need to format your website directory in a way jekyll expects. Jekyll-bootstrap conveniently provides the base directory format.&lt;/p&gt;
-
-&lt;h3 id=&quot;the_jekyll_application_base_format&quot;&gt;The Jekyll Application Base Format&lt;/h3&gt;
-
-&lt;p&gt;Jekyll expects your website directory to be laid out like so:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;.
-|-- _config.yml
-|-- _includes
-|-- _layouts
-|   |-- default.html
-|   |-- post.html
-|-- _posts
-|   |-- 2011-10-25-open-source-is-good.markdown
-|   |-- 2011-04-26-hello-world.markdown
-|-- _site
-|-- index.html
-|-- assets
-    |-- css
-        |-- style.css
-    |-- javascripts&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;_config.yml&lt;/strong&gt; Stores configuration data.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;_includes&lt;/strong&gt; This folder is for partial views.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;_layouts&lt;/strong&gt; This folder is for the main templates your content will be inserted into. You can have different layouts for different pages or page sections.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;_posts&lt;/strong&gt; This folder contains your dynamic content/posts. the naming format is required to be &lt;code&gt;@YEAR-MONTH-DATE-title.MARKUP@&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;_site&lt;/strong&gt; This is where the generated site will be placed once Jekyll is done transforming it.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;assets&lt;/strong&gt; This folder is not part of the standard jekyll structure. The assets folder represents &lt;em&gt;any generic&lt;/em&gt; folder you happen to create in your root directory. Directories and files not properly formatted for jekyll will be left untouched for you to serve normally.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;(read more: &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/Usage&quot;&gt;https://github.com/mojombo/jekyll/wiki/Usage&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h3 id=&quot;jekyll_configuration&quot;&gt;Jekyll Configuration&lt;/h3&gt;
-
-&lt;p&gt;Jekyll supports various configuration options that are fully outlined here: (&lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/Configuration&quot;&gt;https://github.com/mojombo/jekyll/wiki/Configuration&lt;/a&gt;)&lt;/p&gt;
-
-&lt;h2 id=&quot;content_in_jekyll&quot;&gt;Content in Jekyll&lt;/h2&gt;
-
-&lt;p&gt;Content in Jekyll is either a post or a page. These content “objects” get inserted into one or more templates to build the final output for its respective static-page.&lt;/p&gt;
-
-&lt;h3 id=&quot;posts_and_pages&quot;&gt;Posts and Pages&lt;/h3&gt;
-
-&lt;p&gt;Both posts and pages should be written in markdown, textile, or HTML and may also contain Liquid templating syntax. Both posts and pages can have meta-data assigned on a per-page basis such as title, url path, as well as arbitrary custom meta-data.&lt;/p&gt;
-
-&lt;h3 id=&quot;working_with_posts&quot;&gt;Working With Posts&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Creating a Post&lt;/strong&gt; Posts are created by properly formatting a file and placing it the &lt;code&gt;_posts&lt;/code&gt; folder.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Formatting&lt;/strong&gt; A post must have a valid filename in the form &lt;code&gt;YEAR-MONTH-DATE-title.MARKUP&lt;/code&gt; and be placed in the &lt;code&gt;_posts&lt;/code&gt; directory. If the data format is invalid Jekyll will not recognize the file as a post. The date and title are automatically parsed from the filename of the post file. Additionally, each file must have &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter&quot;&gt;YAML Front-Matter&lt;/a&gt; prepended to its content. YAML Front-Matter is a valid YAML syntax specifying meta-data for the given file.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Order&lt;/strong&gt; Ordering is an important part of Jekyll but it is hard to specify a custom ordering strategy. Only reverse chronological and chronological ordering is supported in Jekyll.&lt;/p&gt;
-
-&lt;p&gt;Since the date is hard-coded into the filename format, to change the order, you must change the dates in the filenames.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tags&lt;/strong&gt; Posts can have tags associated with them as part of their meta-data. Tags may be placed on posts by providing them in the post’s YAML front matter. You have access to the post-specific tags in the templates. These tags also get added to the sitewide collection.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Categories&lt;/strong&gt; Posts may be categorized by providing one or more categories in the YAML front matter. Categories offer more significance over tags in that they can be reflected in the URL path to the given post. Note categories in Jekyll work in a specific way. If you define more than one category you are defining a category hierarchy “set”. Example:&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;转换方法&lt;/h2&gt;
 &lt;hr /&gt;
-&lt;pre&gt;&lt;code&gt;title :  Hello World
-categories : [lessons, beginner]&lt;/code&gt;&lt;/pre&gt;
-&lt;hr /&gt;
-&lt;p&gt;This defines the category hierarchy “lessons/beginner”. Note this is &lt;em&gt;one category&lt;/em&gt; node in Jekyll. You won’t find “lessons” and “beginner” as two separate categories unless you define them elsewhere as singular categories.&lt;/p&gt;
-
-&lt;h3 id=&quot;working_with_pages&quot;&gt;Working With Pages&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Creating a Page&lt;/strong&gt; Pages are created by properly formatting a file and placing it anywhere in the root directory or subdirectories that do &lt;em&gt;not&lt;/em&gt; start with an underscore.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Formatting&lt;/strong&gt; In order to register as a Jekyll page the file must contain &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter&quot;&gt;YAML Front-Matter&lt;/a&gt;. Registering a page means 1) that Jekyll will process the page and 2) that the page object will be available in the &lt;code&gt;site.pages&lt;/code&gt; array for inclusion into your templates.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Categories and Tags&lt;/strong&gt; Pages do not compute categories nor tags so defining them will have no effect.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Sub-Directories&lt;/strong&gt; If pages are defined in sub-directories, the path to the page will be reflected in the url. Example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;.
-|-- people
-    |-- bob
-        |-- essay.html&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This page will be available at &lt;code&gt;http://yourdomain.com/people/bob/essay.html&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Recommended Pages&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;index.html&lt;/strong&gt; You will always want to define the root index.html page as this will display on your root URL.&lt;/li&gt;
-
-&lt;li&gt;&lt;strong&gt;404.html&lt;/strong&gt; Create a root 404.html page and GitHub Pages will serve it as your 404 response.&lt;/li&gt;
-
-&lt;li&gt;&lt;strong&gt;sitemap.html&lt;/strong&gt; Generating a sitemap is good practice for SEO.&lt;/li&gt;
-
-&lt;li&gt;&lt;strong&gt;about.html&lt;/strong&gt; A nice about page is easy to do and gives the human perspective to your website.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;templates_in_jekyll&quot;&gt;Templates in Jekyll&lt;/h2&gt;
-
-&lt;p&gt;Templates are used to contain a page’s or post’s content. All templates have access to a global site object variable: &lt;code&gt;site&lt;/code&gt; as well as a page object variable: &lt;code&gt;page&lt;/code&gt;. The site variable holds all accessible content and metadata relative to the site. The page variable holds accessible data for the given page or post being rendered at that point.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Create a Template&lt;/strong&gt; Templates are created by properly formatting a file and placing it in the &lt;code&gt;_layouts&lt;/code&gt; directory.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Formatting&lt;/strong&gt; Templates should be coded in HTML and contain YAML Front Matter. All templates can contain Liquid code to work with your site’s data.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Rending Page/Post Content in a Template&lt;/strong&gt; There is a special variable in all templates named : &lt;code&gt;content&lt;/code&gt;. The &lt;code&gt;content&lt;/code&gt; variable holds the page/post content including any sub-template content previously defined. Render the content variable wherever you want your main content to be injected into your template:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;...
-&amp;lt;body&amp;gt;
-  &amp;lt;div id=&quot;sidebar&quot;&amp;gt; ... &amp;lt;/div&amp;gt;
-  &amp;lt;div id=&quot;main&quot;&amp;gt;
-    &amp;#123;{content}&amp;#125;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/body&amp;gt;
-...&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;subtemplates&quot;&gt;Sub-Templates&lt;/h3&gt;
-
-&lt;p&gt;Sub-templates are exactly templates with the only difference being they define another “root” layout/template within their YAML Front Matter. This essentially means a template will render inside of another template.&lt;/p&gt;
-
-&lt;h3 id=&quot;includes&quot;&gt;Includes&lt;/h3&gt;
-
-&lt;p&gt;In Jekyll you can define include files by placing them in the &lt;code&gt;_includes&lt;/code&gt; folder. Includes are NOT templates, rather they are just code snippets that get included into templates. In this way, you can treat the code inside includes as if it was native to the parent template.&lt;/p&gt;
-
-&lt;p&gt;Any valid template code may be used in includes.&lt;/p&gt;
-
-&lt;h2 id=&quot;using_liquid_for_templating&quot;&gt;Using Liquid for Templating&lt;/h2&gt;
-
-&lt;p&gt;Templating is perhaps the most confusing and frustrating part of Jekyll. This is mainly due to the fact that Jekyll templates must use the Liquid Templating Language.&lt;/p&gt;
-
-&lt;h3 id=&quot;what_is_liquid&quot;&gt;What is Liquid?&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/Shopify/liquid&quot;&gt;Liquid&lt;/a&gt; is a secure templating language developed by &lt;a href=&quot;http://shopify.com&quot;&gt;Shopify&lt;/a&gt;. Liquid is designed for end-users to be able to execute logic within template files without imposing any security risk on the hosting server.&lt;/p&gt;
-
-&lt;p&gt;Jekyll uses Liquid to generate the post content within the final page layout structure and as the primary interface for working with your site and post/page data.&lt;/p&gt;
-
-&lt;h3 id=&quot;why_do_we_have_to_use_liquid&quot;&gt;Why Do We Have to Use Liquid?&lt;/h3&gt;
-
-&lt;p&gt;GitHub uses Jekyll to power &lt;a href=&quot;http://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;. GitHub cannot afford to run arbitrary code on their servers so they lock developers down via Liquid.&lt;/p&gt;
-
-&lt;h3 id=&quot;liquid_is_not_programmerfriendly&quot;&gt;Liquid is Not Programmer-Friendly.&lt;/h3&gt;
-
-&lt;p&gt;The short story is liquid is not real code and its not intended to execute real code. The point being you can’t do jackshit in liquid that hasn’t been allowed explicitly by the implementation. What’s more you can only access data-structures that have been explicitly passed to the template.&lt;/p&gt;
-
-&lt;p&gt;In Jekyll’s case it is not possible to alter what is passed to Liquid without hacking the gem or running custom plugins. Both of which cannot be supported by GitHub Pages.&lt;/p&gt;
-
-&lt;p&gt;As a programmer - this is very frustrating.&lt;/p&gt;
-
-&lt;p&gt;But rather than look a gift horse in the mouth we are going to suck it up and view it as an opportunity to work around limitations and adopt client-side solutions when possible.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Aside&lt;/strong&gt; My personal stance is to not invest time trying to hack liquid. It’s really unnecessary &lt;em&gt;from a programmer’s&lt;/em&gt; perspective. That is to say if you have the ability to run custom plugins (i.e. run arbitrary ruby code) you are better off sticking with ruby. Toward that end I’ve built &lt;a href=&quot;http://github.com/plusjade/mustache-with-jekyll&quot;&gt;Mustache-with-Jekyll&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;static_assets&quot;&gt;Static Assets&lt;/h2&gt;
-
-&lt;p&gt;Static assets are any file in the root or non-underscored subfolders that are not pages. That is they have no valid YAML Front Matter and are thus not treated as Jekyll Pages.&lt;/p&gt;
-
-&lt;p&gt;Static assets should be used for images, css, and javascript files.&lt;/p&gt;
-
-&lt;h2 id=&quot;how_jekyll_parses_files&quot;&gt;How Jekyll Parses Files&lt;/h2&gt;
-
-&lt;p&gt;Remember Jekyll is a processing engine. There are two main types of parsing in Jekyll.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Content parsing.&lt;/strong&gt; This is done with textile or markdown.&lt;/li&gt;
-
-&lt;li&gt;&lt;strong&gt;Template parsing.&lt;/strong&gt; This is done with the liquid templating language.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And thus there are two main types of file formats needed for this parsing.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Post and Page files.&lt;/strong&gt; All content in Jekyll is either a post or a page so valid posts and pages are parsed with markdown or textile.&lt;/li&gt;
-
-&lt;li&gt;&lt;strong&gt;Template files.&lt;/strong&gt; These files go in &lt;code&gt;_layouts&lt;/code&gt; folder and contain your blogs &lt;strong&gt;templates&lt;/strong&gt;. They should be made in HTML with the help of Liquid syntax. Since include files are simply injected into templates they are essentially parsed as if they were native to the template.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Arbitrary files and folders.&lt;/strong&gt; Files that &lt;em&gt;are not&lt;/em&gt; valid pages are treated as static content and pass through Jekyll untouched and reside on your blog in the exact structure and format they originally existed in.&lt;/p&gt;
-
-&lt;h3 id=&quot;formatting_files_for_parsing&quot;&gt;Formatting Files for Parsing.&lt;/h3&gt;
-
-&lt;p&gt;We’ve outlined the need for valid formatting using &lt;strong&gt;YAML Front Matter&lt;/strong&gt;. Templates, posts, and pages all need to provide valid YAML Front Matter even if the Matter is empty. This is the only way Jekyll knows you want the file processed.&lt;/p&gt;
-
-&lt;p&gt;YAML Front Matter must be prepended to the top of template/post/page files:&lt;/p&gt;
-&lt;hr /&gt;
-&lt;pre&gt;&lt;code&gt;layout: post
-category : pages
-tags : [how-to, jekyll]&lt;/code&gt;&lt;/pre&gt;
-&lt;hr /&gt;
-&lt;pre&gt;&lt;code&gt;... contents ...&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Three hyphens on a new line start the Front-Matter block and three hyphens on a new line end the block. The data inside the block must be valid YAML.&lt;/p&gt;
-
-&lt;p&gt;Configuration parameters for YAML Front-Matter is outlined here: &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/YAML-Front-Matter&quot;&gt;A comprehensive explanation of YAML Front Matter&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;defining_layouts_for_posts_and_templates_parsing&quot;&gt;Defining Layouts for Posts and Templates Parsing.&lt;/h4&gt;
-
-&lt;p&gt;The &lt;code&gt;layout&lt;/code&gt; parameter in the YAML Front Matter defines the template file for which the given post or template should be injected into. If a template file specifies its own layout, it is effectively being used as a &lt;code&gt;sub-template.&lt;/code&gt; That is to say loading a post file into a template file that refers to another template file with work in the way you’d expect; as a nested sub-template.&lt;/p&gt;
-
-&lt;h2 id=&quot;how_jekyll_generates_the_final_static_files&quot;&gt;How Jekyll Generates the Final Static Files.&lt;/h2&gt;
-
-&lt;p&gt;Ultimately, Jekyll’s job is to generate a static representation of your website. The following is an outline of how that’s done:&lt;/p&gt;
+&lt;p&gt;这里主要涉及到对状态集合I的两个操作：&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Jekyll collects data.&lt;/strong&gt; Jekyll scans the posts directory and collects all posts files as post objects. It then scans the layout assets and collects those and finally scans other directories in search of pages.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;求ε-闭包。表示为ε-closure(I)，是指I中的任何状态S经过任意条ε弧能到达的状态的集合。&lt;/li&gt;
 
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Jekyll computes data.&lt;/strong&gt; Jekyll takes these objects, computes metadata (permalinks, tags, categories, titles, dates) from them and constructs one big &lt;code&gt;site&lt;/code&gt; object that holds all the posts, pages, layouts, and respective metadata. At this stage your site is one big computed ruby object.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Jekyll liquifies posts and templates.&lt;/strong&gt; Next jekyll loops through each post file and converts (through markdown or textile) and &lt;strong&gt;liquifies&lt;/strong&gt; the post inside of its respective layout(s). Once the post is parsed and liquified inside the the proper layout structure, the layout itself is “liquified”. &lt;strong&gt;Liquification&lt;/strong&gt; is defined as follows: Jekyll initiates a Liquid template, and passes a simpler hash representation of the ruby site object as well as a simpler hash representation of the ruby post object. These simplified data structures are what you have access to in the templates.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Jekyll generates output.&lt;/strong&gt; Finally the liquid templates are “rendered”, thereby processing any liquid syntax provided in the templates and saving the final, static representation of the file.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;求I的α弧转换。表示为move(I,α)，是指I中某一状态经过一条α弧到达的状态的集合。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;strong&gt;Notes.&lt;/strong&gt; Because Jekyll computes the entire site in one fell swoop, each template is given access to a global &lt;code&gt;site&lt;/code&gt; hash that contains useful data. It is this data that you’ll iterate through and format using the Liquid tags and filters in order to render it onto a given page.&lt;/p&gt;
+&lt;p&gt;比如说这里有一个NFA N：&lt;/p&gt;
 
-&lt;p&gt;Remember, in Jekyll you are an end-user. Your API has only two components:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-16-nfa-to-dfa/nfa.jpg&quot; alt=&quot;NFA&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;因为NFA是一个五元组，N=(K,E,f,S,Z),即为(状态集合，弧集合，转换集合，开始状态集合，终结状态集合)，所以由图可知：&lt;/p&gt;
+
+&lt;p&gt;NFA N = ({0,1,2,3,4,5,6,7,8,9,10},{a,b},f,{0},{10})，其中&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;f(0,ε) = {1}&lt;/li&gt;
+
+&lt;li&gt;f(1,ε) = {2,4}&lt;/li&gt;
+
+&lt;li&gt;f(2,a) = {3}&lt;/li&gt;
+
+&lt;li&gt;f(3,ε) = {6}&lt;/li&gt;
+
+&lt;li&gt;f(4,b) = {5}&lt;/li&gt;
+
+&lt;li&gt;f(5,ε) = {6}&lt;/li&gt;
+
+&lt;li&gt;f(6,ε) = {1,7}&lt;/li&gt;
+
+&lt;li&gt;f{7,a} = {8}&lt;/li&gt;
+
+&lt;li&gt;f(8,b) = {9}&lt;/li&gt;
+
+&lt;li&gt;f(9,b) = {10}&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;那么ε-closure(0)={0,1,2,4,7}&lt;/p&gt;
+
+&lt;p&gt;move({0,1,2,4,7},a) = {3,8}&lt;/p&gt;
+
+&lt;p&gt;ε-closure({3,8})={1,2,3,4,6,7,8}&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;p&gt;可以借助表格来观察整个求解过程，每次求解后如果产生新集合，就会记录下来继续算，直到没有新集合为止。&lt;/p&gt;
+&lt;table class='table table-bordered table-striped table-condensed'&gt;
+   &lt;thead&gt;
+      &lt;th&gt;T&lt;/th&gt;
+      &lt;th&gt;A=&amp;#949;-closure(move(T,a))&lt;/th&gt;
+      &lt;th&gt;B=&amp;#949;-closure(move(T,b))&lt;/th&gt;
+   &lt;/thead&gt;
+   &lt;tr&gt;
+      &lt;td&gt;&amp;#949;-closure(s)={0,1,2,4,7}=T0&lt;/td&gt;
+      &lt;td&gt;{1,2,3,4,6,7,8}=T1&lt;/td&gt;
+      &lt;td&gt;{1,2,4,5,6,7}=T2&lt;/td&gt;
+   &lt;/tr&gt;
+   &lt;tr&gt;
+      &lt;td&gt;T1&lt;/td&gt;
+      &lt;td&gt;T1&lt;/td&gt;
+      &lt;td&gt;{1,2,4,5,6,7,9}=T3&lt;/td&gt;
+   &lt;/tr&gt;
+   &lt;tr&gt;
+      &lt;td&gt;T2&lt;/td&gt;
+      &lt;td&gt;T1&lt;/td&gt;
+      &lt;td&gt;T2&lt;/td&gt;
+   &lt;/tr&gt;
+   &lt;tr&gt;
+      &lt;td&gt;T3&lt;/td&gt;
+      &lt;td&gt;T1&lt;/td&gt;
+      &lt;td&gt;{1,2,4,5,6,7,10}=T4&lt;/td&gt;
+   &lt;/tr&gt;
+   &lt;tr&gt;
+      &lt;td&gt;T4&lt;/td&gt;
+      &lt;td&gt;T1&lt;/td&gt;
+      &lt;td&gt;T2&lt;/td&gt;
+   &lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;此时T列下的集合{T0,T1,T2,T3,T4}就是DFA的状态，其中含有NFA初始状态的集合为DFA的初始状态（{T0}），含有NFA终结状态的集合为DFA的终结状态（{T4}）。&lt;/p&gt;
+
+&lt;p&gt;所以由NFA转换后的DFA为：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-16-nfa-to-dfa/dfa.jpg&quot; alt=&quot;DFA&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;_2&quot;&gt;实现&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;首先是数据存储格式，使用json存储NFA的五元组：&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='json'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;k&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;5&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;6&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;7&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;8&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;9&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;10&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt;
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;e&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;f&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;0&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;7&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;1&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;10&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;2&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;13&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;3&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;15&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;6&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;17&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;4&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;18&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;5&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;19&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;20&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;5&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;21&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;6&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;22&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;23&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;6&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;24&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;#&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;7&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;25&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;26&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;7&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;27&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;8&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;28&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;29&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;8&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;30&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;9&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;31&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;32&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;9&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;33&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;10&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;34&lt;/span&gt; 		&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt;35&lt;/span&gt; 	&lt;span class='p'&gt;},&lt;/span&gt;
+&lt;span class='lineno'&gt;36&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;s&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt;
+&lt;span class='lineno'&gt;37&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;z&amp;quot;&lt;/span&gt; &lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;10&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;38&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;读入时做了一些简单的判断，其实还可以做得更加周全，比如初始集s和终结集z是否被状态集k包含，等等。&lt;code&gt;read()&lt;/code&gt;了之后就会把五元组包装返回。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;read&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;input&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	&lt;span class='k'&gt;try&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 		&lt;span class='n'&gt;nfa&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;json&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;load&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;open&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;input&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;r&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 		&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]:&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 			&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;k&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]:&lt;/span&gt;
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 				&lt;span class='k'&gt;raise&lt;/span&gt; &lt;span class='ne'&gt;Exception&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Set f contains iterms that not belongs to set k.&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 			&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]:&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 				&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;e&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='ow'&gt;and&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s'&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 					&lt;span class='k'&gt;raise&lt;/span&gt; &lt;span class='ne'&gt;Exception&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Set f contains iterms that not belongs to set e.&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;10&lt;/span&gt; 		&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;k&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]),&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;e&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]),&lt;/span&gt; &lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]),&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;nfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]))&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 	&lt;span class='k'&gt;except&lt;/span&gt; &lt;span class='ne'&gt;IOError&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 		&lt;span class='k'&gt;print&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;File no found!&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;13&lt;/span&gt; 		&lt;span class='n'&gt;sys&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;exit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 	&lt;span class='k'&gt;except&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='ne'&gt;KeyError&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='ne'&gt;TypeError&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt;15&lt;/span&gt; 		&lt;span class='k'&gt;print&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Input data error!&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; 		&lt;span class='n'&gt;sys&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;exit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;17&lt;/span&gt; 	&lt;span class='k'&gt;except&lt;/span&gt; &lt;span class='ne'&gt;Exception&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;e&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;18&lt;/span&gt; 		&lt;span class='k'&gt;print&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;args&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;])&lt;/span&gt;
+&lt;span class='lineno'&gt;19&lt;/span&gt; 		&lt;span class='n'&gt;sys&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;exit&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用&lt;code&gt;creat_memo()&lt;/code&gt;接下来为计算创建缓存，因为计算闭包有大量的重复计算。&lt;code&gt;memo&lt;/code&gt;是一个字典，以e集合（弧集合）的元素为键，每一个键对应的值也是一个字典，在计算闭包的过程中缓存该状态的闭包。（见&lt;code&gt;closure()&lt;/code&gt;）&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='lineno'&gt;1&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;creat_memo&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt;2&lt;/span&gt; 	&lt;span class='n'&gt;memo&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{}&lt;/span&gt;
+&lt;span class='lineno'&gt;3&lt;/span&gt; 	&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;4&lt;/span&gt; 		&lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{}&lt;/span&gt;
+&lt;span class='lineno'&gt;5&lt;/span&gt; 	&lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{}&lt;/span&gt;
+&lt;span class='lineno'&gt;6&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;从文章开始时提到的转换方法很容易可以看到，两个操作有很大的相似性，所以我把它们封装成一个函数&lt;code&gt;closure()&lt;/code&gt;了，调用时使用各自的接口。对应上面提到的弧转换操作，&lt;code&gt;move()&lt;/code&gt;中的参数s和arc表示求move(s,arc)，而&lt;code&gt;ph_closure()&lt;/code&gt;的arc默认为ε，这里用&lt;code&gt;&amp;quot;#&amp;quot;&lt;/code&gt;表示。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='lineno'&gt;1&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;move&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt;2&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;3&lt;/span&gt; 
+&lt;span class='lineno'&gt;4&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;ep_closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt;5&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;#&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;closure()&lt;/code&gt;是本程序的核心部分，当它接受了一个集合&lt;code&gt;c_set&lt;/code&gt;时，会对&lt;code&gt;c_set&lt;/code&gt;中的元素一一进行求闭包或者弧转换，再合并集合。在进行计算之前先查看缓存&lt;code&gt;memo&lt;/code&gt;，看看之前有没有计算过，有就直接合并，没有就先计算出结果，在&lt;code&gt;memo&lt;/code&gt;记录之后再进行合并。对于求闭包，因为是ε，所以每次要先包含本身，而弧转换则不需要。&lt;/p&gt;
+
+&lt;p&gt;注意&lt;code&gt;memo[s] = set([s])&lt;/code&gt;，必须是&lt;code&gt;set([s])&lt;/code&gt;不能是&lt;code&gt;set(s)&lt;/code&gt;,因为&lt;code&gt;s&lt;/code&gt;为字符串，&lt;code&gt;set(s)&lt;/code&gt;会把&lt;code&gt;s&lt;/code&gt;中的每个字符都拆开。&lt;/p&gt;
+
+&lt;p&gt;接下来判断f转换中是否存在有关f(s,arc)的定义，存在的话：&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;The manner in which you setup your directory.&lt;/li&gt;
+&lt;li&gt;闭包情况：深度优先递归的计算集合f(s,arc)的闭包，将它们合并回来。比如上面的NFA例子，一开始求ε-closure(0)的时候，发现f(0,ε)={1,7}，所以继续计算ε-closure(1)和ε-closure(7)。…..一直计算到尽头。每次递归计算过程中也会在&lt;code&gt;memo&lt;/code&gt;上记录，所以整个计算过程会越来越快。&lt;/li&gt;
 
-&lt;li&gt;The liquid syntax and variables passed into the liquid templates.&lt;/li&gt;
+&lt;li&gt;弧转换情况：由于弧只需要判断状态&lt;code&gt;s&lt;/code&gt;的下个一个&lt;code&gt;arc&lt;/code&gt;弧连接的状态，所以不需要递归，直接得出结果。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;c_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	&lt;span class='n'&gt;res&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt;
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;c_set&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 		&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 			&lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt;
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 			&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s'&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 				&lt;span class='c'&gt;#Attention here. Has to be a list&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 				&lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;([&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;])&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 			&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;10&lt;/span&gt; 				&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]:&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 					&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s'&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 						&lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;|=&lt;/span&gt; &lt;span class='n'&gt;closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;]),&lt;/span&gt; &lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;13&lt;/span&gt; 					&lt;span class='k'&gt;else&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 						&lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;set&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;arc&lt;/span&gt;&lt;span class='p'&gt;])&lt;/span&gt;
+&lt;span class='lineno'&gt;15&lt;/span&gt; 		&lt;span class='n'&gt;res&lt;/span&gt; &lt;span class='o'&gt;|=&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;res&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;creat_dfa&lt;/code&gt;返回一个空的dfa结构，&lt;code&gt;calc_dfa&lt;/code&gt;代表了上面提到的表格的运算过程，并把表格的内容保存到dfa结构中。先对初始状态集k求闭包，接下来为每个弧求弧转换闭包ε-closure(move(s, arc))。出现新集合就交给&lt;code&gt;queue&lt;/code&gt;队列，并在&lt;code&gt;dfa[&amp;quot;k&amp;quot;]&lt;/code&gt;中做记录。我这里是利用集合在&lt;code&gt;dfa[&amp;quot;k&amp;quot;]&lt;/code&gt;中的index作为dfa状态的命名。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;creat_dfa&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{}&lt;/span&gt;
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;k&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;[]&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;e&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;list&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{}&lt;/span&gt;
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;[]&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;[]&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;dfa&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 
+&lt;span class='lineno'&gt;10&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;calc_dfa&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;k_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;z_set&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;creat_dfa&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 	&lt;span class='n'&gt;dfa_set&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;[]&lt;/span&gt;
+&lt;span class='lineno'&gt;13&lt;/span&gt; 	&lt;span class='n'&gt;memo&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;creat_memo&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 	&lt;span class='n'&gt;ep&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;ep_closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;15&lt;/span&gt; 	&lt;span class='c'&gt;#Attention here. Has to be a list&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; 	&lt;span class='n'&gt;queue&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;deque&lt;/span&gt;&lt;span class='p'&gt;([&lt;/span&gt;&lt;span class='n'&gt;ep&lt;/span&gt;&lt;span class='p'&gt;])&lt;/span&gt;
+&lt;span class='lineno'&gt;17&lt;/span&gt; 
+&lt;span class='lineno'&gt;18&lt;/span&gt; 	&lt;span class='n'&gt;dfa_set&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;([&lt;/span&gt;&lt;span class='n'&gt;ep&lt;/span&gt;&lt;span class='p'&gt;])&lt;/span&gt;
+&lt;span class='lineno'&gt;19&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;k&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;20&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;21&lt;/span&gt; 	&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='nb'&gt;len&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;ep&lt;/span&gt;&lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;z_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;22&lt;/span&gt; 		&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;23&lt;/span&gt; 	&lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;
+&lt;span class='lineno'&gt;24&lt;/span&gt; 
+&lt;span class='lineno'&gt;25&lt;/span&gt; 	&lt;span class='k'&gt;while&lt;/span&gt; &lt;span class='n'&gt;queue&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;26&lt;/span&gt; 		&lt;span class='n'&gt;T&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;queue&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;popleft&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt;
+&lt;span class='lineno'&gt;27&lt;/span&gt; 		&lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;28&lt;/span&gt; 		&lt;span class='n'&gt;index&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;str&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;i&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;29&lt;/span&gt; 		&lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;i&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;
+&lt;span class='lineno'&gt;30&lt;/span&gt; 		&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;{}&lt;/span&gt;
+&lt;span class='lineno'&gt;31&lt;/span&gt; 		&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt; &lt;span class='ow'&gt;in&lt;/span&gt; &lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;32&lt;/span&gt; 			&lt;span class='n'&gt;t&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;ep_closure&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;move&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;memo&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;T&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='lineno'&gt;33&lt;/span&gt; 			&lt;span class='k'&gt;try&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;34&lt;/span&gt; 				&lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;str&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dfa_set&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='lineno'&gt;35&lt;/span&gt; 			&lt;span class='k'&gt;except&lt;/span&gt; &lt;span class='ne'&gt;ValueError&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;36&lt;/span&gt; 				&lt;span class='n'&gt;queue&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;37&lt;/span&gt; 				&lt;span class='n'&gt;j&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;str&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;len&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dfa_set&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='lineno'&gt;38&lt;/span&gt; 				&lt;span class='n'&gt;dfa_set&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;39&lt;/span&gt; 				&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;k&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;j&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;40&lt;/span&gt; 			&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;index&lt;/span&gt;&lt;span class='p'&gt;][&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;j&lt;/span&gt;
+&lt;span class='lineno'&gt;41&lt;/span&gt; 			&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='nb'&gt;len&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;s_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;42&lt;/span&gt; 				&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;j&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;43&lt;/span&gt; 			&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='ow'&gt;not&lt;/span&gt; &lt;span class='nb'&gt;len&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;t&lt;/span&gt;&lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='n'&gt;z_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt;
+&lt;span class='lineno'&gt;44&lt;/span&gt; 				&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;]&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;append&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;j&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;45&lt;/span&gt; 
+&lt;span class='lineno'&gt;46&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;dfa&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;生成json的&lt;code&gt;write_dfa&lt;/code&gt;和程序的其余代码：&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;write_dfa&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	&lt;span class='n'&gt;f&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='nb'&gt;open&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;w&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;write&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;json&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;dumps&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 	&lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;close&lt;/span&gt;&lt;span class='p'&gt;()&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 
+&lt;span class='lineno'&gt; 6&lt;/span&gt; &lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;main&lt;/span&gt;&lt;span class='p'&gt;():&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 	&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;k_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;z_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;read&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;NFA.json&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 	&lt;span class='n'&gt;dfa&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;calc_dfa&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;k_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;e_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;f&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;s_set&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;z_set&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 	&lt;span class='n'&gt;write_dfa&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;dfa&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;DFA.json&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='lineno'&gt;10&lt;/span&gt; 	
+&lt;span class='lineno'&gt;11&lt;/span&gt; 
+&lt;span class='lineno'&gt;12&lt;/span&gt; &lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='n'&gt;__name__&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='s'&gt;&amp;#39;__ma&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;附上最后生成的json代码，就是上面的图DFA M&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='json'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;k&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; 
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;z&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; 
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;e&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; 
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;s&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;[&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;],&lt;/span&gt; 
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 	&lt;span class='nt'&gt;&amp;quot;f&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;10&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt; 
+&lt;span class='lineno'&gt;11&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;0&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+&lt;span class='lineno'&gt;13&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt; 
+&lt;span class='lineno'&gt;15&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;3&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+&lt;span class='lineno'&gt;17&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;4&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;18&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt; 
+&lt;span class='lineno'&gt;19&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;20&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+&lt;span class='lineno'&gt;21&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;22&lt;/span&gt; 		&lt;span class='p'&gt;},&lt;/span&gt; 
+&lt;span class='lineno'&gt;23&lt;/span&gt; 		&lt;span class='nt'&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='p'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;24&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;a&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; 
+&lt;span class='lineno'&gt;25&lt;/span&gt; 			&lt;span class='nt'&gt;&amp;quot;b&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='s2'&gt;&amp;quot;2&amp;quot;&lt;/span&gt;
+&lt;span class='lineno'&gt;26&lt;/span&gt; 		&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt;27&lt;/span&gt; 	&lt;span class='p'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt;28&lt;/span&gt; &lt;span class='p'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'&gt;&lt;img align='center' alt='知识共享许可协议' src='/assets/files/cc-licenses.png' style='border-width:0' /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'&gt;知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>编译原理与计算器</title>
+   <link href="http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator"/>
+   <updated>2014-03-12T09:43:32Z</updated>
+   <id>http://crimx.github.io/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/12/simple-calculator</id>
+   <content type="html">&lt;p&gt;上次交流会师弟演讲了栈式计算器，这在《数据结构》里也有提到，当时是用C实现了。而这学期学《编译原理》，里面也涉及到数学表达式。两者对比用栈更快，但是使用中间代码可以使到条理更清晰，还可以做很多有趣的扩展。所以这次交流会的内容有着落了。&lt;/p&gt;
+
+&lt;p&gt;因为想顺便做个简单的GUI看看效果，所以打算用Qt或pyQt，但是之前重装了系统，去下载Qt校园网速又渣渣，省事点还是用Java好了。&lt;/p&gt;
+
+&lt;h2 id=&quot;&quot;&gt;语法图&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;先简单的递归定义数学表达式&lt;code&gt;文法&lt;/code&gt;，用&lt;code&gt;EBNF&lt;/code&gt;会比较精炼，但是演讲效果不够图像明显。&lt;/p&gt;
+
+&lt;h3 id=&quot;_2&quot;&gt;表达式：&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/expression.png&quot; alt=&quot;expression&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;_3&quot;&gt;项：&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/term.png&quot; alt=&quot;term&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;_4&quot;&gt;因子：&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/factor.png&quot; alt=&quot;factor&quot; /&gt;&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;h3 id=&quot;_5&quot;&gt;数字&lt;/h3&gt;
+
+&lt;p&gt;这把所有的数字当做自然数处理：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/number.png&quot; alt=&quot;number&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/integer.png&quot; alt=&quot;integer&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;_6&quot;&gt;嵌套关系&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;有了语法图就可以从字符串中把一个个有意义的符号（Token）取出来了。&lt;/p&gt;
+
+&lt;p&gt;现在就要关注在上面的语法图中如何嵌套调用去解析一条数学表达式。&lt;/p&gt;
+
+&lt;p&gt;比如要解析&lt;code&gt;25+3/(43-33)-37&lt;/code&gt;，如图&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/nest.png&quot; alt=&quot;nest&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;结合之前的语法图会比较好理解，我在&lt;a href=&quot;/assets/files/2014-3-15-simple-calculator/files/calculator.ppt&quot;&gt;PPT&lt;/a&gt;上做了&lt;code&gt;动态图&lt;/code&gt;。可以看到，每次都从表达式中递归的判断到&lt;code&gt;终结符&lt;/code&gt;，扫描一遍就可以建立中间代码了。&lt;/p&gt;
+
+&lt;h2 id=&quot;_7&quot;&gt;中间代码&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;按照数学运算法则建立中间代码，它是一棵树，叶子结点都是数字，越接近根部的点运算优先级越低。&lt;/p&gt;
+
+&lt;p&gt;举例来说，解析&lt;code&gt;-25+3/(43-33)-(-37)&lt;/code&gt;生成的中间代码如图所示。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/files/2014-3-15-simple-calculator/ast.png&quot; alt=&quot;ast&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;可以结合&lt;a href=&quot;/assets/files/2014-3-15-simple-calculator/files/calculator.ppt&quot;&gt;PPT&lt;/a&gt;的动态图理解整个建立过程。扫描的时候，树根为数字遇到操作符便往上方长树，树根为操作符遇到更低优先级的操作符也往上长树，其它情况则往下长。&lt;/p&gt;
+
+&lt;h2 id=&quot;_8&quot;&gt;代码实现&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;太懒没弄UML图，不过类也不多，直接讲吧，完整源码在&lt;a href=&quot;/assets/files/2014-3-15-simple-calculator/files/calc.tar.gz&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;首先是&lt;code&gt;Token&lt;/code&gt;类，扫描时就会将字符串生成一个个&lt;code&gt;Token&lt;/code&gt;。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='lineno'&gt;1&lt;/span&gt; &lt;span class='kd'&gt;private&lt;/span&gt; &lt;span class='n'&gt;TokenType&lt;/span&gt; &lt;span class='n'&gt;type&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt; &lt;span class='c1'&gt;// 该token的类型&lt;/span&gt;
+&lt;span class='lineno'&gt;2&lt;/span&gt; &lt;span class='kd'&gt;private&lt;/span&gt; &lt;span class='kt'&gt;double&lt;/span&gt; &lt;span class='n'&gt;number&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt;  &lt;span class='c1'&gt;// 数字&lt;/span&gt;
+&lt;span class='lineno'&gt;3&lt;/span&gt; &lt;span class='kd'&gt;private&lt;/span&gt; &lt;span class='n'&gt;String&lt;/span&gt; &lt;span class='n'&gt;op&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt;      &lt;span class='c1'&gt;// 操作符&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我这里是图省事把&lt;code&gt;Token&lt;/code&gt;也当做中间代码的结点，所以里面还实现树相关的属性和方法，为中间代码的结点单独设计类会更好。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='lineno'&gt;1&lt;/span&gt; &lt;span class='kd'&gt;private&lt;/span&gt; &lt;span class='n'&gt;ArrayList&lt;/span&gt;&lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;children&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt; &lt;span class='c1'&gt;// 孩子&lt;/span&gt;
+&lt;span class='lineno'&gt;2&lt;/span&gt; 
+&lt;span class='lineno'&gt;3&lt;/span&gt; &lt;span class='kd'&gt;public&lt;/span&gt; &lt;span class='kt'&gt;void&lt;/span&gt; &lt;span class='nf'&gt;addChild&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;Token&lt;/span&gt; &lt;span class='n'&gt;token&lt;/span&gt;&lt;span class='o'&gt;){......}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;接下来看&lt;code&gt;TokenType&lt;/code&gt;类，这里枚举了所有可能的类型。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='kd'&gt;public&lt;/span&gt; &lt;span class='kd'&gt;enum&lt;/span&gt; &lt;span class='n'&gt;TokenType&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='c1'&gt;//数字&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 	&lt;span class='n'&gt;NUMBER&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 	
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 	&lt;span class='c1'&gt;//操作符&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 	&lt;span class='n'&gt;PLUS&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='n'&gt;MINUS&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='n'&gt;STAR&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='n'&gt;SLASH&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 	&lt;span class='n'&gt;LEFT_PAREN&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='n'&gt;RIGHT_PAREN&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt;     
+&lt;span class='lineno'&gt;10&lt;/span&gt; 	&lt;span class='c1'&gt;//负数&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 	&lt;span class='n'&gt;NEGATE&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 	
+&lt;span class='lineno'&gt;13&lt;/span&gt; 	&lt;span class='c1'&gt;//结束&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 	&lt;span class='n'&gt;EOF&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt;
+&lt;span class='lineno'&gt;15&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;有了&lt;code&gt;Token&lt;/code&gt;和&lt;code&gt;TokenType&lt;/code&gt;，&lt;code&gt;Scanner&lt;/code&gt;类负责扫描一遍表达式并提取一个个&lt;code&gt;Token&lt;/code&gt;。因为这里的符号（Token）只有数字与负号（见上面的&lt;code&gt;TokenType&lt;/code&gt;），所以判断起来并不复杂，注意一下处理小数点。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='c1'&gt;// 数字处理&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; &lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;Character&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;isDigit&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;currentChar&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;||&lt;/span&gt; &lt;span class='n'&gt;currentChar&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nf'&gt;extractNumber&lt;/span&gt;&lt;span class='o'&gt;();&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; &lt;span class='k'&gt;else&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 	&lt;span class='n'&gt;nextChar&lt;/span&gt;&lt;span class='o'&gt;();&lt;/span&gt; &lt;span class='c1'&gt;// 先消耗掉这个字符&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 	&lt;span class='k'&gt;switch&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;currentChar&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;PLUS&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;+&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt; 
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;MINUS&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt; 
+&lt;span class='lineno'&gt;10&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;*&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;STAR&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;*&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;SLASH&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;/&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt; 
+&lt;span class='lineno'&gt;12&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;(&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;LEFT_PAREN&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;(&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt; 
+&lt;span class='lineno'&gt;13&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;)&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;RIGHT_PAREN&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='sc'&gt;&amp;#39;)&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;  
+&lt;span class='lineno'&gt;14&lt;/span&gt; 	&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='kt'&gt;char&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;:&lt;/span&gt;&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;EOF&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt; 
+&lt;span class='lineno'&gt;15&lt;/span&gt; 	&lt;span class='k'&gt;default&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;throw&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Exception&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;有未识别的字符 \&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='n'&gt;currentChar&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;\&amp;quot; !&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;Parser&lt;/code&gt;类就完全是对应着上面的语法图去实现了，遇到&lt;code&gt;非终结符&lt;/code&gt;便递归，逻辑非常清晰，可以参看&lt;a href=&quot;/assets/files/2014-3-15-simple-calculator/files/calc.tar.gz&quot;&gt;源码&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;生成中间代码后，在后端实现一个&lt;code&gt;Calculator&lt;/code&gt;去计算中间代码，更加简单，自上往下递归计算即可。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='lineno'&gt; 1&lt;/span&gt; &lt;span class='kd'&gt;private&lt;/span&gt; &lt;span class='kt'&gt;double&lt;/span&gt; &lt;span class='nf'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;Token&lt;/span&gt; &lt;span class='n'&gt;token&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='kd'&gt;throws&lt;/span&gt; &lt;span class='n'&gt;Exception&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 2&lt;/span&gt; 	
+&lt;span class='lineno'&gt; 3&lt;/span&gt; 	&lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;token&lt;/span&gt; &lt;span class='o'&gt;!=&lt;/span&gt; &lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 4&lt;/span&gt; 		&lt;span class='n'&gt;ArrayList&lt;/span&gt;&lt;span class='o'&gt;&amp;lt;&lt;/span&gt;&lt;span class='n'&gt;Token&lt;/span&gt;&lt;span class='o'&gt;&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;children&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;token&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;getChildren&lt;/span&gt;&lt;span class='o'&gt;();&lt;/span&gt;
+&lt;span class='lineno'&gt; 5&lt;/span&gt; 		&lt;span class='k'&gt;if&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 6&lt;/span&gt; 			&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;token&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;getNumber&lt;/span&gt;&lt;span class='o'&gt;();&lt;/span&gt;
+&lt;span class='lineno'&gt; 7&lt;/span&gt; 		&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt; 8&lt;/span&gt; 		&lt;span class='k'&gt;else&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt; 9&lt;/span&gt; 			&lt;span class='k'&gt;switch&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;token&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;getType&lt;/span&gt;&lt;span class='o'&gt;())&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='lineno'&gt;10&lt;/span&gt; 			&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='n'&gt;PLUS&lt;/span&gt;   &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;))&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;));&lt;/span&gt;
+&lt;span class='lineno'&gt;11&lt;/span&gt; 			&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='n'&gt;MINUS&lt;/span&gt;  &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;))&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;));&lt;/span&gt;
+&lt;span class='lineno'&gt;12&lt;/span&gt; 			&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='n'&gt;STAR&lt;/span&gt;   &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;))&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;));&lt;/span&gt;
+&lt;span class='lineno'&gt;13&lt;/span&gt; 			&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='n'&gt;SLASH&lt;/span&gt;  &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;))&lt;/span&gt; &lt;span class='o'&gt;/&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;));&lt;/span&gt;
+&lt;span class='lineno'&gt;14&lt;/span&gt; 			&lt;span class='k'&gt;case&lt;/span&gt; &lt;span class='n'&gt;NEGATE&lt;/span&gt; &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;calculate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;children&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;get&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;));&lt;/span&gt;
+&lt;span class='lineno'&gt;15&lt;/span&gt; 			&lt;span class='k'&gt;default&lt;/span&gt;     &lt;span class='o'&gt;:&lt;/span&gt; &lt;span class='k'&gt;throw&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Exception&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;计算出错！&amp;quot;&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='n'&gt;token&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;getType&lt;/span&gt;&lt;span class='o'&gt;().&lt;/span&gt;&lt;span class='na'&gt;toString&lt;/span&gt;&lt;span class='o'&gt;());&lt;/span&gt;
+&lt;span class='lineno'&gt;16&lt;/span&gt; 			&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt;17&lt;/span&gt; 		&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt;18&lt;/span&gt; 	&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='lineno'&gt;19&lt;/span&gt; 	&lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt;
+&lt;span class='lineno'&gt;20&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;就这样表达式计算就完成了。用&lt;code&gt;CalcMachine&lt;/code&gt;类测试效果。&lt;/p&gt;
+
+&lt;p&gt;其中使用正则表达式隐藏异常中不必要的信息。&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='lineno'&gt;1&lt;/span&gt; &lt;span class='n'&gt;Pattern&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;compile&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;^.*Exception:&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;).&lt;/span&gt;&lt;span class='na'&gt;matcher&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;e1&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;toString&lt;/span&gt;&lt;span class='o'&gt;()).&lt;/span&gt;&lt;span class='na'&gt;replaceAll&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;_9&quot;&gt;总结&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;希望大家读完这篇文章后：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;学会了理解语法图&lt;/li&gt;
+
+&lt;li&gt;学会了简单的词法分析和语法分析&lt;/li&gt;
+
+&lt;li&gt;使用递归可以十分灵活、方便&lt;/li&gt;
+
+&lt;li&gt;计算器的功能很容易扩展&lt;/li&gt;
+
+&lt;li&gt;功能分块可单独测试，便于查错、维护，特别是对于此类逻辑复杂的系统&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;All the data objects available to you in the templates via Liquid are outlined in the &lt;strong&gt;API Section&lt;/strong&gt; of Jekyll-Bootstrap. You can also read the original documentation here: &lt;a href=&quot;https://github.com/mojombo/jekyll/wiki/Template-Data&quot;&gt;https://github.com/mojombo/jekyll/wiki/Template-Data&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;I hope this paints a clearer picture of what Jekyll is doing and why it works the way it does. As noted, our main programming constraint is the fact that our API is limited to what is accessible via Liquid and Liquid only.&lt;/p&gt;
-
-&lt;p&gt;Jekyll-bootstrap is intended to provide helper methods and strategies aimed at making it more intuitive and easier to work with Jekyll =)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Thank you&lt;/strong&gt; for reading this far.&lt;/p&gt;
-
-&lt;h2 id=&quot;next_steps&quot;&gt;Next Steps&lt;/h2&gt;
-
-&lt;p&gt;Please take a look at &lt;a href=&quot;&quot;&gt;&lt;/a&gt; or jump right into &lt;a href=&quot;&quot;&gt;Usage&lt;/a&gt; if you’d like.&lt;/p&gt;</content>
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'&gt;&lt;img align='center' alt='知识共享许可协议' src='/assets/files/cc-licenses.png' style='border-width:0' /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'&gt;知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;</content>
  </entry>
  
  
