@@ -5,17 +5,20 @@ permalink: /:categories/:year/:month/:day/:title
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 pygments: true
 
+# For read more.
+excerpt_separator: <!--more-->
+
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
+title : 码田寻虫
 tagline: Site Tagline
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedburner : feedname
+  name : Jesse Wong
+  email : crimx.com@gmail.com
+  github : crimx
+  twitter : crimx_com
+  feedburner : crimxcom
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -82,7 +85,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : crimx
     livefyre :
       site_id : 123
     intensedebate :
@@ -100,7 +103,7 @@ JB :
   analytics :
     provider : google 
     google : 
-        tracking_id : 'UA-123-12'
+        tracking_id : 'UA-49163616-1'
     getclicky :
       site_id : 
     mixpanel :
