@@ -4,13 +4,78 @@
  <title>码田寻虫</title>
  <link href="http://www.crimx.com/" rel="self"/>
  <link href="http://www.crimx.com"/>
- <updated>2014-03-21T13:45:23+08:00</updated>
+ <updated>2014-03-21T15:14:36+08:00</updated>
  <id>http://www.crimx.com</id>
  <author>
    <name>Jesse Wong</name>
    <email>crimx.com@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>奇妙的位运算</title>
+   <link href="http://www.crimx.com/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/21/lcc-source-learning"/>
+   <updated>2014-03-21T00:00:00+08:00</updated>
+   <id>http://www.crimx.com/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2014/03/21/lcc-source-learning</id>
+   <content type="html">&lt;p&gt;今天看lcc源码内存对齐时看到一个&lt;code&gt;roundup(x,n)&lt;/code&gt;宏&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='c++'&gt;&lt;span class='cp'&gt;#define roundup(x,n) (((x)+((n)-1))&amp;amp;(~((n)-1)))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;从字面意思看这个宏应该是用来向上取整的。但是&lt;code&gt;(x+n-1)&amp;amp;(~(n-1))&lt;/code&gt;究竟是怎么做到的?&lt;/p&gt;
+
+&lt;p&gt;这里要从头说起，首先&lt;code&gt;roundup(x,n)&lt;/code&gt;的作用是求出用最小的&lt;code&gt;an&lt;/code&gt;,使得&lt;code&gt;an&amp;gt;=x&lt;/code&gt;，即&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='n'&gt;x&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt; &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;=&lt;/span&gt; &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里就要引入小学时的余数概念了：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;pre&gt;&lt;code&gt;除数×商=被除数-余数&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;即对于任意两个正整数&lt;code&gt;x&lt;/code&gt;和&lt;code&gt;n&lt;/code&gt;，总存在整数&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;b&lt;/code&gt;，使得:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;x = an + b (0 &amp;lt;= b &amp;lt; n)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在C语言中求&lt;code&gt;a&lt;/code&gt;和&lt;code&gt;b&lt;/code&gt;非常简单：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;a = x / n;
+b = x % b;&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;所以，如果把&lt;code&gt;roundup(x,n)&lt;/code&gt;转换，就可以求&lt;code&gt;an&lt;/code&gt;了：&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='n'&gt;x&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt; &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;=&lt;/span&gt; &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;-&lt;/span&gt; &lt;span class='n'&gt;b&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;
+&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;b&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;b&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;=&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;b&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='n'&gt;b&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;&amp;lt;&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;于是：&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='n'&gt;a&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;/&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;
+&lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;/&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;到这里就可以算出&lt;code&gt;an&lt;/code&gt;了，但是很明显&lt;code&gt;roundup(x,n)&lt;/code&gt;在这里继续对公式进行优化。&lt;/p&gt;
+
+&lt;p&gt;因为&lt;code&gt;n&lt;/code&gt;是内存块的单位，一定是&lt;code&gt;2&lt;/code&gt;的幂，于是有如下的特性：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;设&lt;code&gt;n = 2^m&lt;/code&gt;，则&lt;code&gt;m = n - 1&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;n&lt;/code&gt;的二进制必然是&lt;code&gt;100...&lt;/code&gt;的形态，其中有&lt;code&gt;m&lt;/code&gt;个&lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;对于&lt;code&gt;n&lt;/code&gt;的乘除操作，可以用左移右移完成&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;所以看回算式&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='o'&gt;/&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以看作是&lt;code&gt;(x+n-1)&lt;/code&gt;右移&lt;code&gt;m&lt;/code&gt;个位，在左移&lt;code&gt;m&lt;/code&gt;个位，也就是把最低的&lt;code&gt;m&lt;/code&gt;个位清零就可以了。&lt;/p&gt;
+
+&lt;p&gt;而从上面的属性可以知道，&lt;code&gt;n-1&lt;/code&gt;的二进制必然是&lt;code&gt;111...&lt;/code&gt;的形态，其中有&lt;code&gt;m&lt;/code&gt;个&lt;code&gt;1&lt;/code&gt;，所以清零只要对&lt;code&gt;m&lt;/code&gt;的反码进行与操作就可以了。&lt;/p&gt;
+
+&lt;p&gt;于是&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='n'&gt;an&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='o'&gt;+&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='o'&gt;&amp;amp;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='o'&gt;~&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='o'&gt;-&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;多么优美的一行代码，虽然可读性不高，但是理解了之后心中还是会产生无比的敬仰，这就是编程的魔力啊，就像在翻阅前人写的一篇篇诗歌。&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'&gt;&lt;img align='center' alt='知识共享许可协议' src='/assets/files/cc-licenses.png' style='border-width:0' /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a href='http://creativecommons.org/licenses/by-nc-sa/3.0/cn/' rel='license'&gt;知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议&lt;/a&gt;进行许可。&lt;/p&gt;</content>
+ </entry>
  
  <entry>
    <title>Jekyll-bootstrap Not Updating Problem Fixed</title>
