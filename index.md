@@ -4,7 +4,7 @@ title: 	「黄杰华」
 tagline: "The dust of the dead codes clings to thee. Wash thy soul with debugging."
 ---
 {% include JB/setup %}
-<link rel="shortcut icon" href="/assets/files/favicon.ico" />
+
 <ul>
   {% for post in site.posts %}
     <li>

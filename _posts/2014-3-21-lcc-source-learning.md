@@ -40,6 +40,9 @@ x = an - b (0 <= b < n)
 > b = x % b;
 > ```
 
+
+<!--more-->
+
 所以，如果把`roundup(x,n)`转换，就可以求`an`了：
 
 {% highlight python %}

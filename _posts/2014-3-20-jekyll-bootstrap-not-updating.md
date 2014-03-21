@@ -24,6 +24,8 @@ git rm _theme_packages
 
 This solution worked for me.
 
+<!--more-->
+
 我昨天把jekyll换成了jekyll-bootstrap，在本地测试成功，push也成功了。但是github pages一直没有改变。  
 重复安装了很多次，终于发现当我安装完`hooligan`主题后，github pages就没反映了。最后发现是主题下载包`_theme_packages`跟github有冲突。
 

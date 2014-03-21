@@ -22,6 +22,8 @@ tags:
 
 ![expression][expression]
 
+<!--more-->
+
 ###项：
 
 ![term][term]
@@ -29,8 +31,6 @@ tags:
 ###因子：
 
 ![factor][factor]
-
-<!--more-->
 
 ###数字
 这把所有的数字当做自然数处理：
