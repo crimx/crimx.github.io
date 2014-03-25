@@ -1,4 +1,4 @@
---- 
+﻿--- 
 layout:   post
 title:   'NFA与DFA的转换与优化'
 category: 编译原理
@@ -308,5 +308,3 @@ if __name__ == '__ma
 
 [nfa]: /assets/files/2014-3-16-nfa-to-dfa/nfa.jpg
 [dfa]: /assets/files/2014-3-16-nfa-to-dfa/dfa.jpg
-
-<br/><br/><br/><br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/"><img align="center" alt="知识共享许可协议" style="border-width:0" src="/assets/files/cc-licenses.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a>进行许可。

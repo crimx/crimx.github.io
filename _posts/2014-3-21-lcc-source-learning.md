@@ -1,4 +1,4 @@
---- 
+﻿--- 
 layout:   post
 title:   '奇妙的位运算'
 category: 编译原理
@@ -84,5 +84,3 @@ an = (x+n-1)&(~(n-1))
 {% endhighlight %}
 
 多么优美的一行代码，虽然可读性不高，但是理解了之后心中还是会产生无比的敬仰，这就是编程的魔力啊，就像在翻阅前人写的一篇篇诗歌。
-
-<br/><br/><br/><br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/"><img align="center" alt="知识共享许可协议" style="border-width:0" src="/assets/files/cc-licenses.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议</a>进行许可。
