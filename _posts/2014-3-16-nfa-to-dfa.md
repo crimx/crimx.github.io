@@ -1,4 +1,4 @@
-﻿--- 
+--- 
 layout:   post
 title:   'NFA与DFA的转换与优化'
 category: 编译原理

@@ -1,4 +1,4 @@
-﻿--- 
+--- 
 layout:   post
 title:   'The Easiest Way to Creat Read More in Jekyll'
 category: jekyll

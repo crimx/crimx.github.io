@@ -1,4 +1,4 @@
-﻿--- 
+--- 
 layout:   post
 title:   '奇妙的位运算'
 category: 编译原理

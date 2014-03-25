@@ -1,4 +1,4 @@
-﻿--- 
+--- 
 layout:   post
 title:   'Jekyll-bootstrap Not Updating Problem Fixed'
 category: jekyll
