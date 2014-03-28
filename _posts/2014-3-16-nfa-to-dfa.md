@@ -306,5 +306,5 @@ if __name__ == '__ma
 }
 {% endhighlight %}
 
-[nfa]: /assets/files/2014-3-16-nfa-to-dfa/nfa.jpg
-[dfa]: /assets/files/2014-3-16-nfa-to-dfa/dfa.jpg
+[nfa]: {{ site.at_path }}/2014-3-16-nfa-to-dfa/nfa.jpg
+[dfa]: {{ site.at_path }}/2014-3-16-nfa-to-dfa/dfa.jpg

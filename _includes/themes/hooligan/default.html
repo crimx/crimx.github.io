@@ -23,7 +23,7 @@
     <link href="{{ ASSET_PATH }}/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
 
-    <link rel="shortcut icon" href="{{{ ASSET_PATH }}/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ ASSET_PATH }}/images/favicon.ico">
     <!-- fav and touch icons -->
     <!-- Update these with your own images
       
@@ -123,7 +123,8 @@
       <div class="container">
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+          , <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+          and <a href="http://www.qiniu.com" target="_blank" title="七牛云存储">QINIU</a>
         </p>
       </div>
     </footer>
@@ -131,6 +132,5 @@
 
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
 
-    {% include JB/analytics %}
   </body>
 </html>

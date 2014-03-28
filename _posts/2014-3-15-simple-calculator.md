@@ -171,13 +171,13 @@ Pattern.compile("^.*Exception:").matcher(e1.toString()).replaceAll("")
 5. 功能分块可单独测试，便于查错、维护，特别是对于此类逻辑复杂的系统
 
 
-[expression]: /assets/files/2014-3-15-simple-calculator/expression.png
-[term]:       /assets/files/2014-3-15-simple-calculator/term.png
-[factor]:     /assets/files/2014-3-15-simple-calculator/factor.png
-[number]:     /assets/files/2014-3-15-simple-calculator/number.png
-[integer]:    /assets/files/2014-3-15-simple-calculator/integer.png
-[ast]:        /assets/files/2014-3-15-simple-calculator/ast.png
-[nest]:       /assets/files/2014-3-15-simple-calculator/nest.png
-[PPT]:        /assets/files/2014-3-15-simple-calculator/files/calculator.ppt	
-[source]:     /assets/files/2014-3-15-simple-calculator/files/calc.tar.gz
+[expression]: {{ site.at_path }}/2014-3-15-simple-calculator/expression.png
+[term]:       {{ site.at_path }}/2014-3-15-simple-calculator/term.png
+[factor]:     {{ site.at_path }}/2014-3-15-simple-calculator/factor.png
+[number]:     {{ site.at_path }}/2014-3-15-simple-calculator/number.png
+[integer]:    {{ site.at_path }}/2014-3-15-simple-calculator/integer.png
+[ast]:        {{ site.at_path }}/2014-3-15-simple-calculator/ast.png
+[nest]:       {{ site.at_path }}/2014-3-15-simple-calculator/nest.png
+[PPT]:        {{ site.at_path }}/2014-3-15-simple-calculator/files/calculator.ppt	
+[source]:     {{ site.at_path }}/2014-3-15-simple-calculator/files/calc.tar.gz
 
