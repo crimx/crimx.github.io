@@ -303,7 +303,7 @@ a.zocial {
 .zocial.twitter:before {content: "\E033";}
 .zocial.viadeo:before {content: "\E027"; color: #f59b20;}
 .zocial.vimeo:before {content: "\E035";}
-.zocial.weibo:before {content: "\E029"; color: #e6162d;}
+.zocial.weibo:before {content: "\E029";}
 .zocial.wikipedia:before {content: "\E00B";}
 .zocial.windows:before {content: "\E036";}
 .zocial.xing:before {content: "\E037"}
@@ -389,7 +389,7 @@ a.zocial {
 .zocial.twitter {background-color: #46c0fb;}
 .zocial.viadeo {background-color: #fff;  color: #000;}
 .zocial.vimeo {background-color: #00a2cd;}
-.zocial.weibo {background-color: #faf6f1; color: #000;}
+.zocial.weibo {background-color: #ff1919;}
 .zocial.wikipedia {background-color: #fff; color: #000;}
 .zocial.windows {background-color: #0052a4; color: #fff;}
 .zocial.wordpress {background-color: #464646;}

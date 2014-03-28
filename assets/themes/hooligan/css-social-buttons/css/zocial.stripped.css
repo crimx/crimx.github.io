@@ -157,7 +157,7 @@ a.zocial {
 .zocial.twitter:before {content: "\E033";}
 .zocial.viadeo:before {content: "\E027"; color: #f59b20;}
 .zocial.vimeo:before {content: "\E035";}
-.zocial.weibo:before {content: "\E029"; color: #e6162d;}
+.zocial.weibo:before {content: "\E029";}
 .zocial.wikipedia:before {content: "\E00B";}
 .zocial.windows:before {content: "\E036";}
 .zocial.xing:before {content: "\E037"}
