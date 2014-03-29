@@ -8,14 +8,15 @@ description: 你好！我是程序员，大家这么熟，叫我序员就好了�
 
 <ul>
   {% for post in site.posts %}
+    {% unless post.category == '随笔' %}
     <li>
       <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
       {{ post.excerpt }}
       <br/>
       <a href="{{ post.url }}"><code> --==Read More==-- </code></a>
       <br/><br/><br/>
-
     </li>
+    {% endunless %}
   {% endfor %}
 </ul>
 
