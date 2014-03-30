@@ -11,7 +11,7 @@ tags:
 ##1
 You need to add a excerpt separator in you `_config.yml`.
 ```
-excerpt_separator: <!--more-->
+excerpt_separator:
 ```
 
 ##2
@@ -33,6 +33,8 @@ Open index.html (or index.md...) and add these:
 </ul>
 {% endraw %}
 {% endhighlight %}
+
+<!--more-->
 
 ##3
 Open you posts and add the excerpt separator `<!--more-->` where you want to split.
