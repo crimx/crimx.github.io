@@ -7,8 +7,10 @@ description: 你好！我是程序员，大家这么熟，叫我序员就好了�
 {% include JB/setup %}
 
 <ul>
+  {% assign postnum = 0 %}
   {% for post in site.posts %}
-    {% unless post.category == '随笔' %}
+    {% assign postnum = postnum | plus: 1 %}
+    {% unless post.category == 'Rambling' %}
     <li>
       <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
       {{ post.excerpt }}
@@ -17,6 +19,9 @@ description: 你好！我是程序员，大家这么熟，叫我序员就好了�
       <br/><br/><br/>
     </li>
     {% endunless %}
+    {% if postnum >= 10 %}
+    {% break %}
+    {% endif %}
   {% endfor %}
 </ul>
 
