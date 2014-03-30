@@ -2,7 +2,8 @@
 layout:   post
 title:    编译原理与计算器
 date:     2014-03-12 17:43:32 +0800
-category: 编译原理
+category: Compiler
+tagline: "&quot;Everything you've ever wanted is on the other side of fear.&quot; -George Addair"
 tags: 
 - 编译原理
 - 计算器

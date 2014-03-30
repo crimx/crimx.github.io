@@ -2,7 +2,7 @@
 layout:   post
 title:   'The Easiest Way to Creat Read More in Jekyll'
 category: jekyll
-date:     2014-03-16 10:38:56 +0800
+tagline: "&quot;Many people die at 25 and aren't buried untill they're 75.&quot; -Benjamin Franklin"
 tags: 
 - jekyll
 - excerpt

@@ -1,8 +1,8 @@
 --- 
 layout:   post
-title:   'Jekyll-bootstrap Not Updating Problem Fixed'
+title:   Jekyll-bootstrap Not Updating Problem Fixed
 category: jekyll
-date:     2014-03-19 20:10:51 +0800
+tagline: "&quot;If opportunity doesn't knock... build a door.&quot; -Milton Berle"
 tags: 
 - jekyll
 ---

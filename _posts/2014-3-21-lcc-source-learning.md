@@ -1,7 +1,8 @@
 --- 
 layout:   post
-title:   '奇妙的位运算'
-category: 编译原理
+title:   奇妙的位运算
+category: Compiler
+tagline: "&quot;A ship is safe in harbor, but that's not what ships are for.&quot; -Willam G.T. Shedd"
 tags: 
 - lcc
 - 编译器
