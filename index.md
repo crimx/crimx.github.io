@@ -10,7 +10,7 @@ description: 你好！我是程序员，大家这么熟，叫我序员就好了�
   {% assign postnum = 0 %}
   {% for post in site.posts %}
     {% assign postnum = postnum | plus: 1 %}
-    {% unless post.category == 'Rambling' %}
+    {% unless post.tags contains 'NON' %}
     <li>
       <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
       {{ post.excerpt }}
