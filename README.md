@@ -8,7 +8,6 @@ You cannot use these files directly without my permission.
 * assets/files/*
 * CNAME
 * index.md
-* _layouts/default.html
 
 ## Usage
 For all usage and documentation please see: <http://jekyllbootstrap.com>
