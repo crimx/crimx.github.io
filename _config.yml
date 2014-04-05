@@ -8,6 +8,7 @@ pygments: true
 # For read more.
 excerpt_separator: <!--more-->
 
+markdown: kramdown
 
 # Path for attachments in posts
 # at_path : /assets/files
