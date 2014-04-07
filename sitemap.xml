@@ -22,7 +22,7 @@ title : Sitemap
   <loc>{{ site.production_url }}{{ page.url }}</loc>
   <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
   <changefreq>daily</changefreq>
-  <priority>0.8</priority>
+  <priority>0.5</priority>
 </url>
 {% endfor %}
 
@@ -33,7 +33,7 @@ title : Sitemap
   <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
   {% endif %}
   <changefreq>daily</changefreq>
-  <priority>1.0</priority>
+  <priority>0.8</priority>
 </url>
 {% endfor %}
 
