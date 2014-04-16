@@ -13,4 +13,11 @@
   {% include custom/analytics %}
 {% endcase %}
 
+{% comment %}<!-- 百度统计，懒得弄进去 -->{% endcomment %}
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F1917e119e9924542226199922a57c831' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
 {% endif %}
