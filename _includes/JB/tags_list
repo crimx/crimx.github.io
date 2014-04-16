@@ -22,13 +22,13 @@ Usage:
 {% else %}
   {% if tags_list.first[0] == null %}
     {% for tag in tags_list %} 
-        {% unless tag[0] == 'NON' %}
+        {% unless tag == 'NON' or tag[0] == 'NON' %}
     	<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">{{ tag }} <span>{{ site.tags[tag].size }}</span></a></li>
         {% endunless %}
     {% endfor %}
   {% else %}
     {% for tag in tags_list %} 
-        {% unless tag[0] == 'NON' %}
+        {% unless tag == 'NON' or tag[0] == 'NON' %}
     	<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} <span>{{ tag[1].size }}</span></a></li>
         {% endunless %}
     {% endfor %}

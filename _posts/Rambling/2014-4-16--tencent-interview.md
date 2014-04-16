@@ -3,7 +3,7 @@ layout:   post
 title:    腾讯一面
 date:     2014-4-16 20:06:28 +0800
 category: Rambling
-tagline: "&quot;If you want something in your life you've never had, you'll have to do something you've never done.&quot; -JD Houston"
+tagline: "&quot;Don't cry because it's over, smile because it happened.&quot; - Dr. Seuss"
 tags: 
 - NON
 - 腾讯
