@@ -2,3 +2,4 @@ _plugins/*
 _site/*
 _theme_packages/*
 _config.yml-test
+_config.yml
