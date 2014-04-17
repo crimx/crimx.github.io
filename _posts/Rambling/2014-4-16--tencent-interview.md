@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    腾讯一面
+title:    腾讯实习一面
 date:     2014-4-16 20:06:28 +0800
 category: Rambling
 tagline: "&quot;Don't cry because it's over, smile because it happened.&quot; - Dr. Seuss"
@@ -8,6 +8,7 @@ tags:
 - NON
 - 腾讯
 - 面试
+- 实习
 ---
 
 
