@@ -11,17 +11,26 @@ description: 「黄杰华」- 无证代码师 你好！我是程序员，大家�
   {% for post in site.posts %}
     {% assign postnum = postnum | plus: 1 %}
     {% unless post.tags contains 'NON' %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      {{ post.excerpt }}
-      <br/>
-      <a href="{{ post.url }}"><code> --==Read More==-- </code></a>
-      <br/><br/><br/>
-    </li>
+      <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        {{ post.excerpt }}
+        <br/>
+        {% if site.JB.comments.provider and page.comments != false %}
+          {% case site.JB.comments.provider %}
+            {% when "disqus" %}
+              <h3>评论：<a href="{{ post.url }}/#disqus_thread"></a></h3>
+          {% endcase %}
+        {% endif %}
+        <br/>
+        <a href="{{ post.url }}"><code> --==Read More==-- </code></a>
+        <br/><br/><br/>
+      </li>
     {% endunless %}
     {% if postnum >= 10 %}
-    {% break %}
+      {% break %}
     {% endif %}
   {% endfor %}
 </ul>
+
+{% include JB/comments-count %}
 
