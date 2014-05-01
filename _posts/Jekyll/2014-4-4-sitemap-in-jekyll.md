@@ -8,7 +8,7 @@ tags:
 - jekyll
 ---
 
-`jekyll-bootstrap`提供了一个简单的`sitemap.txt`，显然不够好。所以手动实现了`sitemap.xml`。
+`jekyll-bootstrap`提供了一个简单的`sitemap.txt`。参考它写了`sitemap.xml`。
 
 如果没有设定网址先在`_config.yml`设好`production_url`
 

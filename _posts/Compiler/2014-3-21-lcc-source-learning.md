@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:   奇妙的位运算
+title:    lcc内存对齐代码
 category: Compiler
 tagline: "&quot;A ship is safe in harbor, but that's not what ships are for.&quot; -Willam G.T. Shedd"
 tags: 
@@ -11,11 +11,9 @@ tags:
 
 今天看lcc源码内存对齐时看到一个`roundup(x,n)`宏
 
-{% highlight c++ %}
-#define roundup(x,n) (((x)+((n)-1))&(~((n)-1)))
-{% endhighlight %}
+    #define roundup(x,n) (((x)+((n)-1))&(~((n)-1)))
 
-从字面意思看这个宏应该是用来向上取整的。但是`(x+n-1)&(~(n-1))`究竟是怎么做到的?
+从字面意思看这个宏应该是用来向上取整的。但是`(x+n-1)&(~(n-1))`的确让人一时傻眼了。
 
 这里要从头说起，首先`roundup(x,n)`的作用是求出用最小的`an`,使得`an>=x`，即
 {% highlight python %}
@@ -24,22 +22,16 @@ x = an - b (0 <= b < n)
 
 这里就要引入小学时的余数概念了：
 
-> ```
-> 除数×商=被除数-余数
-> ```
+>     除数 × 商 = 被除数 - 余数
 > 
 > 即对于任意两个正整数`x`和`n`，总存在整数`a`和`b`，使得:
 > 
-> ```
-> x = an + b (0 <= b < n)
-> ```
+>     x = an + b (0 <= b < n)
 > 
 > 在C语言中求`a`和`b`非常简单：
 > 
-> ```
-> a = x / n;
-> b = x % b;
-> ```
+>     a = x / n;
+>     b = x % b;
 
 
 <!--more-->
@@ -84,5 +76,5 @@ an = (x+n-1) / n * n
 an = (x+n-1)&(~(n-1))
 {% endhighlight %}
 
-多么优美的一行代码，虽然可读性不高，但是理解了之后心中还是会产生无比的敬仰，这就是编程的魔力啊，就像在翻阅前人写的一篇篇诗歌。
+多么优美的一行代码，虽然可读性不高，但是理解了之后心中还是会产生无比的敬仰，这就是编程的魔力啊，作者就像在尽情的揉捏语言，这感觉一定很棒吧！
 

@@ -9,13 +9,15 @@ tags:
 ---
 
 ##1
-You need to add a excerpt separator in you `_config.yml`.
-```
-excerpt_separator:
-```
+
+Add excerpt separator in `_config.yml`. For example:
+
+    excerpt_separator: <!--more-->
+
 
 ##2
-Open index.html (or index.md...) and add these:
+
+Edit index.html or index.md...(the page you want to list posts) and add something like these:
 
 {% highlight html %}
 {% raw %}
@@ -26,7 +28,7 @@ Open index.html (or index.md...) and add these:
       {{ post.excerpt }}
       <br/>
       <a href="{{ post.url }}"><code> --==Read More==-- </code></a>
-      <br/><br/><br/>
+      <br/>
 
     </li>
   {% endfor %}
@@ -37,7 +39,8 @@ Open index.html (or index.md...) and add these:
 <!--more-->
 
 ##3
-Open you posts and add the excerpt separator `<!--more-->` where you want to split.
+
+Insert `<!--more-->` into you posts.
 
 Check this [Post excerpt](http://jekyllrb.com/docs/posts/).
 

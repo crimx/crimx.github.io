@@ -15,9 +15,10 @@ tags:
 
 这是半年前的事了，当时刚接触python，所以是用python实现的。现在看来，代码风格非常不好，大量的if/for语句，充满了C/Java的影子。所以掏出代码來修改一番，以后有新的感悟说不定又回來改一遍。
 
----------
+
 ##遍历mp3
 ---------
+
 开始的时候当然是要先找到mp3文件了。使用`os.walk`递归的查找mp3，把文件名和路径存下来：
 {% highlight python %}
 import os
@@ -36,8 +37,9 @@ if __name__ == '__main__':
 	print mp3_list
 {% endhighlight %}
 
-------------
+
 ##读取id3信息
+
 ------------
 接下来要读取mp3的id3信息，我用了[eyed3](http://eyed3.nicfit.net/)，它不支持python3所以我用的是python2.7
 {% highlight python %}
@@ -65,8 +67,9 @@ if __name__ == '__main__':
 	mp3_process(mp3_find(r'test'))
 {% endhighlight %}
 
-------
+
 ##搜索
+
 ------
 得到名字之后就要从网络抓取图片，这里使用了豆瓣音乐[Api v2](http://developers.douban.com/wiki/?title=music_v2)，参看音乐的返回格式，默认返回到是小图`spic`来的，手动改成大图`lpic`。这里使用了比较肮脏的手段去除`ident`的标点符号。
 {% highlight python %}
@@ -94,9 +97,10 @@ def mp3_process(mp3_list):
 		if not img: continue
 {% endhighlight %}
 
----------
+
 ##写入封面
 ---------
+
 因为我的音乐都是英语的，所以编码用`latin1`保持最大的可用性，`utf-8`和`utf-16`有的移动设备会显示不出封面，注意**中文不能使用latin1**。
 {% highlight python %}
 def mp3_burn(id3, img):
@@ -123,7 +127,7 @@ def mp3_process(mp3_list):
 	return faild_list
 {% endhighlight %}
 
-------
+
 ##效果
 ------
 随机找来一坨mp3，如图，可以看到是没有封面的。
@@ -132,7 +136,7 @@ def mp3_process(mp3_list):
 跑一遍程序，再查看，（ubuntu下不知道怎么刷新缩略图缓存，我是把文件夹复制一份）
 ![mp3 after]({{ site.at_path }}/2014-3-29-font-cover-catch-in-python/after.png)
 
-------
+
 ##后话
 ------
 豆瓣的api是有频率限制的，最好申请一个[APIKey](http://developers.douban.com/wiki/?title=tutorial)，或者使用代理，也可以在循环中加入`sleep`凑合用，一般情况都会没问题。
