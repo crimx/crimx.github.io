@@ -14,15 +14,16 @@ description: 「黄杰华」- 无证代码师 你好！我是程序员，大家�
       <li>
         <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
         {{ post.excerpt }}
+	<br/>
+        <a href="{{ post.url }}"><code> --==Read More==-- </code></a>
         <br/>
         {% if site.JB.comments.provider and page.comments != false %}
           {% case site.JB.comments.provider %}
             {% when "disqus" %}
-              <h3>评论：<a href="{{ post.url }}/#disqus_thread"></a></h3>
+              <h5>评论：<a href="{{ post.url }}/#disqus_thread">加载中...</a></h5>
           {% endcase %}
         {% endif %}
-        <br/>
-        <a href="{{ post.url }}"><code> --==Read More==-- </code></a>
+        
         <br/><br/><br/>
       </li>
     {% endunless %}
