@@ -1,8 +1,8 @@
 ---
 layout: page
-title: 	「黄杰华」
+title: 	不可胜在己，可胜在敌
 tagline: "The dust of the dead codes clings to thee. Wash thy soul with debugging."
-description: 「黄杰华」- 无证代码师。你好！我是程序员，大家这么熟，叫我序员就好了。
+description: 你好！我是程序员，大家这么熟，叫我序员就好了。「黄杰华」- 无证代码师。
 ---
 {% include JB/setup %}
 
