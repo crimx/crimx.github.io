@@ -46,6 +46,11 @@ tags:
 不要这样学习JavaScript {#How_NOT_To_Learn_JavaScript}
 ------
 
+不要一开始就埋头在成堆的JavaScript在线教程里 ，这是最糟糕的学习方法。或许在看过无数个教程后会有点成效，但这样不分层次结构地学习一个东西实在是十分低效，在实际用JavaScript建立网站或web应用时还会频繁的被卡住。总的来说，这种学习方法会让人不知道如何将语言当做工具来使用－当做个人工具来用。另外，也许有人会建议从尊敬的JavaScript教父Douglas Crockford写的《JavaScript语言精粹》开始学习JavaScript。然而，虽然Crockford先生对JavaScript无所不知，被誉为JavaScript世界的爱因斯坦，但他的《JavaScript语言精粹》并不适合初学者学习。这本书没有通透、清晰、明了的阐述JavaScript的核心概念。但对于更高级的学习路线，我倒会建议你看看Crockford先生的视频。还有，不要只从Codecademy等网站学习JavaScript，因为即使知道怎么编写一大堆JavaScript代码小片段，还是不能学会怎么建立一个web应用程序。即便如此，在后面我还是会建议把Codecademy当做补充的学习资源。
+
+本课程资源 {#Resources_For_This_Course}
+----------
+
 未完待续
 
 <!--Jaward华仔（http://crimx.com）-->
