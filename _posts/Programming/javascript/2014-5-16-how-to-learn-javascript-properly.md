@@ -55,6 +55,8 @@ tags:
 本课程资源 {#Resources_For_This_Course}
 ----------
 
+<!--more-->
+
 更新：Reddit用户d0gsbody四月8号在Reddit上建立了一个学习小组。他和其他组员都非常积极和乐于助人。我建议你加入这个小组，他们会让你保持积极性且帮助你更好的学习JavaScript。毕竟独自折腾JavaScript还是有点难度的。链接：[Learning JS Properly – Study Group on Reddit](http://www.reddit.com/r/learnjavascript/comments/1ceefw/learn_javascript_properly_omnibus_post/)
 
 请在以下两本书中选一本，第一本比较适合有编程经验的人，而另一本则适合完全没有编程经验的初学者。
@@ -86,6 +88,27 @@ JavaSctipt学习路线
 
 1～2周(简介，数据类型，表达式和操作符) {#Weeks_1_and_2_Introduction_Data_Types_Expressions_and_Operators}
 ---------
+
+1. 如果你还不是很了解HTML和CSS，完成Codecademy上的[web基础](http://www.codecademy.com/tracks/web)任务。
+
+2. 阅读《JavaScript权威指南》或者《JavaScript高级程序设计》的前言和第1~2章。
+
+3. **十分重要：**在书中遇到的每个样例代码都要动手敲出来并且在火狐或Chrome浏览器控制台中跑起来、尽量蹂躏它（做各种试验）。也可以用[jsfiddle](http://jsfiddle.net/)，但不要用Safari浏览器。我建议用火狐搭配[Firebug插件](https://addons.mozilla.org/en-us/firefox/addon/firebug/)去测试和调试代码。浏览器控制台就是可以让你编写和运行JavaScript代码的地方。
+
+4. 完成Codecademy[JavaScript Track](http://www.codecademy.com/tracks/javascript)上的`Introduction to JavaScript`部分。
+
+5. 阅读《JavaScript权威指南》第3~4章。
+
+ 或者阅读《JavaScript高级程序设计》第3~4章。你可以跳过`位操作`部分，在你的JavaScript生涯中一般不会用上这个。
+
+ 再次说明，记得要不时停下来把书本的代码敲到浏览器控制台里（或者JSFiddle）做各种测试，可以改变几个变量或者把代码结构修改一番。
+
+6. 阅读《JavaScript权威指南》第5章。至于《JavaScript高级程序设计》则暂时没有阅读任务，因为前面已经把相关知识覆盖了。
+
+7. 完成Codecademy[JavaScript Track](http://www.codecademy.com/tracks/javascript)上的2~5部分。
+
+3~4周(对象，数组，函数，DOM，jQuery) {#Weeks_3_and_4_Objects_Arrays_Functions_DOM_jQuery}
+-------
 
 未完待续
 
