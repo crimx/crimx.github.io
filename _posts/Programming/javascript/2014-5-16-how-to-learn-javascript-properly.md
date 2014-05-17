@@ -55,9 +55,39 @@ tags:
 本课程资源 {#Resources_For_This_Course}
 ----------
 
-未完待续
+更新：Reddit用户d0gsbody四月8号在Reddit上建立了一个学习小组。他和其他组员都非常积极和乐于助人。我建议你加入这个小组，他们会让你保持积极性且帮助你更好的学习JavaScript。毕竟独自折腾JavaScript还是有点难度的。链接：[Learning JS Properly – Study Group on Reddit](http://www.reddit.com/r/learnjavascript/comments/1ceefw/learn_javascript_properly_omnibus_post/)
 
-<!--Jaward华仔（http://crimx.com）-->
+请在以下两本书中选一本，第一本比较适合有编程经验的人，而另一本则适合完全没有编程经验的初学者。
+
+我个人推荐第一本书，因为作者对各个知识点都阐述得非常好且涵盖了一些高级JavaScript知识点。但是，要看懂这本书你至少要对web开发有一定的基本了解。所以，如果你有一点点编程经验或者web开发经验（不一定是JavaScript），那就买这本书吧。
+
+- 纸质版（英文）：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/1118026691/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1118026691&linkCode=as2&tag=interhaptic-20)
+- 纸质版（中文）：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B007OQQVMY/ref=sr_1_1?ie=UTF8&qid=1400291839&sr=8-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
+- Kindle版（英文）：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/B006PW2URI/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B006PW2URI&linkCode=as2&tag=interhaptic-20)
+- Kindle版（中文）：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B00CBBJS5Y/ref=kinw_dp_ke)
+
+如果你没有编程经验，可以买这本：
+
+- 纸质版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596805527&linkCode=as2&tag=interhaptic-20)
+- 纸质版（中文）：[JavaScript权威指南(第6版)](http://www.amazon.cn/O-Reilly%E7%B2%BE%E5%93%81%E5%9B%BE%E4%B9%A6%E7%B3%BB%E5%88%97-JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-%E5%BC%97%E5%85%B0%E7%BA%B3%E6%A0%B9/dp/B007VISQ1Y/ref=sr_1_2?ie=UTF8&qid=1400292169&sr=8-2&keywords=JavaScript%3A+The+Definitive+Guide)
+- Kindle版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/B004XQX4K0/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004XQX4K0&linkCode=as2&tag=interhaptic-20)
+- Kindle版（中文）：[JavaScript权威指南（原书第6版）](http://www.amazon.cn/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-David-Flanagan/dp/B00E593MTS/ref=kinw_dp_ke)
+
+免费注册[Stack Overflow](http://stackoverflow.com/)，这是一个编程领域的问答论坛。在这里提问题得到的回答要比Codecademy要好，哪怕你的问题非常基础，看起来很傻（记住，从来没有愚蠢的问题，放心的问吧）。
+
+免费注册[Codecademy](http://www.codecademy.com/)，这是一个在线学习平台，你可以直接在浏览器里面写代码。
+
+本博客[JavaScriptIsSexy](http://javascriptissexy.com/)上的一些博文，包括对象，闭包，变量的作用域和提升，函数等等。
+
+JavaSctipt学习路线
+------
+
+完成整个课程大纲需要花上6~8周的时间，将学会完整的JavaScript语言（包括jQuery和一些HTML5）。如果你没有时间在6个星期里完成所有的课程（确实比较有挑战性），尽量不要超过8个星期。花的时间越长，掌握和记忆各种知识点的难度就越大。
+
+1～2周(简介，数据类型，表达式和操作符) {#Weeks_1_and_2_Introduction_Data_Types_Expressions_and_Operators}
+---------
+
+未完待续
 
 
 
