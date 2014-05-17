@@ -75,7 +75,7 @@ tags:
    - Kindle版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/B004XQX4K0/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004XQX4K0&linkCode=as2&tag=interhaptic-20)
    - Kindle版（中文）：[JavaScript权威指南（原书第6版）](http://www.amazon.cn/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-David-Flanagan/dp/B00E593MTS/ref=kinw_dp_ke)
 
-- 免费注册[Stack Overflow](http://stackoverflow.com/)，这是一个编程领域的问答论坛。在这里提问题得到的回答要比Codecademy要好，哪怕你的问题非常基础，看起来很傻（记住，从来没有愚蠢的问题，放心的问吧）。
+- 免费注册[Stack Overflow](http://stackoverflow.com/)，这是一个编程领域的问答论坛。在这里提问题得到的回答比Codecademy要好，哪怕你的问题非常基础，看起来很傻（记住，从来没有愚蠢的问题）。
 
 - 免费注册[Codecademy](http://www.codecademy.com/)，这是一个在线学习平台，你可以直接在浏览器里面写代码。
 
@@ -95,7 +95,7 @@ JavaSctipt学习路线
 
 3. **十分重要：**在书中遇到的每个样例代码都要动手敲出来并且在火狐或Chrome浏览器控制台中跑起来、尽量蹂躏它（做各种试验）。也可以用[jsfiddle](http://jsfiddle.net/)，但不要用Safari浏览器。我建议用火狐搭配[Firebug插件](https://addons.mozilla.org/en-us/firefox/addon/firebug/)去测试和调试代码。浏览器控制台就是可以让你编写和运行JavaScript代码的地方。
 
-4. 完成Codecademy[JavaScript Track](http://www.codecademy.com/tracks/javascript)上的`Introduction to JavaScript`部分。
+4. 完成Codecademy [JavaScript Track](http://www.codecademy.com/tracks/javascript)上的`Introduction to JavaScript`部分。
 
 5. 阅读《JavaScript权威指南》第3~4章。
 
@@ -105,10 +105,48 @@ JavaSctipt学习路线
 
 6. 阅读《JavaScript权威指南》第5章。至于《JavaScript高级程序设计》则暂时没有阅读任务，因为前面已经把相关知识覆盖了。
 
-7. 完成Codecademy[JavaScript Track](http://www.codecademy.com/tracks/javascript)上的2~5部分。
+7. 完成Codecademy [JavaScript Track](http://www.codecademy.com/tracks/javascript)上的2~5部分。
 
 3~4周(对象，数组，函数，DOM，jQuery) {#Weeks_3_and_4_Objects_Arrays_Functions_DOM_jQuery}
 -------
+
+1. 以下三选一：
+
+   * 阅读我的博文[JavaScript Objects in Detail](http://javascriptissexy.com/javascript-objects-in-detail/).
+
+   * 阅读《JavaScript权威指南》第6章。
+
+   * 阅读《JavaScript高级程序设计》第6章。注意：只需要看“理解对象”（Understanding Objects）部分。
+
+   两本书会设计更多的一些细节，但只要看完我的博文，你完全可以放心地跳过这些细节。
+
+2. 阅读《JavaScript权威指南》第7~8章或者《JavaScript高级程序设计》第5和7章。
+
+3. 此时，你应该花大量时间在浏览器控制台上写代码，测试if-else语句，for循环，数组，函数，对象等等。更重要的是，你要锻炼和掌握独立写代码，不用借助Codecademy。在Codecademy上做题时，每个任务对你来说应该都很简单，不需要点帮助和提示。
+
+   如果你还卡在Codecademy上，继续回到浏览器上练习，这是最好的学习方法。就像詹姆斯年轻时在邻居的篮球场上练球，比尔盖茨在地下室里学习编程。
+
+   持续地练习，这一点点的进步积累起来效果会非常惊人。你要看到这个策略的价值，相信它是可行的，全心投入进去。
+
+   **Codecademy会造成已掌握的错觉。**  
+   使用Codecademy最大的问题是，它的提示和代码小片段会让人很容易就把答案做出来，造成一种已经掌握这个知识点的错觉。你可能一时看不出来，但这样做你的代码就不是独立完成的了。
+
+   目前为止，Codecademy依然是学习编程的好帮手。特别是从一些基本的代码结构如if语句，for循环，函数和变量去指导你了解小项目和小应用的开发过程。
+
+4. 回到Codecademy完成JavaScript路线。做完6~8部分（数据结构做到Object 2）。
+
+5. 实现Codecademy上[Projects](http://www.codecademy.com/tracks/projects)路线的5个基础小项目（Basic Projects）。做完之后，你已不再需要Codecademy了。这是一件好事，因为自己做的越多，学得就越快，就能更好准备开始独立编程。
+
+6. 阅读《JavaScript权威指南》第13,15，16和19章。
+
+   或者阅读《JavaScript高级程序设计》第8,9,10,11,13和14章。这本书没有涉及到jQuery，而Codecademy上的jQuery知识也覆盖得不够。可以看看jQuery的官方教程，免费的：<http://try.jquery.com/>
+
+   你也可以在《JavaScript权威指南》第19章了解更多的jQuery知识。
+
+7. 完成全部的jQuery教程<http://try.jquery.com/>。
+
+JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebStorm}
+-----------
 
 未完待续
 
