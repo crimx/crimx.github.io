@@ -175,14 +175,17 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
    
    {% highlight javascript %}
    // 这里只演示一个问题，你要把所有问题都添加进去
-   ar allQuestions = [{
-       question: "Who is Prime Minister of the United Kingdom?", 
-       choices: [
-          "David Cameron", 
-          "Gordon Brown", 
-          "Winston Churchill", 
-          "Tony Blair"], 
-       correctAnswer: 0}];
+   var allQuestions = [
+       {
+           question: "Who is Prime Minister of the United Kingdom?", 
+           choices: [
+              "David Cameron", 
+              "Gordon Brown", 
+              "Winston Churchill", 
+              "Tony Blair"], 
+           correctAnswer: 0
+       }
+   ];
    {% endhighlight %}
 
 - 当用户点击“Next”时，使用`document.getElementById`或jQuery动态的添加下一个问题，并且移去当前问题。在这个版本里“Next”是唯一的导航按钮。
@@ -192,9 +195,78 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
 5～6周(正则表达式，Window对象，事件，jQuery) {#Weeks_5_and_6_Regular_Expressions_Window_Object_Events_jQuery}
 ------
 
+1. 阅读《JavaScript权威指南》第10,14,17，20章。
+   
+   或者阅读《JavaScript高级程序设计》第20，23章。
 
+2. 记得要把样例代码敲到浏览器控制台上，尽可能蹂躏它，做各种测试，直到完全理解它是怎么工作，它能干些什么。
 
-未完待续
+3. 此时，你用起JavaScript来应该很顺手，有点像武林高手要出山了。但你还不能成为高手，你要把新学到的知识反复使用，不停的学习和提升。
+
+4. 升级之前做的问答应用
+
+   - 添加客户端数据验证：保证用户回答了当前问题才能进入下个问题。
+
+   - 添加“Back”按钮，允许用户返回修改答案。最多可以返回到第一个问题。注意对于用户回答过的问题，选择按钮要显示被选中。这样用户就无需重新回答已经答过的问题。
+
+   - 用jQuery添加动画（淡出当前问题，淡入下个问题）
+
+   - 在IE8和IE9下测试，修改bug，这里应该会有得你忙了。 ;D
+
+   - 把问题导出JSON文件
+
+   - 添加用户认证，允许用户登陆，把用户认证信息保存在`本地存储`（local storage，HTML5浏览器存储）。
+
+   - 使用cookies记住用户，当用户再次登陆时显示“欢迎`用户名`回来”。
+
+7周，可延长到8周(类，继承，HTML5) {#Weeks_7_and_if_necessary_8_Classes_Inheritance_more_HTML5}
+-----
+
+1. 阅读《JavaScript权威指南》第9，18，21，22章。
+
+   或者阅读我的博文[JavaScript面向对象必知必会](http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/)
+
+   或者阅读《JavaScript高级程序设计》第6，16,22,24章，第6章只读“创建对象”（Object Creation）和“继承”（Inheritance）部分。注意：这部分是本课程中技术性强度最大的阅读，要根据自身的状况考虑要不要全部读完。你至少要知道原型模式（Prototype Pattern），工厂模式（Factory Pattern）和原型继承（Prototypal Inheritance），其它的不作要求。
+
+2. **继续升级你的问答应用：**
+
+   - 页面布局使用[Twitter Bootstrap](http://twitter.github.com/bootstrap/)，把问答的元素弄得看起来专业一些。而作为额外奖励，用Twitter Bootstrap的[标签控件](http://getbootstrap.com/2.3.2/components.html#navs)（译者注：原文地址失效，已改）显示问题，每个标签显示一个问题。
+
+   - 学习[Handlebars.js](http://javascriptissexy.com/handlebars-js-tutorial-learn-everything-about-handlebars-js-javascript-templating/)，将Handlebars.js模板用在问答应用上。你的JavaScript代码中不应该再出现HTML代码了。我们的问答应用现在越来越高级啦。
+
+   - 记录参加问答的用户成绩，展示用户在问答应用中与其他用户的排名比较。
+
+3. 在学完Backbone.js和Node.js后，你会用这两种最新的JavaScript框架重构问答应用的代码，使之变成复杂的单页面现代web应用。你还要把用户的认证信息和成绩保存在MongoDB数据库上。
+
+4. 接下来：构思一个项目，趁热打铁迅速的去开发。卡住的时候参考《JavaScript权威指南》或者《JavaScript高级程序设计》。当然，还要成为Stack Overflow的活跃用户，多问问题，也要尽量回答其它人的提问。
+
+继续提升 {#Continue_Improving}
+---------
+
+1. [精通backbone.js](http://javascriptissexy.com/learn-backbone-js-completely/)
+
+2. [中高级JavaScript进阶](http://javascriptissexy.com/learn-intermediate-and-advanced-javascript/)
+
+3. [不侧漏精通Node.js](http://javascriptissexy.com/learn-node-js-completely-and-with-confidence/)
+
+4. Meteor.js入门（即将出炉）
+
+4. 三个最好的JavaScript前端框架（即将出炉）
+
+一些鼓励的话 {#Words_of_Encouragement}
+------
+
+祝你学习顺利，永不放弃！当你做不下去觉得自己很蠢的时候（你会时不时这么想的），请记住，世界各地的其他初学者，甚至是有经验的程序员，也会不时产生这种想法的。
+
+如果你是完全的初学者，特别是过了青少年时期的人，开始写代码的时候也许很困难。年轻人无所畏惧，也没有什么负担，他们可以花大量的时间在喜欢的东西上。所以各种挑战对他们来说也不过是短暂的障碍罢了。
+
+但过了青少年期后你会希望快速的见到成效。因为你没有这么多的时间去花上几个小时就为了搞清楚一些细节的东西。但这些东西你必须深入去理解它，不要因此沮丧，坚持完成课程的任务，把bug都找出来，直到你完全理解。当你到达胜利的彼岸时，你会知道这一切都是值得的，你会发现编程非常有趣而且在上面花的时间都会得到可观的回报。
+
+一个人必须去感受和领悟构建程序带来的强烈快感。当你一步步的掌握知识点，一点点的将程序搭建起来时，就会对自己产生激励与肯定，带来十分美妙的满足感。
+
+总有一天你会意识到之前忍受的所有困难都是值得的。因为你将要成为一名光荣的程序员，你也清楚作为JavaScript开发者，你的前途一片光明。就像在你之前成千上万的程序员一样，你打败了最难的bug，你没有退步，你没有放手，你没有找任何借口让自己放弃。
+
+当你学有所成的时候，放心的将你的成果分享给我们吧，哪怕是个微不足道的，小到显微镜都看不到的小项目。 ;D
 
 
 
