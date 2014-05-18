@@ -31,7 +31,7 @@ tags:
 > - [1～2周(简介，数据类型，表达式和操作符)](#Weeks_1_and_2_Introduction_Data_Types_Expressions_and_Operators)  
 > - [3~4周(对象，数组，函数，DOM，jQuery)](#Weeks_3_and_4_Objects_Arrays_Functions_DOM_jQuery)  
 > - [JavaScript终极编辑器：WebStorm](#Get_The_Ultimate_JavaScript_Editor_WebStorm)  
-> - [第一个项目-动态的问答应用](#Your_First_ProjectA_Dynamic_Quiz)  
+> - [第一个项目-动态问答应用](#Your_First_ProjectA_Dynamic_Quiz)  
 > - [5～6周(正则表达式，Window对象，事件，jQuery)](#Weeks_5_and_6_Regular_Expressions_Window_Object_Events_jQuery)  
 > - [7周，可延长到8周(类，继承，HTML5)](#Weeks_7_and_if_necessary_8_Classes_Inheritance_more_HTML5)  
 > - [继续提升](#Continue_Improving)  
@@ -118,7 +118,7 @@ JavaSctipt学习路线
 
    * 阅读《JavaScript高级程序设计》第6章。注意：只需要看“理解对象”（Understanding Objects）部分。
 
-   两本书会涉及更多的一些细节，但只要看完我的博文，你完全可以放心地跳过这些细节。
+   两本书会涉及更多的一些细节，但只要看完我的博文，你可以完全放心地跳过这些细节。
 
 2. 阅读《JavaScript权威指南》第7~8章或者《JavaScript高级程序设计》第5和7章。
 
@@ -147,6 +147,52 @@ JavaSctipt学习路线
 
 JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebStorm}
 -----------
+
+- 在你实现第一个项目之前，如果打算以后做JavaScript开发者或者经常用到JavaScript，你最好现在去下载[WebStorm](http://www.jetbrains.com/webstorm/)的试用版。[这里](http://2oahu.com/blog/webstorm-javascript/)可以学习怎么使用WebStorm（专门为这个课程写的）。
+
+   毋庸置疑，WebStorm是JavaScript编程最好的编辑器（或IDE）。30天试用后要付$49.00，但这应该是除了买书以外作为JavaScript开发者最明智的投资了。
+
+- 确保在WebStorm中启用JSHint。JSHint是一个检查JavaScript代码错误和潜在问题的工具，强制你的团队按照规范写代码。用WebStorm最爽的地方是JSHint会自动在错误的代码下显示红线，就像文字处理程序中的拼写检查。于是JSHint会显示一切的代码错误（包括HTML），促使你养成良好的习惯，成为更好的JavaScript程序员。**这很重要**，当你真正意识到WebStrom和JSHint对你的巨大帮助时，你会回来感谢我的。
+
+- 此外，WebStorm是一个世界级，专业人员使用的IDE，用来编写专业的JavaScript web应用，所以你以后会经常用到它。它还结合了Node.js，Git和其它JavaScript框架，所以即使你成为了明星级的JavaScript开发者，你还是会用到它的。除非以后出现了更多的JavaScript IDE。
+
+- 公平起见，我在这里提一下[Sublime Text 2](http://www.sublimetext.com/2)，这是仅次于WebStorm的JavaScript编辑器。它的功能不及WebStorm丰富和完整（即使添加了一堆插件）。做小修改的时候我会用到Sublime Text 2，它支持很多语言，包括JavaScript，但我不会用它来构建完整的JavaScript Web应用。
+
+第一个项目-动态问答应用 {#Your_First_ProjectA_Dynamic_Quiz}
+-------
+
+此时，你已经掌握了足够的知识去建立一个稳固的，可维护的web应用。在做完我为你设计的这个应用之前不要看后面的章节。如果你卡住了，去Stack Overflow提问并且把书上相关的内容重新看一遍直到完全理解这些概念。
+
+接下来开始建立一个JavaScript问答应用（还会用到HTML和CSS），功能如下：
+
+- 这是一套单选测试题，完成之后会显示用户的成绩。
+
+- 问答应用可以产生任意多的问题，每个问题可以有任意多的选项。
+
+- 在最后的页面显示用户的成绩。这个页面只显示成绩，所以要把最后一个问题去掉。
+
+- 用数组存所有的问题。每个问题，包括它的选项和正确答案，都封装成一个对象。问题数组看起来应该是这样：
+   
+   ~~~ javascript
+   // 这里只演示一个问题，你要把所有问题都添加进去
+   ar allQuestions = [{
+       question: "Who is Prime Minister of the United Kingdom?", 
+       choices: [
+          "David Cameron", 
+          "Gordon Brown", 
+          "Winston Churchill", 
+          "Tony Blair"], 
+       correctAnswer: 0}];
+   ~~~
+
+- 当用户点击“Next”时，使用`document.getElementById`或jQuery动态的添加下一个问题，并且移去当前问题。在这个版本里“Next”是唯一的导航按钮。
+
+- 你可以在本文下方评论求助，最好是去Stack Overflow提问，在那里会有及时而准确的回答。
+
+5～6周(正则表达式，Window对象，事件，jQuery) {#Weeks_5_and_6_Regular_Expressions_Window_Object_Events_jQuery}
+------
+
+
 
 未完待续
 
