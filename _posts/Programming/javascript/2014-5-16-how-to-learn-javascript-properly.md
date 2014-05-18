@@ -3,11 +3,13 @@ layout:   post
 title:    如何正确学习JavaScript
 date:     2014-5-16 14:31:35 +0800
 category: JavaScript
-tagline: 正确学习JavaScript（写给非JavaScript程序员和编程新手）
+tagline:  正确学习JavaScript（写给非JavaScript程序员和编程新手）
 tags: 
 - 翻译
 - JavaScript
 - 学习路线
+
+description: "为JavaScript初学者指明道路，通过结构化的分层学习方法，逐步从菜鸟向高手进阶。本文在成千上万的网友推动下反复修改，整个路线已经非常成熟。"
 ---
 
 原文：[How to Learn JavaScript Properly](http://JavaScriptissexy.com/how-to-learn-JavaScript-properly/)（2014-5-16）  
