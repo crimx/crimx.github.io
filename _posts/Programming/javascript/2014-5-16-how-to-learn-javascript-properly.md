@@ -21,7 +21,7 @@ tags:
 ###更新（2014-1-7）
 
 > 在Reddit上创建了一个学习小组  
-> [January 2014, “Learn JavaScript” Study Group on Reddit](http://www.reddit.com/r/learn_js_in_seattle/comments/1tziaa/new_study_group_starting_january_2014/)
+> [January 2014， “Learn JavaScript” Study Group on Reddit](http://www.reddit.com/r/learn_js_in_seattle/comments/1tziaa/new_study_group_starting_january_2014/)
 
 目录
 ----
@@ -63,15 +63,15 @@ tags:
 
    我个人推荐第一本书，因为作者对各个知识点都阐述得非常好且涵盖了一些高级JavaScript知识点。但是，要看懂这本书你至少要对web开发有一定的基本了解。所以，如果你有一点点编程经验或者web开发经验（不一定是JavaScript），那就买这本书吧。
 
-   - 纸质版（英文）：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/1118026691/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1118026691&linkCode=as2&tag=interhaptic-20)
-   - 纸质版（中文）：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B007OQQVMY/ref=sr_1_1?ie=UTF8&qid=1400291839&sr=8-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
+   - 纸质版（英文）  ：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/1118026691/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1118026691&linkCode=as2&tag=interhaptic-20)
+   - 纸质版（中文）  ：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B007OQQVMY/ref=sr_1_1?ie=UTF8&qid=1400291839&sr=8-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
    - Kindle版（英文）：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/B006PW2URI/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B006PW2URI&linkCode=as2&tag=interhaptic-20)
    - Kindle版（中文）：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B00CBBJS5Y/ref=kinw_dp_ke)
 
    如果你没有编程经验，可以买这本：
 
-   - 纸质版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596805527&linkCode=as2&tag=interhaptic-20)
-   - 纸质版（中文）：[JavaScript权威指南(第6版)](http://www.amazon.cn/O-Reilly%E7%B2%BE%E5%93%81%E5%9B%BE%E4%B9%A6%E7%B3%BB%E5%88%97-JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-%E5%BC%97%E5%85%B0%E7%BA%B3%E6%A0%B9/dp/B007VISQ1Y/ref=sr_1_2?ie=UTF8&qid=1400292169&sr=8-2&keywords=JavaScript%3A+The+Definitive+Guide)
+   - 纸质版（英文）  ：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596805527&linkCode=as2&tag=interhaptic-20)
+   - 纸质版（中文）  ：[JavaScript权威指南(第6版)](http://www.amazon.cn/O-Reilly%E7%B2%BE%E5%93%81%E5%9B%BE%E4%B9%A6%E7%B3%BB%E5%88%97-JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-%E5%BC%97%E5%85%B0%E7%BA%B3%E6%A0%B9/dp/B007VISQ1Y/ref=sr_1_2?ie=UTF8&qid=1400292169&sr=8-2&keywords=JavaScript%3A+The+Definitive+Guide)
    - Kindle版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/B004XQX4K0/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004XQX4K0&linkCode=as2&tag=interhaptic-20)
    - Kindle版（中文）：[JavaScript权威指南（原书第6版）](http://www.amazon.cn/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-David-Flanagan/dp/B00E593MTS/ref=kinw_dp_ke)
 
@@ -137,9 +137,9 @@ JavaSctipt学习路线
 
 5. 实现Codecademy上[Projects](http://www.codecademy.com/tracks/projects)路线的5个基础小项目（Basic Projects）。做完之后，你已不再需要Codecademy了。这是一件好事，因为自己做的越多，学得就越快，就能更好准备开始独立编程。
 
-6. 阅读《JavaScript权威指南》第13,15，16和19章。
+6. 阅读《JavaScript权威指南》第13，15，16和19章。
 
-   或者阅读《JavaScript高级程序设计》第8,9,10,11,13和14章。这本书没有涉及到jQuery，而Codecademy上的jQuery知识也覆盖得不够。可以看看jQuery的官方教程，免费的：<http://try.jquery.com/>
+   或者阅读《JavaScript高级程序设计》第8，9，10，11，13和14章。这本书没有涉及到jQuery，而Codecademy上的jQuery知识也覆盖得不够。可以看看jQuery的官方教程，免费的：<http://try.jquery.com/>
 
    你也可以在《JavaScript权威指南》第19章了解更多的jQuery知识。
 
@@ -177,12 +177,12 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
    // 这里只演示一个问题，你要把所有问题都添加进去
    var allQuestions = [
        {
-           question: "Who is Prime Minister of the United Kingdom?", 
+           question: "Who is Prime Minister of the United Kingdom?",
            choices: [
-              "David Cameron", 
-              "Gordon Brown", 
-              "Winston Churchill", 
-              "Tony Blair"], 
+              "David Cameron",
+              "Gordon Brown",
+              "Winston Churchill",
+              "Tony Blair"],
            correctAnswer: 0
        }
    ];
@@ -195,7 +195,7 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
 5～6周(正则表达式，Window对象，事件，jQuery) {#Weeks_5_and_6_Regular_Expressions_Window_Object_Events_jQuery}
 ------
 
-1. 阅读《JavaScript权威指南》第10,14,17，20章。
+1. 阅读《JavaScript权威指南》第10，14，17，20章。
    
    或者阅读《JavaScript高级程序设计》第20，23章。
 
@@ -226,7 +226,7 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
 
    或者阅读我的博文[JavaScript面向对象必知必会](http://javascriptissexy.com/oop-in-javascript-what-you-need-to-know/)
 
-   或者阅读《JavaScript高级程序设计》第6，16,22,24章，第6章只读“创建对象”（Object Creation）和“继承”（Inheritance）部分。注意：这部分是本课程中技术性强度最大的阅读，要根据自身的状况考虑要不要全部读完。你至少要知道原型模式（Prototype Pattern），工厂模式（Factory Pattern）和原型继承（Prototypal Inheritance），其它的不作要求。
+   或者阅读《JavaScript高级程序设计》第6，16，22，24章，第6章只读“创建对象”（Object Creation）和“继承”（Inheritance）部分。注意：这部分是本课程中技术性强度最大的阅读，要根据自身的状况考虑要不要全部读完。你至少要知道原型模式（Prototype Pattern），工厂模式（Factory Pattern）和原型继承（Prototypal Inheritance），其它的不作要求。
 
 2. **继续升级你的问答应用：**
 
