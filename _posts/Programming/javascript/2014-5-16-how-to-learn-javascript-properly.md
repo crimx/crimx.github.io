@@ -148,11 +148,11 @@ JavaSctipt学习路线
 JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebStorm}
 -----------
 
-- 在你实现第一个项目之前，如果打算以后做JavaScript开发者或者经常用到JavaScript，你最好现在去下载[WebStorm](http://www.jetbrains.com/webstorm/)的试用版。[这里](http://2oahu.com/blog/webstorm-javascript/)可以学习怎么使用WebStorm（专门为这个课程写的）。
+- 在你实现第一个项目之前，如果打算以后做JavaScript开发者或者经常用到JavaScript，最好现在就去下载[WebStorm](http://www.jetbrains.com/webstorm/)的试用版。[这里](http://2oahu.com/blog/webstorm-javascript/)可以学习怎么使用WebStorm（专门为这个课程写的）。
 
-   毋庸置疑，WebStorm是JavaScript编程最好的编辑器（或IDE）。30天试用后要付$49.00，但这应该是除了买书以外作为JavaScript开发者最明智的投资了。
+   毋庸置疑，WebStorm是JavaScript编程最好的编辑器（或IDE）。30天试用后要付$49.00，但作为JavaScript开发者，这应该是除了买书以外最明智的投资了。
 
-- 确保在WebStorm中启用JSHint。JSHint是一个检查JavaScript代码错误和潜在问题的工具，强制你的团队按照规范写代码。用WebStorm最爽的地方是JSHint会自动在错误的代码下显示红线，就像文字处理程序中的拼写检查。于是JSHint会显示一切的代码错误（包括HTML），促使你养成良好的习惯，成为更好的JavaScript程序员。**这很重要**，当你真正意识到WebStrom和JSHint对你的巨大帮助时，你会回来感谢我的。
+- 确保在WebStorm中启用JSHint。JSHint是一个检查JavaScript代码错误和潜在问题的工具，强制你的团队按照规范写代码。用WebStorm最爽的地方是JSHint会自动在错误的代码下显示红线，就像文字处理程序中的拼写检查。JSHint会显示一切的代码错误（包括HTML），促使你养成良好的习惯，成为更好的JavaScript程序员。**这很重要**，当你真正意识到WebStrom和JSHint对你的巨大帮助时，你会回来感谢我的。
 
 - 此外，WebStorm是一个世界级，专业人员使用的IDE，用来编写专业的JavaScript web应用，所以你以后会经常用到它。它还结合了Node.js，Git和其它JavaScript框架，所以即使你成为了明星级的JavaScript开发者，你还是会用到它的。除非以后出现了更多的JavaScript IDE。
 
@@ -171,9 +171,9 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
 
 - 在最后的页面显示用户的成绩。这个页面只显示成绩，所以要把最后一个问题去掉。
 
-- 用数组存所有的问题。每个问题，包括它的选项和正确答案，都封装成一个对象。问题数组看起来应该是这样：
+- 用数组存所有的问题。每个问题包括它的选项和正确答案，都封装成一个对象。问题数组看起来应该是这样：
    
-   ~~~ javascript
+   {% highlight javascript %}
    // 这里只演示一个问题，你要把所有问题都添加进去
    ar allQuestions = [{
        question: "Who is Prime Minister of the United Kingdom?", 
@@ -183,7 +183,7 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
           "Winston Churchill", 
           "Tony Blair"], 
        correctAnswer: 0}];
-   ~~~
+   {% endhighlight %}
 
 - 当用户点击“Next”时，使用`document.getElementById`或jQuery动态的添加下一个问题，并且移去当前问题。在这个版本里“Next”是唯一的导航按钮。
 
