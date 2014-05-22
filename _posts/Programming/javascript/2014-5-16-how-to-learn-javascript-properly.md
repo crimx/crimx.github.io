@@ -248,7 +248,7 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
 
 2. [中高级JavaScript进阶](http://javascriptissexy.com/learn-intermediate-and-advanced-javascript/)
 
-3. [不侧漏精通Node.js]({{ site.production_url }}/{{ page.category }}/2014/5/22/learn-node-js-completely-and-with-confidence/)
+3. [不侧漏精通Node.js]({{ site.production_url }}/{{ page.category | downcase }}/2014/05/22/learn-node-js-completely-and-with-confidence/)
 
 4. Meteor.js入门（即将出炉）
 
