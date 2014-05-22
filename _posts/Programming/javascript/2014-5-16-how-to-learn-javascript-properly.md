@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    如何正确学习JavaScript
-date:     2014-5-16 14:31:35 +0800
 category: JavaScript
 tagline:  正确学习JavaScript（写给非JavaScript程序员和编程新手）
 tags: 
@@ -65,17 +64,17 @@ description: "为JavaScript初学者指明道路，通过结构化的分层学�
 
    我个人推荐第一本书，因为作者对各个知识点都阐述得非常好且涵盖了一些高级JavaScript知识点。但是，要看懂这本书你至少要对web开发有一定的基本了解。所以，如果你有一点点编程经验或者web开发经验（不一定是JavaScript），那就买这本书吧。
 
-   - 纸质版（英文）  ：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/1118026691/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1118026691&linkCode=as2&tag=interhaptic-20)
-   - 纸质版（中文）  ：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B007OQQVMY/ref=sr_1_1?ie=UTF8&qid=1400291839&sr=8-1&keywords=JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)
-   - Kindle版（英文）：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/B006PW2URI/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B006PW2URI&linkCode=as2&tag=interhaptic-20)
-   - Kindle版（中文）：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B00CBBJS5Y/ref=kinw_dp_ke)
+   - 纸质版（英文）  ：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/1118026691/)
+   - 纸质版（中文）  ：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B007OQQVMY/)
+   - Kindle版（英文）：[Professional JavaScript for Web Developers](http://www.amazon.com/gp/product/B006PW2URI/)
+   - Kindle版（中文）：[JavaScript高级程序设计(第3版)](http://www.amazon.cn/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E6%B3%BD%E5%8D%A1%E6%96%AF/dp/B00CBBJS5Y/)
 
    如果你没有编程经验，可以买这本：
 
-   - 纸质版（英文）  ：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596805527&linkCode=as2&tag=interhaptic-20)
-   - 纸质版（中文）  ：[JavaScript权威指南(第6版)](http://www.amazon.cn/O-Reilly%E7%B2%BE%E5%93%81%E5%9B%BE%E4%B9%A6%E7%B3%BB%E5%88%97-JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-%E5%BC%97%E5%85%B0%E7%BA%B3%E6%A0%B9/dp/B007VISQ1Y/ref=sr_1_2?ie=UTF8&qid=1400292169&sr=8-2&keywords=JavaScript%3A+The+Definitive+Guide)
-   - Kindle版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/B004XQX4K0/ref=as_li_tf_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B004XQX4K0&linkCode=as2&tag=interhaptic-20)
-   - Kindle版（中文）：[JavaScript权威指南（原书第6版）](http://www.amazon.cn/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-David-Flanagan/dp/B00E593MTS/ref=kinw_dp_ke)
+   - 纸质版（英文）  ：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/0596805527/)
+   - 纸质版（中文）  ：[JavaScript权威指南(第6版)](http://www.amazon.cn/O-Reilly%E7%B2%BE%E5%93%81%E5%9B%BE%E4%B9%A6%E7%B3%BB%E5%88%97-JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-%E5%BC%97%E5%85%B0%E7%BA%B3%E6%A0%B9/dp/B007VISQ1Y/)
+   - Kindle版（英文）：[JavaScript: The Definitive Guide](http://www.amazon.com/gp/product/B004XQX4K0/)
+   - Kindle版（中文）：[JavaScript权威指南（原书第6版）](http://www.amazon.cn/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-David-Flanagan/dp/B00E593MTS/)
 
 - 免费注册[Stack Overflow](http://stackoverflow.com/)，这是一个编程领域的问答论坛。在这里提问题得到的回答比Codecademy要好，哪怕你的问题非常基础，看起来很傻（记住，从来没有愚蠢的问题）。
 
@@ -114,7 +113,7 @@ JavaSctipt学习路线
 
 1. 以下三选一：
 
-   * 阅读我的博文[JavaScript Objects in Detail](http://javascriptissexy.com/javascript-objects-in-detail/).
+   * 阅读我的博文[JavaScript 对象详解](http://javascriptissexy.com/javascript-objects-in-detail/).
 
    * 阅读《JavaScript权威指南》第6章。
 
@@ -249,7 +248,7 @@ JavaScript终极编辑器：WebStorm {#Get_The_Ultimate_JavaScript_Editor_WebSto
 
 2. [中高级JavaScript进阶](http://javascriptissexy.com/learn-intermediate-and-advanced-javascript/)
 
-3. [不侧漏精通Node.js](http://javascriptissexy.com/learn-node-js-completely-and-with-confidence/)
+3. [不侧漏精通Node.js]({{ site.production_url }}/{{ page.category }}/2014/5/22/learn-node-js-completely-and-with-confidence/)
 
 4. Meteor.js入门（即将出炉）
 

@@ -2,7 +2,6 @@
 layout:   post
 title:   'NFA与DFA的转换与优化'
 category: Compiler
-date:     2014-03-16 10:38:56 +0800
 tagline: "&quot;If it wasn't hard, everyone would do it. It's the hard that makes it great.&quot; -Tom Hanks"
 tags: 
 - 编译原理

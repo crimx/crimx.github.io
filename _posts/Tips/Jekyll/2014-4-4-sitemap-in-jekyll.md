@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:   Jekyll生成sitemap.xml
-date: 2014-4-4 23:21:38 +0800
 category: jekyll
 tagline: "&quot;If you cannot do great things. Do small things in a great way.&quot; -Napoleon Hill"
 tags: 
