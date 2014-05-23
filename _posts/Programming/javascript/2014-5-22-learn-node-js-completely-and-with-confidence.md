@@ -79,7 +79,7 @@ JavaScript 已经成为当今的 web 语言，而且毫无疑问未来的几年�
 
 1. 如果你 JavaScript 已经学得非常好，敲起 JavaScript 代码时觉得自己屌炸天了，请直接跳到第2点。
 
-   如果你的 JavaScript 知识不足以让你用原生 JavaScript 开发一个完整的交互式问答应用。你应该[正确学习 JavaScript]({{ site.production_url }}/{{ page.category | downcase }}/2014/05/16/how-to-learn-javascript-properly/)
+   如果你的 JavaScript 知识不足以让你用原生 JavaScript 开发一个完整的交互式问答应用。你应该[正确学习 JavaScript]({{ site.production_url }}/{{ page.category | downcase }}/2014/05/15/how-to-learn-javascript-properly/)
 
    如果你的 JavaScript 基础还行，只是想温习一下，可以按顺序读一读下面三篇文章：
 
