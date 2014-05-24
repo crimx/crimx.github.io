@@ -2,7 +2,7 @@
 layout: page
 title: 	不可胜在己，可胜在敌
 tagline: "The dust of the dead codes clings to thee. Wash thy soul with debugging."
-description: 你好！我是程序员，大家这么熟，叫我序员就好了。微博[at] Jaward华仔 - 不可胜在己，可胜在敌
+description: 你好！我是程序员，大家这么熟，叫我序员就好了。微博[at] Jaward华仔 - 不可胜在己，可胜在敌 - Stray Bugs
 ---
 {% include JB/setup %}
 
