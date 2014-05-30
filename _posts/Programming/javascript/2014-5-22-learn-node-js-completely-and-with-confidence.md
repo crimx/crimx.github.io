@@ -8,7 +8,7 @@ tags:
 - JavaScript
 - Node.js
 
-description: ""
+description: "要成为 JavaScript 开发者现在是最好的时机了，而且会越来越好。主要是因为 HTML5 的来临， Flash 的逝去，移动设备的普及，以及最重要的 Node.js —— 开发者终于可以在服务器端使用 JavaScrpit 了。Node.js 本身是革命性的，它已经非常接近未来的现代 web 开发 —— 纯 JavaScript 作为服务器端语言。我将为你提供一条详细的 Node.js 学习路线。你将完全学会 Node.js，要自信地走完这个课程，因为2～3个星期后你将可以在短时间内建立一个超快，实时的 web 应用了。"
 ---
 
 原文：[Learn Node.js Completely and with Confidence](http://javascriptissexy.com/learn-node-js-completely-and-with-confidence/)（2013-2-4）  
