@@ -21,11 +21,12 @@ title : Stray Bugs
 # tagline: 
 author :
   name : Jesse Wong
-  email : crimx.com@gmail.com
+  gmail : "&#99&#114&#105&#109&#120&#46&#99&#111&#109&#64&#103&#109&#97&#105&#108&#46&#99&#111&#109"
   github : crimx
-  twitter : crimx_com
+#  twitter : crimx_com
   feedburner : crimxcom
   weibo : bananajaward
+  lofter : blog.crimx.com
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt

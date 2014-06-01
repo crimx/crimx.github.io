@@ -83,6 +83,13 @@
                   </a>
                 </li>
                 {% endif %}
+		{% if site.author.lofter %}
+                <li>
+                  <a href="http://{{ site.author.lofter }}" class="zocial lanyrd icon" target="_blank">
+                    <span class="hidden-desktop">Lofter</span>
+                  </a>
+                </li>
+                {% endif %}
                 {% if site.author.facebook %}
                 <li>
                   <a href="http://www.facebook.com/{{ site.author.facebook }}" class="zocial facebook icon" target="_blank">
@@ -94,6 +101,13 @@
                 <li>
                   <a href="http://www.linkedin.com/in/{{ site.author.linkedin }}" class="zocial linkedin icon" target="_blank">
                     <span class="hidden-desktop">LinkedIn</span>
+                  </a>
+                </li>
+                {% endif %}
+                {% if site.author.gmail %}
+                <li>
+                  <a href="mailto:{{ site.author.gmail }}" class="zocial icon gmail" target="_blank">
+                    <span class="hidden-desktop">Gmail</span>
                   </a>
                 </li>
                 {% endif %}

@@ -258,7 +258,7 @@ a.zocial {
 .zocial.forrst:before {content: "\E019"; color: #50894f;}
 .zocial.foursquare:before {content: "\E013";}
 .zocial.github:before {content: "\E046";}
-.zocial.gmail:before {content: "\E04C"; color: #f00;}
+.zocial.gmail:before {content: "\E04C";}
 .zocial.google:before {content: "\E026";}
 .zocial.googleplay:before {content: "\E05E";}
 .zocial.googleplus:before {content: "\E00A";}
@@ -344,7 +344,7 @@ a.zocial {
 .zocial.forrst {background-color: #1e360d;}
 .zocial.foursquare {background-color: #44a8e0;}
 .zocial.github {background-color: #fbfbfb; color: #050505;}
-.zocial.gmail {background-color: #efefef; color: #222;}
+.zocial.gmail {background-color: #efefef; }
 .zocial.google {background-color: #4e6cf7;}
 .zocial.googleplay {background-color: #000;}
 .zocial.googleplus {background-color: #dd4b39;}
