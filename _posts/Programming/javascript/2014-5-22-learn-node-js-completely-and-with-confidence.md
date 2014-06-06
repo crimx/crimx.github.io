@@ -112,7 +112,7 @@ JavaScript 已经成为当今的 web 语言，而且毫无疑问未来的几年�
 
     但在你的冒险开始之前，先将下面链接的 NodeApp web 应用建出来；这个练习为你提供了一个现实使用的 Node.js/Backbone.js web 应用开发：<http://dailyjs.com/web-app.html>
 
-13. **进阶学习**：你还需要学习两个技术来帮助巩固你的 Node.js 和 Backbone.js 技能：Handelbars.js 模板与 MongoDB 数据库。事实上，你在 Backbone.js 中就接触过 Underscore.js 模板，在上面第10步时就已学了一点 MongoDB 知识。
+13. **进阶学习**：你还需要学习两个技术来帮助巩固你的 Node.js 和 Backbone.js 技能：Handlebars.js 模板与 MongoDB 数据库。事实上，你在 Backbone.js 中就接触过 Underscore.js 模板，在上面第10步时就已学了一点 MongoDB 知识。
 
     但你还要学习 Handlebars 因为它比 Underscore.js 模板引擎的鲁棒性更好，功能更丰富。读读我的[ Handlebars.js 教程](http://javascriptissexy.com/handlebars-js-tutorial-learn-everything-about-handlebars-js-javascript-templating/)。
 
