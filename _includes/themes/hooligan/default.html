@@ -90,6 +90,27 @@
                   </a>
                 </li>
                 {% endif %}
+                {% if site.author.jobbole %}
+                <li>
+                  <a href="http://blog.jobbole.com/author/{{ site.author.jobbole }}" class="zocial blogger icon" target="_blank">
+                    <span class="hidden-desktop">Jobbole</span>
+                  </a>
+                </li>
+                {% endif %}
+                {% if site.author.pinterest %}
+                <li>
+                  <a href="http://www.pinterest.com/{{ site.author.pinterest }}" class="zocial pinterest icon" target="_blank">
+                    <span class="hidden-desktop">Pinterest</span>
+                  </a>
+                </li>
+                {% endif %}
+                {% if site.author.reddit %}
+                <li>
+                  <a href="http://www.reddit.com/user/{{ site.author.reddit }}" class="zocial reddit icon" target="_blank">
+                    <span class="hidden-desktop">Reddit</span>
+                  </a>
+                </li>
+                {% endif %}
                 {% if site.author.facebook %}
                 <li>
                   <a href="http://www.facebook.com/{{ site.author.facebook }}" class="zocial facebook icon" target="_blank">
