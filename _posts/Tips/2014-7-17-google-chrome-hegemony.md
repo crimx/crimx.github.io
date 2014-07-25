@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    [翻]Google Chrome 霸权主义
+title:    「翻」Google Chrome 霸权主义
 category: Tricks
 tagline:  "&quot;I know that I know nothing.&quot;"
 tags: 
