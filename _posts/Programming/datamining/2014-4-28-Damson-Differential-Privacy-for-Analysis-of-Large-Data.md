@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    Damson演示：用于大数据分析的差分隐私
+title:    [翻]Damson演示：用于大数据分析的差分隐私
 category: DataMining
 tagline: "&quot;Somewhere in the world someone is training when you are not. When you race him, he will win.&quot; --Tom Fleming"
 tags: 
