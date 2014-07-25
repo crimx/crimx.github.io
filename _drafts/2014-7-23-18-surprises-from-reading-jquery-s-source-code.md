@@ -28,3 +28,43 @@ http://quickleft.com/blog/18-surprises-from-reading-jquery-s-source-code
 
 10. **$.type：** 大家肯定能熟练使用 `typeof` 来确定数据类型，但你知不知道 jQuery 提供了一个 `.type()` 方法？jQuery 版比原生版更加智能。比如 `typeof (new Number(3))` 返回 `object`，而 `$.type(new Number(3))` 则返回 `number`。更新：正如 ShirtlessKirk 在评论中指出，`$.type` 返回其对象的 `.valueOf()` 属性。所以更准确的说法应该是 `$.type` 告诉你一个对象的返回值的类型。
 
+11. **$.fn.queue：**你可以通过 `$(‘div’).queue()` 查看一个元素的效果队列，很方便地了解元素还剩余多少效果。更有用的是，你可以直接操作队列去添加效果。从 jQuery 文档摘录的：
+
+	$( document.body ).click(function() {
+	$( "div" )
+	    .show( "slow" )
+	    .animate({ left: "+=200" }, 2000 )
+	    .queue(function() {
+	        $( this ).addClass( "newcolor" ).dequeue();
+	    })
+	    .animate({ left: "-=200" }, 500 )
+	    .queue(function() {
+	        $( this ).removeClass( "newcolor" ).dequeue();
+	    })
+	    .slideUp();
+	});
+
+12. **禁用元素不会触发 click 事件：**jQuery 默认不会为禁用的元素执行 `click` 事件，有了这个优化，你无需自己用代码再检查一遍。
+
+13. **$.fn.on 可以接受对象：**你知道 `$.fn.on` 可以接受一个对象来一次过连接多个事件吗？jQuery 文档的例子：
+
+	$( "div.test" ).on({
+	click: function() {
+	    $( this ).toggleClass( "active" );
+	}, mouseenter: function() {
+	    $( this ).addClass( "inside" );
+	}, mouseleave: function() {
+	    $( this ).removeClass( "inside" );
+	}
+	});
+
+14. **$.camelCase：**这个有用的方法可以将连字符式的字符串转换成驼峰式的字符串。
+
+15. **$.active：**调用 `$.active` 返回 XHR (XML Http Request) 查询的个数。利用它可以手动制定 AJAX 请求的并发上限。
+
+16. **$.fn.parentsUntil / $.fn.nextUntil / $.fn.prevUntil：**我比较熟悉 `.parents()`、`.next()` 和 `.prev()`，却不知道原来还有其它的方法。它们会匹配所有的 双亲/下一个/前一个 元素直到（until）遇到符合终止条件的元素。
+
+17. **$.fn.clone 参数：**当你用 `.clone()` 克隆一个元素，你可以用 `true` 作为第一个参数来克隆该元素的数据属性（data attributes）和事件。
+
+18. **更多的 $.fn.clone 参数：**除了上面的方法外，你还可以再传多一个 `true` 参数来克隆该元素所有孩子的数据属性和事件。这叫做“深克隆”。第二个参数的默认值与第一个一样（第一个默认false）。所以当第一个参数是 `true` 而你想让第二个参数也是 `true` 时，完全可以忽略第二个参数。
+
