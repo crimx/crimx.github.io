@@ -129,8 +129,6 @@ var person2 = new Person('Angel', 20, 'Artist');
 
 原型模式很好解决了上面的封装性问题。原型也是 JavaScrip 最重要的特性之一。书本篇幅比较长，这里只为了突出原型要解决的问题，所以会省略很多。
 
-可以把原型看做是一个寄生的对象，在一个新函数（对象）创建的时候，它就会附带一个原型对象。
-
 原型就是为了共用而生：默认情况下，每个对象与它的所有实例都共用一个原型。对象可以通过 `.prototype` 访问原型。实例存在内部属性 `[[Prototype]]`，不能直接访问（不推荐使用 `__proto__`）。
 
 {% highlight javascript %}
@@ -153,7 +151,7 @@ person2.sayName();   //"StrayBugs"
 alert(person1.sayName == person2.sayName);  //true
 {% endhighlight %}
 
-原型也是对象，所以也可以用字面量来创建，但是其 constructor 要手动修改，具体方法及副作用见书 P155。
+原型也可以用字面量来创建，但是其 `constructor` 要手动修改，具体方法及副作用见书 P155。
 
 如下图，原型的 `constructor` 属性指向 `Person`，`Person` 的两个实例的 `[[Prototype]]` 直接指向原型，与 `Person` 没有直接关系。
 
