@@ -2,6 +2,7 @@
 layout:   post
 title:    「翻」JavaScript 周刊 191 期
 category: JavaScript
+tagline: "http://javascriptweekly.com/issues/191"
 tags: 
 - JavaScript
 
