@@ -11,10 +11,8 @@ description: "JavaScript 周刊"
 
 1. 《Eloquent JavaScript》第二版在线出炉！  
    <http://eloquentjavascript.net/>  
-   Marijn Haverbeke（作者）的最爱《Eloquent JavaScript》第二版隆重回归！[在线版](http://eloquentjavascript.net/)依然免费！[印刷版](http://www.nostarch.com/ejs2)将在 11 发售。
-   
+   Marijn Haverbeke（作者）的最爱《Eloquent JavaScript》第二版隆重回归！[在线版](http://eloquentjavascript.net/)依然免费！[印刷版](http://www.nostarch.com/ejs2)将在 11 发售。  
    ![Marijn Haverbeke](http://s3.amazonaws.com/nlga/uploads/item/image/25509/125.jpg)
-
 
 1. AngularJS 单元测试  
    <http://quickleft.com/blog/angularjs-unit-testing-for-real-though>  
