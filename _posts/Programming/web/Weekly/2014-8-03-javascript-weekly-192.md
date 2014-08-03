@@ -31,4 +31,4 @@ description: "JavaScript 周刊"
 
 1. Facebook 的 JavaScript 不可变数据集合  
    <https://github.com/facebook/immutable-js>  
-   immutable 采用延迟序列（lazy sequences）与哈希映射（hash maps）实现了 Sequence, Range, Repeat, Map, OrderedMap, Set 和稀疏 Vector。
+   `immutable` 采用延迟序列（lazy sequences）与哈希映射字典树（[hash maps tries](http://en.wikipedia.org/wiki/Hash_array_mapped_trie)）实现了 `Sequence`, `Range`, `Repeat`, `Map`, `OrderedMap`, `Set` 和稀疏 `Vector`。
