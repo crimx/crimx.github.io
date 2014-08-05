@@ -5,6 +5,7 @@ category: JavaScript
 tagline: "http://javascriptweekly.com/issues/192"
 tags: 
 - JavaScript
+- 翻译
 
 description: "JavaScript 周刊"
 ---
