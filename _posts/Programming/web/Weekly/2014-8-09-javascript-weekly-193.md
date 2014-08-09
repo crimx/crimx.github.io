@@ -17,12 +17,12 @@ description: "JavaScript 周刊"
 
 1. 小小的优化为 AngularJS 提速  
    <http://www.binpress.com/tutorial/speeding-up-angular-js-with-simple-optimizations/135>  
-   Todd looks 介绍 5 种方法优化 AngularJS 。包括一次性捆绑语法 `{{ ::value }}`、`$scope.$apply()` 与 `$scope.$digest()` 比较、避免使用 `ng-repeat`、更多的 DOM 操作指令和限制 DOM 过滤器。
+   Todd looks 介绍 5 种方法优化 AngularJS 。包括一次性捆绑语法 {% raw %}`{{ ::value }}`{% endraw %}、`$scope.$apply()` 与 `$scope.$digest()` 比较、避免使用 `ng-repeat`、更多的 DOM 操作指令和限制 DOM 过滤器。
 
 
 1. JavaScript 与 V8 TurboFan: 新一代 V8 实验性编译器  
    <http://ariya.ofilabs.com/2014/08/javascript-and-v8-turbofan.html>  
-   TurboFan 是新一代实验性的 Google V8 JavaScript 引擎优化编译器。Ariya 带大家简单看一下它的雏形. 
+   TurboFan 是新一代实验性的 Google V8 JavaScript 引擎优化编译器。Ariya 带大家简单看一下它的雏形。
 
 1. 为 JavaScript 设计取幂操作符  
    <http://bocoup.com/weblog/designing-an-exponentiation-operator-for-javascript/>  
