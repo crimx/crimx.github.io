@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    「翻」不侧漏精通 Node.js
+title:    「译」不侧漏精通 Node.js
 category: JavaScript
 tagline:  "&quot;One day your life will flash before your eyes. Make sure it's worth watching&quot; - Gerard Way"
 tags: 

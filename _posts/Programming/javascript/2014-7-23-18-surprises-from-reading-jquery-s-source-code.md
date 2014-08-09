@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    「翻」阅读 jQuery 源码的18个惊喜
+title:    「译」阅读 jQuery 源码的18个惊喜
 category: JavaScript
 tagline:  "&quot;Anyone who has never made a mistake has never tried anything new.&quot; - Einstein"
 tags: 

@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    「翻」使用 Express 与 AbsurdJS 构建 Node.js 应用
+title:    「译」使用 Express 与 AbsurdJS 构建 Node.js 应用
 category: JavaScript
 tagline:  "&quot;Don't wait for opportunity. Create it.&quot;"
 tags: 
