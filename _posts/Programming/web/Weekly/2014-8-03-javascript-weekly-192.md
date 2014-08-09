@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    「译」JavaScript 周刊 192 期
+title:    JavaScript 周刊 192 期
 category: JavaScript
 tagline: "http://javascriptweekly.com/issues/192"
 tags: 
