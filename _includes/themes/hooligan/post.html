@@ -9,15 +9,13 @@
 
 <div class="row">
   <div class="span8">
-    {% include JiaThis-Button.html %}<br/>
-    <br/>本文地址: 
-    <a href>{{ site.production_url }}{{ page.url }} </a>
+    {% include bdsharebutton.html %}
+    本文地址: <a href>{{ site.production_url }}{{ page.url }} </a>
     <hr/>
     {{ content }}
    <hr/>
-   {% include JiaThis-Button.html %}<br/>
-    <br/>本文地址: 
-    <a href>{{ site.production_url }}{{ page.url }} </a>
+   {% include bdsharebutton.html %}
+    本文地址: <a href>{{ site.production_url }}{{ page.url }} </a>
     {% include cc-lisences.html %}
     <hr/>
     <div class="pagination btn-group">
@@ -61,3 +59,16 @@
     {% endunless %}         
   </div>
 </div>
+<script>window._bd_share_config = {
+  "common": {
+    "bdSnsKey": {},
+    "bdText": "【" + document.title + "】{% if page.description %}{{ page.description }}{% endif %}",
+    "bdMini": "1",
+    "bdMiniList": false,
+    "bdPic": document.getElementsByTagName("img")[0]? document.getElementsByTagName("img")[0].src : "",
+    "bdStyle": "1",
+    "bdSize": "16"
+  },
+  "share": {}
+};
+with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
