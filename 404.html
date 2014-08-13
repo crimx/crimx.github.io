@@ -1,1 +1,20 @@
-Sorry this page does not exist =(
+页面不存在，<span id="countdown">3</span>秒后跳转到<a href="http://www.crimx.com">主页</a>...
+
+
+  
+
+<script language="javascript" type="text/javascript">
+
+(function () {
+  var countdown = document.getElementById("countdown"),
+      i = 3;
+
+  window.setInterval(function () {
+    countdown.innerHTML = i--;
+    if (i <== 0) {
+      window.location.href = "http://www.crimx.com";
+    }
+  },1000); 
+
+}());
+</script>
