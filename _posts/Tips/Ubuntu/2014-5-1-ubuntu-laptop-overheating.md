@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    解决ubuntu笔记本发热问题
-category: Tricks
 tagline: "&quot;Eventually, everything connects.&quot;"
 tags: 
 - ubuntu

@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    为mp3更新高清封面
-category: python
 tagline: "&quot;Don't judge yourself by your past. You don't live there anymore.&quot; - Lessons Learned in Life"
 description: "我是个受不了安静的人，干活的时候没有音乐不行。我也是欧美音乐fans，多年来积累了不少或热门或冷门的音乐。无奈这些音乐大多没有封面，或者供应商为了节约流量用了压缩的小图，于是在移动设备上显示得惨不忍睹。忍了一段时间后终于忍不住了，亲自改一下。"
 tags: 

@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    Git 分支模式笔记
-category: Tricks
 tagline:  "&quot;Never get so busy making a living that you forget to make a life.&quot;"
 tags: 
 - Git

@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    「译」Google Chrome 霸权主义
-category: Tricks
 tagline:  "&quot;I know that I know nothing.&quot;"
 tags: 
 - 翻译

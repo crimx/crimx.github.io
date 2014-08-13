@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    「译」Damson演示：用于大数据分析的差分隐私
-category: DataMining
 tagline: "&quot;Somewhere in the world someone is training when you are not. When you race him, he will win.&quot; --Tom Fleming"
 tags: 
 - 翻译

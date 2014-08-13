@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    「译」深入理解 JavaScript 模块模式
-category: JavaScript
 tagline:  "拜读 2010 年神文"
 tags: 
 - JavaScript

@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    「译」如何正确学习JavaScript
-category: JavaScript
 tagline:  正确学习JavaScript（写给非JavaScript程序员和编程新手）
 tags: 
 - 翻译

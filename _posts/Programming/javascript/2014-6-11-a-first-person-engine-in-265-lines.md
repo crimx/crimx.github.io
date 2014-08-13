@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    「译」265行代码实现第一人称引擎
-category: JavaScript
 tagline:  "&quot;A very small man can cast a very large shadow.&quot; - Varys"
 tags: 
 - 翻译

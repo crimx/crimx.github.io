@@ -2,7 +2,6 @@
 layout:   post
 title:   脆弱的力量
 date: 2014-4-6 01:32:33 +0800
-category: Rambling
 tagline: "&quot;Dream is not what you see in sleep. It is the thing which doesn't let you sleep.&quot; -A.P.J Abdul Kalam"
 tags: 
 - NON

@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    JavaScript 继承总结
-category: JavaScript
 tagline:  "对 JavaScript 中各种继承方法的总结，《JavaScript高级程序设计》笔记"
 tags: 
 - JavaScript

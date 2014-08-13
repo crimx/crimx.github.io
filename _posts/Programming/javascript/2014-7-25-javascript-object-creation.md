@@ -1,7 +1,6 @@
 --- 
 layout:   post
 title:    JavaScript 创建对象总结
-category: JavaScript
 tagline:  "对 JavaScript 中各种创建对象方法的总结"
 tags: 
 - JavaScript
