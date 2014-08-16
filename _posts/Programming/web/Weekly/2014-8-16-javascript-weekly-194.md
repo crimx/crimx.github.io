@@ -16,8 +16,7 @@ description: "JavaScript 周刊"
 
 1. pojoViz: 炫酷 JavaScript 对象可视化工具  
    <http://maurizzzio.github.io/PojoViz/public/vulcanize.html#readme>  
-   遇到一个炫酷的 JavaScript 库/框架时有没有想过看看它的结构怎么样？pojoViz 通过找到 JavaScript 库的入口点（通常是全局变量）和与其关联的对象/函数，从而把整个库的纯对象都分析出来。[Github](https://github.com/maurizzzio/PojoViz)
-   
+   遇到一个炫酷的 JavaScript 库/框架时有没有想过看看它的结构怎么样？pojoViz 通过找到 JavaScript 库的入口点（通常是全局变量）和与其关联的对象/函数，从而把整个库的纯对象都分析出来。[Github](https://github.com/maurizzzio/PojoViz)  
    ![pojoViz](http://top.jobbole.com/wp-content/uploads/sites/8/2014/08/bab1cc9f8bbc34a63a84f73e38f7009c.gif)
 
 1. JavaScript 语言惊粹  
