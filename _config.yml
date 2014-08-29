@@ -11,8 +11,8 @@ excerpt_separator: <!--more-->
 markdown: kramdown
 
 # Path for attachments in posts
-# at_path : /assets/files
-at_path : http://crimx.qiniudn.com/files
+at_path : /assets/files
+# at_path : http://crimx.qiniudn.com/files
 
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
