@@ -3,7 +3,9 @@ layout:   post
 title:   Low Poly 初体验
 tagline: "&quot;Somewhere in the world someone is training when you are not. When you race him, he will win.&quot; - Tom Fleming"
 tags: 
-- NON
+- design
+- photoshop
+- illustrator
 ---
 
 今天膜拜了一些 low poly 风格的作品，找张图试着临摹了一个中午，眼睛要瞎了。摸索了一些经验：
