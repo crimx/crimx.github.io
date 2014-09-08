@@ -45,9 +45,11 @@ KMP 算法怎么查找？ {#kmp}
 怎么确定滑动区间？
 -----------------
 
-我们可以建立一个数组，叫 next ，它跟 W 串一样长，数组中每个值对应 W 每个字符在其不匹配时该滑到 W 的哪个位置上。
+我们可以建立一个数组，叫 next ，它跟 W 串一样长，next[ j ] 表示当 W[ j ] 与 S[ i ] 不匹配时，W 应该滑到哪个位置上。
 
-所以现在的问题就变为：怎么计算 next 数组？
+所以一但不匹配时，查一下 next 值，让 S[ i ] 跟 W[next[ j ]] 继续比较就行啦。
+
+现在的问题就变为：怎么计算 next 数组？
 
 先看回上面的图二，要求 next 数组必须先知道蓝色部分才行。这就头大了，我们是要先求 next 数组再做匹配啊，那求 next 的时候肯定不能碰 S 串，不然就相当于没优化了。
 
@@ -70,11 +72,11 @@ KMP 算法怎么查找？ {#kmp}
 
 ![next2]({{ site.at_path }}/2014-9-07-kmp-algorithm/kmp6.png)
 
-1、对于 next[ 1 ]，请看灰色部分，在第二组中，因为 W[ 1 ]（图中的 `a`）前面只有 W[ 0 ]（`b`），所以只要 W[ 1 ] 不匹配，W 肯定是滑一个位的（图第三组）。顺着灰色的看上去，第二组 W[ 1 ] 的位置 `1` 在第三组是不是变成 `0` 了，所以 next[ 1 ] = 0。这是一种特殊情况，后面会用到。
+1、对于 next[ 1 ]，请看灰色部分，在第二组中，因为 W[ 1 ]（图中的 `a`）前面只有 W[ 0 ]（`b`），所以只要 W[ 1 ] 不匹配，W 肯定是滑一个位的（图第三组）。**顺着灰色的看上去**（注意是灰色部分哦），图第二组中 `c` 对应 W 的位置 `1` 在第三组是不是变成对应 `0` 了，所以 next[ 1 ] = 0。这是一种特殊情况，后面会用到。
 
-2、对于 next[ 0 ]，继续看图灰色部分，在第三组中，W[ 0 ]（`b`）就与 `c` 不匹配了，这时是不是要将 W 滑到 `c` 下一个字符的位置啊（图第四组），W[ 0 ] 的位置 `0` 现在是不是变成 `-1` 了。所以 next[ 0 ] = -1。
+2、对于 next[ 0 ]，继续看图灰色部分，在第三组中，W[ 0 ]（`b`）就与 `c` 不匹配了，这时是不是要将 W 滑到 `c` 下一个字符的位置啊（图第四组），灰色部分的 `0` 现在是不是变成 `-1` 了。所以 next[ 0 ] = -1。
 
-3、如下图，假设 W[ i ] == W[ j ]（j < i），此时假如在真正匹配过程中 W[ i+1 ] 不匹配了（与上面的红色），那么 W 就要滑动且 W[ j+1 ] 将覆盖在 W[ i+1 ] 上。所以 W[ i ] == W[ j ] 时 next[ i+1 ] = j+1。
+3、如下图，假设 W[ i ] == W[ j ]（j < i），若此时在真正匹配过程中 W[ i+1 ] 不匹配了（与上面的红色），那么 W 就要滑动且 W[ j+1 ] 将覆盖在 W[ i+1 ] 上。所以 W[ i ] == W[ j ] 时 next[ i+1 ] = j+1。
 
 ![next3]({{ site.at_path }}/2014-9-07-kmp-algorithm/kmp7.png)
 
@@ -207,7 +209,14 @@ Wola！以上就是 KMP 算法啦，希望你以后都能记起来，写完这�
 
 本文的完整源码（JavaScript）以及图片的 PSD 源文件都在[[这里]][github_KMP]，建议 Star，因为以后有什么错误我会直接在那里修正。
 
-有什么问题可以[评论][comments]，我是 Jaward华仔。
+有什么问题可以[评论][comments]，我是 [Jaward华仔](http://weibo.com/bananajaward)。
+
+参考资料
+--------
+
+- [字符串匹配的KMP算法 - 阮一峰](http://www.ruanyifeng.com/blog/2013/05/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm.html)
+- [The Knuth Morris Pratt Algorithm In My Own Words - Jake Boxer](http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/)
+- [Knuth–Morris–Pratt Algorithm - Wikipedia](http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
 
 （完）
 
