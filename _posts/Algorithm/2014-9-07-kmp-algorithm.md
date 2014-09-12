@@ -138,13 +138,14 @@ if (j === -1 || w.charAt(i) === w.charAt(j)) {
 }
 {% endhighlight %}
 
-现在考虑循环的问题，求 next 数组只需利用 i 遍历一遍。而对于 j ，因为 next[ 0 ] == -1，所以 j 初值为 -1 。再回想前面一节的第三点，我们是以 i 位置去算 next[ i+1 ] 的，所以 i 在 W1（即 W）倒数第二个位置就可以停止了。
+现在考虑循环的问题，求 next 数组只需利用 i 遍历一遍。而对于 j ，因为 next[ 1 ] = 0，所以 j 初值为 -1 。再回想前面一节的第三点，我们是以 i 位置去算 next[ i+1 ] 的，所以 i 在 W1（即 W）倒数第二个位置就可以停止了。
 
 {% highlight javascript %}
 var next = []
 , i = 0
 , j = -1
 ;
+next[0] = -1;
 
 while (i < w.length-1) {
   if (j === -1 || w.charAt(i) === w.charAt(j)) {
