@@ -1,6 +1,6 @@
 --- 
 layout:   post
-title:    图解 KMP 算法
+title:    图解 KMP 算法（JavaScript 实现）
 tagline: "&quot;Thinking outside the box will make sense only when you know what is inside the box.&quot;"
 tags: 
 - 算法
