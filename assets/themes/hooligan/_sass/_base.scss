@@ -18,9 +18,8 @@ html, body {
 
 body {
 	color:#bbb;
-	text-shadow:1px 1px 1px #000;
 	height:100%; 
-	font-family: 'Oxygen', sans-serif;
+	font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 	font-size: 14px;
 }
 
@@ -29,7 +28,7 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight:normal;
 	color:#999;
 	text-rendering:optimizelegibility;
-	font-family: 'Advent Pro', sans-serif;
+	font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 	/*font-family: 'Pontano Sans', sans-serif;*/
 }
 
@@ -176,7 +175,6 @@ div.pagination {
 /* Buttons */
 a.btn, a.btn.disabled {
 	color:rgba(255, 255, 255, 0.7);
-	text-shadow: 1px 1px 2px #000;
 	background:rgba(0,0,0, 0.2);
 	border:none;
 		-moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
