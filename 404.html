@@ -1,20 +1,23 @@
-页面不存在，<span id="countdown">3</span>秒后跳转到<a href="http://www.crimx.com">主页</a>...
-
-
-  
-
 <script language="javascript" type="text/javascript">
 
-(function () {
-  var countdown = document.getElementById("countdown"),
-      i = 3;
+!function () {
 
-  window.setInterval(function () {
-    countdown.innerHTML = i--;
-    if (i <= 0) {
-      window.location.href = "http://www.crimx.com";
+  var url = window.location.href
+    , jurl = 'http://www.crimx.com'
+    , jList = [{
+        key: 'how-to-learn-javascript-properly',
+        jump: 'http://www.crimx.com/2014/05/15/how-to-learn-javascript-properly/'
+      }]
+
+  for (var i = 0; i < jList.length; i += 1) {
+    if (url.match(jList[i].key)) {
+      jurl = jList[i].jump
+      break
     }
-  },1000); 
+  }
 
-}());
+  window.location.href = jurl
+
+}();
+
 </script>
