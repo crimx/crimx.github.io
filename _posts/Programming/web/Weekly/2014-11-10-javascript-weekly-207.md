@@ -14,9 +14,9 @@ description: "JavaScript 周刊"
    <http://blogs.msdn.com/b/ie/archive/2014/11/11/living-on-the-edge-our-next-step-in-interoperability.aspx>  
    在最新 Windows 10 预览版中的最新 IE 浏览器支持了各种各样的新特性，包括了 ES6 的特性如 class、箭头函数、promise、proxy、symbol 等等。
 
-1. Vanilla JS 让数据绑定更简单  
+1. 原生 JS 也能让数据绑定更简单  
    <http://www.sellarafaeli.com/blog/native_javascript_data_binding>  
-   当需要将 JavaScript 上的模型与 HTML 上的表现进行校准时，双向数据绑定就很有用了。这篇文章介绍了两种用 vanilla JavaScript 实现的方法。
+   当需要将 JavaScript 上的模型与 HTML 上的表现进行校准时，双向数据绑定就很有用了。这篇文章介绍了两种用原生 JavaScript 实现的方法。
 
 1. MetricsGraphics.js：基于 D3 、专注于可视化时序数据的库  
    <http://metricsgraphicsjs.org/>  
