@@ -98,6 +98,7 @@ JB :
       short_name : crimx
     duoshuo :
       short_name : crimx
+      data_author_key: 1
     livefyre :
       site_id : 123
     intensedebate :
