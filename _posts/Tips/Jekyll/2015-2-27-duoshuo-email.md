@@ -17,22 +17,20 @@ dig 了一下，[这里](http://dev.duoshuo.com/docs/5003ecd94cab3e7250000008/)�
 
 安装 nodejs 然后在某个目录下打开终端，输入 `npm install --save-dev request`
 
-该目录下新建 `a.js`
+该目录下新建 `a.js`，粘贴下面代码进去，修改 `data` 中的信息。
 
 {% highlight javascript %}
-var querystring = require('querystring');
 var request = require('request');
 
-var url = 'http://api.duoshuo.com/users/import.json';
-var data = querystring.stringify({
+var data = {
   'short_name'         : '',    // 你的short_name，后台管理那里可以看到
   'secret'             : '',    // 密钥，后台管理那里可以看到
-  'users[0][user_key]' : '1',   // 当前站点的ID，就是后面 data-author-key 值
+  'users[0][user_key]' : '1',   // 用户在当前站点的ID，就是后面需要设置的 data-author-key 值
   'users[0][name]'     : '',    // 显示的名字
   'users[0][email]'    : ''     // 提醒的邮箱
-});
+};
 
-request(url+data, function (error, response, body) {
+request.post({url:'http://api.duoshuo.com/users/import.json', form: data}, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     console.log('success');
   }
