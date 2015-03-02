@@ -48,7 +48,7 @@ description: "纯 CSS 的自适应正方形"
 --------
 
 - [CSSだけで正方形を作る](http://qiita.com/usp/items/96f3cf9997ebb5b3dbb9)
-- [padding-CSS | MDN][padding-mdn]
+- [padding-CSS MDN][padding-mdn]
 
 
 [padding-mdn]: https://developer.mozilla.org/en-US/docs/Web/CSS/padding#Syntax 
