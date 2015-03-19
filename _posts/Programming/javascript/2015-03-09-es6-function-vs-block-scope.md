@@ -129,6 +129,19 @@ function f() {
 $ babel-node --optional es6.blockScopingTDZ test.js 
 {% endhighlight %}
 
+（3 月 19 日 补）  
+注意 `for` 循环闭包的坑，现在还没有好的 polyfill 方案
+
+{% highlight javascript %}
+// 0 1 2 3 4
+for (let i = 0; i < 5; i += 1) {
+  // 忽略我在循环中声明函数
+  setTimeout(function timer() {
+    console.log(i);
+  }, 1*1000);
+}
+{% endhighlight %}
+
 块级作用域
 ----------
 
