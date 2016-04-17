@@ -10,7 +10,7 @@ description: "每次为 JSHint 提交代码我都会学到一些 JavaScript 的�
 ---
 
 原文：[What's in a Function Name?](http://bocoup.com/weblog/whats-in-a-function-name/)（2014-11-25）  
-翻译：[Jaward华仔](http://www.crimx.com)
+翻译：[StrayBugs](http://www.crimx.com)
 
 -----
 

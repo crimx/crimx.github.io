@@ -11,7 +11,7 @@ description: "用了光线投射就像开挂一样，作为一名懒得出油的
 ---
 
 原文：[A first-person engine in 265 lines](http://www.playfuljs.com/a-first-person-engine-in-265-lines/)（2014-6-11）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

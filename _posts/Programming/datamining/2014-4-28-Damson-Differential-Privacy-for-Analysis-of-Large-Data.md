@@ -11,7 +11,7 @@ tags:
 ---
 
 原文：Demonstration of Damson: Differential Privacy for Analysis of Large Data  
-翻译：[Jaward华仔](http://crimx.com)（初次翻译学术论文，有很多不通顺的地方，请多多指正）
+翻译：[StrayBugs](http://crimx.com)（初次翻译学术论文，有很多不通顺的地方，请多多指正）
 
 -----
 

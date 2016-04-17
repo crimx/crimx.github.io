@@ -13,7 +13,7 @@ description: "Google Chrome 是当今互联网中最大的玩家之一。它快�
 ---
 
 原文：[Google Chrome Hegemony](http://code.tutsplus.com/tutorials/google-chrome-hegemony--cms-21478)  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 ----------
 

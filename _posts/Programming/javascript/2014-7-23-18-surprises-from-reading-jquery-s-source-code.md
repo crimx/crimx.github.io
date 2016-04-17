@@ -11,7 +11,7 @@ description: "我热爱 jQuery，且尽管我认为自己算是一名高级 Java
 ---
 
 原文：[18 Surprises From Reading jQuery's Source Code](http://quickleft.com/blog/18-surprises-from-reading-jquery-s-source-code)（2014-7-23）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

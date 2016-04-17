@@ -211,7 +211,7 @@ if (j >= w.length) {
 
 本文的完整源码（JavaScript）以及图片的 PSD 源文件都在[[这里]][github_KMP]，有需要的可以 star。
 
-有什么问题可以[评论][comments]，我是 [Jaward华仔](http://weibo.com/bananajaward)。
+有什么问题可以[评论][comments]，我是 [StrayBugs](http://weibo.com/bananajaward)。
 
 就这样，么么扎~
 

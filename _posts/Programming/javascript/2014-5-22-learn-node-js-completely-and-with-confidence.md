@@ -11,7 +11,7 @@ description: "要成为 JavaScript 开发者现在是最好的时机了，而且
 ---
 
 原文：[Learn Node.js Completely and with Confidence](http://javascriptissexy.com/learn-node-js-completely-and-with-confidence/)（2013-2-4）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

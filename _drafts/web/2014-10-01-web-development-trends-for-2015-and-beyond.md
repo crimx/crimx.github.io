@@ -11,7 +11,7 @@ description: "本文中，我们将一同看看当今 web 的发展趋势，给�
 ---
 
 原文：[Web Development Trends For 2015 And Beyond](https://medium.com/@shijuvar/web-development-trends-for-2015-and-beyond-c2d3c1ef5718)（2014-8-31）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

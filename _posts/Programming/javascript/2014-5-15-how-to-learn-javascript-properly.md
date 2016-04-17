@@ -11,7 +11,7 @@ description: "为JavaScript初学者指明道路，通过结构化的分层学�
 ---
 
 原文：[How to Learn JavaScript Properly](http://JavaScriptissexy.com/how-to-learn-JavaScript-properly/)（2014-2-7）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

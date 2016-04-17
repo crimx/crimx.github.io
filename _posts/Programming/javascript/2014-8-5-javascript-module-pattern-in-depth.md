@@ -10,7 +10,7 @@ description: "模块模式（module pattern）是一种常见的 JavaScript 编�
 ---
 
 原文：[JavaScript Module Pattern: In-Depth](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)（2010-03-12）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

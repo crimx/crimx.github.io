@@ -11,7 +11,7 @@ description: "当今有许多新技术吸引着越来越多的开发者，Node.j
 ---
 
 原文：[Node.js application made with Express and AbsurdJS](http://krasimirtsonev.com/blog/article/Nodejs-application-made-with-Express-and-AbsurdJS)（2014-7-7）  
-翻译：[Jaward华仔](http://crimx.com)
+翻译：[StrayBugs](http://crimx.com)
 
 -----
 

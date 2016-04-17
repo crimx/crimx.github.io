@@ -10,7 +10,7 @@ description: "我们做出了一个艰难的决定，即刻终止所有 YUI 的�
 ---
 
 原文：[Important Announcement Regarding YUI](http://yahooeng.tumblr.com/post/96098168666/important-announcement-regarding-yui)（2014-8-30）  
-翻译：[Jaward华仔](http://www.crimx.com)
+翻译：[StrayBugs](http://www.crimx.com)
 
 -----
 

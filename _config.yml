@@ -17,17 +17,15 @@ at_path : /assets/files
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : StrayBugs
+title : CrimX
 # tagline: 
 author :
-  name : Jesse Wong
-  gmail : "&#99&#114&#105&#109&#120&#46&#99&#111&#109&#64&#103&#109&#97&#105&#108&#46&#99&#111&#109"
+  name : StrayBugs
+  gmail : "%73%74%72%61%79%62%75%67%73%40%67%6D%61%69%6C%2E%63%6F%6D"
   github : crimx
   twitter : straybugs
   feedburner : crimxcom
   weibo : bananajaward
-  lofter : blog.crimx.com
-  jobbole : jaward
   # pinterest : crimx
 
 # The production_url is only used when full-domain names are needed
