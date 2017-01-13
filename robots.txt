@@ -1,4 +1,0 @@
-User-Agent: *
-Disallow: /Rambling/
-Sitemap: /sitemap.xml
-

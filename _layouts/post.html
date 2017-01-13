@@ -1,5 +1,11 @@
----
-layout: default
----
-{% include JB/setup %}
-{% include themes/hooligan/post.html %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>{% if page.title %} {{page.title}} {% endif %}</title>
+  <meta http-equiv="refresh" content="0; url=//blog.crimx.com{{ page.url | downcase | replace: '//', '' | replace: '.html', '/' }}">
+  <link rel="canonical" href="//blog.crimx.com{{ page.url | downcase | replace: '//', '' | replace: '.html', '/' }}" />
+</head>
+<body>
+</body>
+</html>
