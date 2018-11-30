@@ -32,7 +32,5 @@ export function buildLoadLangAsync (i18n) {
 
 function setI18nLanguage (i18n, lang) {
   i18n.locale = lang
-  if (process.browser) {
-    document.querySelector('html').setAttribute('lang', lang)
-  }
+  document.querySelector('html').setAttribute('lang', lang)
 }
