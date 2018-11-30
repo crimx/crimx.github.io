@@ -5,6 +5,7 @@
 const fs = require('fs-extra')
 const path = require('path')
 const { createBundleRenderer } = require('vue-server-renderer')
+const { directive } = require('vue-i18n-extensions')
 
 const templatePath = path.join(__dirname, '../src/template.html')
 
@@ -14,7 +15,10 @@ const clientManifest = require('../dist/vue-ssr-client-manifest.json')
 const renderer = createBundleRenderer(bundle, {
   template,
   clientManifest,
-  runInNewContext: false
+  runInNewContext: false,
+  directives: {
+    t: directive
+  }
 })
 
 const routes = [
@@ -25,6 +29,14 @@ const routes = [
   {
     title: 'CRIMX Projects',
     url: '/projects'
+  },
+  {
+    title: 'CRIMX Projects',
+    url: '/projects/zh-CN'
+  },
+  {
+    title: 'CRIMX Projects',
+    url: '/projects/en-US'
   }
 ]
 

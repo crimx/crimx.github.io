@@ -15,7 +15,7 @@ export function createRouter () {
         component: Home
       },
       {
-        path: '/projects',
+        path: '/projects/:lang?',
         name: 'projects',
         component: () => import(/* webpackChunkName: "projects" */ './views/Projects.vue')
       }
