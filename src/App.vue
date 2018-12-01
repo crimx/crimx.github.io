@@ -20,5 +20,6 @@ body,
 #app {
   position: relative;
   font-family: 'helvetica neue',arial,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
+  color: #333;
 }
 </style>
