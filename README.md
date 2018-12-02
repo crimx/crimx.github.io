@@ -1,9 +1,6 @@
 ##crimx.github.io
 
-You may not use these files directly without my permission.
-
-- `docs/**/*.md`
-- `docs/.vuepress/public/**/*`
+Vue + Vue Router + i18n + SSR static site.
 
 ## License
 
