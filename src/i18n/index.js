@@ -18,7 +18,12 @@ export function buildLoadLangAsync (i18n) {
   return function loadLangAsync (lang) {
     if (lang && i18n.locale !== lang) {
       if (!loadedLanguages.has(lang)) {
-        return import(/* webpackChunkName: "lang/[request]" */ `./lang/${lang}`).then(msgs => {
+        return import(
+          /* webpackInclude: /\.js(on)?$/ */
+          /* webpackChunkName: "lang/[request]" */
+          /* webpackMode: "lazy-once" */
+          `./lang/${lang}`
+        ).then(msgs => {
           i18n.setLocaleMessage(lang, msgs.default)
           loadedLanguages.add(lang)
           return setI18nLanguage(i18n, lang)
