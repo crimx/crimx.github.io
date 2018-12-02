@@ -1,39 +1,47 @@
 <template>
-  <section class="projects-Card">
-    <header>
-      <h1 v-t="`projects.${id}.title`" />
-    </header>
-    <div>
-      <stack-icon
-        v-for="name in stack"
-        :key="name"
-        :name="stacks[name][0]"
-        :href="stacks[name][1]"
-      >{{ stacks[name][2] }}</stack-icon>
-    </div>
-    <i18n
-      v-for="(c, i) in $i18n.messages[$i18n.locale].projects[id].content"
-      :key="c"
-      :path="`projects.${id}.content.${i}`"
-       tag="p"
-     >
-      <slot />
-    </i18n>
-  </section>
+  <a :class="['projCard-Wrap', `projCard-Wrap-${isExpand ? 'expand' : 'collapse'}`]" href="#">
+    <div class="projCard-Avatar" role="img" :style="`background: 50%/50% cover url(${project.avatar})`" />
+    <section class="projCard-Main">
+      <header>
+        <h1 class="projCard-Title">
+          <a :href="project.url" v-t="`projects.${project.id}.title`" target="_blank" rel="nofollow" />
+        </h1>
+      </header>
+      <div>
+        <stack-icon
+          v-for="name in project.stack"
+          :key="name"
+          :name="stacks[name][0]"
+          :href="stacks[name][1]"
+        >{{ stacks[name][2] }}</stack-icon>
+      </div>
+      <div class="projCard-Content" v-html="$t(`projects.${project.id}.content`)" />
+      <a class="projCard-Expand" v-if="!isExpand">[ {{ $t('expand') }} ]</a>
+    </section>
+  </a>
 </template>
 
 <script>
 import StackIcon from '@/components/StackIcon'
 
 export default {
-  props: ['id', 'stack'],
+  props: ['project'],
   data () {
     return {
+      isExpand: false,
       stacks: {
+        'antd': ['antd', 'https://github.com/ant-design/ant-design/', 'Ant Design'],
+        'dexie': ['dexie', 'https://github.com/dfahlander/Dexie.js', 'Dexie.js(IndexedDB)'],
+        'i18next': ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
+        'react': ['react', 'https://github.com/facebook/react/', 'React'],
+        'redux': ['redux', 'https://github.com/reactjs/redux', 'Redux'],
+        'rxjs': ['rxjs', 'https://github.com/ReactiveX/rxjs', 'RxJS'],
+        'sass': ['sass', 'https://sass-lang.com/', 'Sass'],
+        'typescript': ['typescript', 'https://www.typescriptlang.org/', 'TypeScript'],
         'vue': ['vue', 'https://github.com/vuejs/vue', 'Vue.js'],
+        'vue-i18n': ['vue', 'https://github.com/kazupon/vue-i18n', 'Vue-i18n'],
         'vue-router': ['vue', 'https://github.com/vuejs/vue-router', 'Vue-router'],
-        'vue-ssr': ['vue', 'https://ssr.vuejs.org/', 'Vue SSR'],
-        'vue-i18n': ['vue', 'https://github.com/kazupon/vue-i18n', 'Vue-i18n']
+        'vue-ssr': ['vue', 'https://ssr.vuejs.org/', 'Vue SSR']
       }
     }
   },
@@ -42,3 +50,84 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.projCard-Wrap {
+  text-decoration: none;
+  display: flex;
+  overflow: hidden;
+  width: 800px;
+  max-width: 100vw;
+  margin-bottom: 2em;
+  padding: 1em;
+  color: inherit;
+  background: #fff;
+  box-shadow: 0 6px 6px -6px rgba(0,0,0,.23);
+  transition: box-shadow 0.4s;
+
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-within {
+    outline: none;
+    text-decoration: none;
+    box-shadow: 0 6px 30px -6px rgba(0,0,0,.23);
+  }
+
+  @media all and (max-width: 600px) {
+    display: block;
+  }
+}
+
+.projCard-Avatar {
+  flex-shrink: 0;
+  width: 30%;
+  min-width: 180px;
+  margin: 0 1em 0 0;
+  background: #f9f9f9;
+
+  @media all and (max-width: 600px) {
+    width: 100%;
+    padding-top: 60%;
+    margin: 0 0 1em 0;
+  }
+}
+
+.projCard-Title {
+  margin: 0 0 0.5em;
+}
+
+.projCard-Content {
+  p {
+    margin: 0.5em 0;
+  }
+
+  .read-more {
+    display: none;
+
+    ~ * {
+      display: none;
+    }
+  }
+}
+
+.projCard-Expand {
+  font-size: 12px;
+  color: #07C;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-bottom-color: inherit;
+  }
+}
+
+///// States /////
+.projCard-Wrap-collapse {
+  a,
+  a:hover,
+  a:active,
+  a:focus {
+    text-decoration: none;
+  }
+}
+</style>
