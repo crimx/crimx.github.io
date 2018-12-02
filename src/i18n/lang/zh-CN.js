@@ -1,10 +1,11 @@
 const msg = {
+  'expand': '展开全文',
   'projects': {
     'saladict': {
-      'title': 'Saladict'
+      'title': 'Saladict 沙拉查词'
     },
     'projects': {
-      'title': 'This Project'
+      'title': '本项目'
     }
   }
 }
