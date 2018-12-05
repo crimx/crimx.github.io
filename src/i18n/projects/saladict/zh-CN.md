@@ -1,13 +1,12 @@
-一款实用、美观的 Chrome / Firefox 划词扩展，得到大量用户的使用与肯定。许多用户[留言评价](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)这是其用过最好用的划词扩展。
+[![Github Stars](https://img.shields.io/github/stars/crimx/ext-saladict.svg?label=Stars&style=social)](https://github.com/crimx/ext-saladict)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/d/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?colorB=1a73e8&&maxAge=3600&label=Chrome%20downloads)](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?colorB=1a73e8&&maxAge=3600&label=rating)](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)
+[![Mozilla Add-on](https://img.shields.io/amo/d/ext-saladict.svg?colorB=ff9500&&maxAge=3600&label=Firefox%20downloads)](https://addons.mozilla.org/firefox/addon/ext-saladict/)
+[![Mozilla Add-on](https://img.shields.io/amo/rating/ext-saladict.svg?colorB=ff9500&&maxAge=3600&label=rating)](https://addons.mozilla.org/firefox/addon/ext-saladict/)
+
+一款实用、美观的 Chrome / Firefox 划词扩展，其设计与实现得到大量用户的使用与肯定。许多用户[留言评价](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)这是其用过最好用的划词扩展。
 
 <hr class="read-more" />
-
-[![Github Stars](https://img.shields.io/github/stars/crimx/ext-saladict.svg?label=Stars&style=social)](https://github.com/crimx/ext-saladict)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?label=Chrome%20users)](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?label=Chrome%20stars)](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)
-[![Mozilla Add-on](https://img.shields.io/amo/users/ext-saladict.svg?label=Firefoxe%20users)](https://addons.mozilla.org/firefox/addon/ext-saladict/)
-[![Mozilla Add-on](https://img.shields.io/amo/stars/ext-saladict.svg?label=Firefoxe%20stars)](https://addons.mozilla.org/firefox/addon/ext-saladict/)
-
 
 在功能设计上，
 
