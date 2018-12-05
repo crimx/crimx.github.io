@@ -1,7 +1,7 @@
 <template>
-  <a :class="['projCard-Wrap', `projCard-Wrap-${isExpand ? 'expand' : 'collapse'}`]" href="#">
-    <div class="projCard-Avatar" role="img" :style="`background: 50%/50% cover url(${project.avatar})`" />
-    <section class="projCard-Main">
+  <section :class="['projCard-Wrap', `projCard-Wrap-${isExpand ? 'expand' : 'collapse'}`]">
+    <div class="projCard-Avatar" role="img" :style="{ background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.id}.jpg`)}')` }" />
+    <div class="projCard-Main">
       <header>
         <h1 class="projCard-Title">
           <a :href="project.url" v-t="`projects.${project.id}.title`" target="_blank" rel="nofollow" />
@@ -17,9 +17,9 @@
         >{{ stacks[name][2] }}</stack-icon>
       </div>
       <div class="projCard-Content" v-html="$t(`projects.${project.id}.content`)" />
-      <a class="projCard-Expand" v-if="!isExpand">[ {{ $t('expand') }} ]</a>
-    </section>
-  </a>
+      <a class="projCard-Expand" v-if="!isExpand" href="#">[ {{ $t('expand') }} ]</a>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -57,7 +57,7 @@ export default {
   text-decoration: none;
   display: flex;
   overflow: hidden;
-  width: 800px;
+  width: 900px;
   max-width: 100vw;
   margin-bottom: 2em;
   padding: 1em;
@@ -128,12 +128,5 @@ export default {
 }
 
 ///// States /////
-.projCard-Wrap-collapse {
-  a,
-  a:hover,
-  a:active,
-  a:focus {
-    text-decoration: none;
-  }
-}
+
 </style>
