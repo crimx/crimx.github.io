@@ -7,12 +7,13 @@
           <a :href="project.url" v-t="`projects.${project.id}.title`" target="_blank" rel="nofollow" />
         </h1>
       </header>
-      <div>
+      <div class="projCard-Stacks">
         <stack-icon
           v-for="name in project.stack"
           :key="name"
-          :name="stacks[name][0]"
+          :id="stacks[name][0]"
           :href="stacks[name][1]"
+          :name="stacks[name][2]"
         >{{ stacks[name][2] }}</stack-icon>
       </div>
       <div class="projCard-Content" v-html="$t(`projects.${project.id}.content`)" />
@@ -31,9 +32,9 @@ export default {
       isExpand: false,
       stacks: {
         'antd': ['antd', 'https://github.com/ant-design/ant-design/', 'Ant Design'],
-        'dexie': ['dexie', 'https://github.com/dfahlander/Dexie.js', 'Dexie.js(IndexedDB)'],
+        'dexie': ['dexie', 'https://github.com/dfahlander/Dexie.js', 'Dexie(IndexedDB)'],
         'i18next': ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
-        'react': ['react', 'https://github.com/facebook/react/', 'React'],
+        'react': ['react', 'https://github.com/facebook/react/', 'React.js'],
         'redux': ['redux', 'https://github.com/reactjs/redux', 'Redux'],
         'rxjs': ['rxjs', 'https://github.com/ReactiveX/rxjs', 'RxJS'],
         'sass': ['sass', 'https://sass-lang.com/', 'Sass'],
@@ -94,7 +95,12 @@ export default {
 }
 
 .projCard-Title {
-  margin: 0 0 0.5em;
+  margin: 0 0 0.3em;
+}
+
+.projCard-Stacks {
+  line-height: 1.5;
+  margin-left: -5px;
 }
 
 .projCard-Content {

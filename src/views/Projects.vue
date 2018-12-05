@@ -18,13 +18,11 @@ export default {
       projects: [
         {
           id: 'saladict',
-          avatar: '',
           url: 'https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en',
           stack: ['typescript', 'react', 'redux', 'rxjs', 'dexie', 'sass', 'i18next', 'antd', 'vue']
         },
         {
           id: 'projects',
-          avatar: '',
           url: 'https://github.com/crimx/crimx.github.io/',
           stack: ['vue', 'vue-router', 'vue-ssr', 'vue-i18n', 'sass']
         }
