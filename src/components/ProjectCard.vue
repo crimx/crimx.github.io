@@ -1,12 +1,18 @@
 <template>
-  <section :class="['projCard-Wrap', `projCard-Wrap-${isExpand ? 'expand' : 'collapse'}`]">
-    <div class="projCard-Avatar" role="img" :style="{ background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.avatar || project.id}.jpg`)}')` }" />
+  <section class="projCard-Wrap">
+    <div
+      class="projCard-Avatar"
+      role="img"
+      ref="avatar"
+      :style="{
+        background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.avatar || project.id}.jpg`)}')`,
+        height: avatarHeight
+      }"
+    />
     <div class="projCard-Main">
-      <header>
-        <h1 class="projCard-Title">
-          <a :href="project.url" v-t="`projects.${project.id}.title`" target="_blank" rel="nofollow" />
-        </h1>
-      </header>
+      <h1 class="projCard-Title">
+        <a :href="project.url" v-t="`projects.${project.id}.title`" target="_blank" rel="nofollow" />
+      </h1>
       <div class="projCard-Stacks">
         <stack-icon
           v-for="name in project.stack"
@@ -16,8 +22,13 @@
           :name="stacks[name][2]"
         >{{ stacks[name][2] }}</stack-icon>
       </div>
-      <div class="projCard-Content" v-html="$t(`projects.${project.id}.content`)" />
-      <a class="projCard-Expand" v-if="!isExpand" href="#">[ {{ $t('expand') }} ]</a>
+      <div
+        :class="{ 'projCard-Content': true, 'projCard-Content-collapse': !isContentExpand }"
+        ref="content"
+        v-html="$t(`projects.${project.id}.content`)"
+        :style="{ height: contentHeight }"
+      />
+      <a class="projCard-BtnExpand" href="#" @click="expand">[ {{ $t(isBtnExpand ? 'collapse' : 'expand') }} ]</a>
     </div>
   </section>
 </template>
@@ -29,7 +40,10 @@ export default {
   props: ['project'],
   data () {
     return {
-      isExpand: false,
+      isContentExpand: false,
+      isBtnExpand: false,
+      avatarHeight: false,
+      contentHeight: false,
       stacks: {
         'antd': ['antd', 'https://github.com/ant-design/ant-design/', 'Ant Design'],
         'dexie': ['dexie', 'https://github.com/dfahlander/Dexie.js', 'Dexie(IndexedDB)'],
@@ -47,6 +61,51 @@ export default {
       }
     }
   },
+  methods: {
+    async expand (e) {
+      e.preventDefault()
+      e.target.blur()
+
+      if (this.isContentExpand) {
+        this.isBtnExpand = false
+        this.avatarHeight = this._avatarCollapseHeight
+        this.contentHeight = this._contentCollapseHeight
+
+        await new Promise(resolve => {
+          this.$refs.content.addEventListener('transitionend', resolve, { once: true })
+        })
+
+        this.isContentExpand = false
+      } else {
+        if (this._avatarCollapseHeight) {
+          this.isContentExpand = true
+        } else { // only calculate once
+          const { avatar, content } = this.$refs
+
+          this._avatarCollapseHeight = avatar.offsetHeight + 'px'
+          this._contentCollapseHeight = content.offsetHeight + 'px'
+          this.isContentExpand = true
+
+          await this.$nextTick()
+
+          this._avatarExpandHeight = avatar.offsetWidth * 0.618 + 'px'
+          this._contentExpandHeight = content.offsetHeight + 'px'
+
+          this.avatarHeight = this._avatarCollapseHeight
+          this.contentHeight = this._contentCollapseHeight
+
+          await this.$nextTick()
+          // force reflow to put everything in position
+          // assign to `this` to avoid being removed in tree-shaking
+          this._reflow = document.body.offsetHeight
+        }
+
+        this.isBtnExpand = true
+        this.avatarHeight = this._avatarExpandHeight
+        this.contentHeight = this._contentExpandHeight
+      }
+    }
+  },
   components: {
     StackIcon
   }
@@ -54,6 +113,8 @@ export default {
 </script>
 
 <style lang="scss">
+$height-duration: 0.5s;
+
 .projCard-Wrap {
   text-decoration: none;
   display: flex;
@@ -87,6 +148,7 @@ export default {
   min-width: 180px;
   margin: 0 1em 0 0;
   background: #f9f9f9;
+  transition: height $height-duration;
 
   @media all and (max-width: 600px) {
     width: 100%;
@@ -109,20 +171,28 @@ export default {
 }
 
 .projCard-Content {
+  overflow: hidden;
+  transition: height $height-duration;
+  padding: 0.5em 0;
+
+  *:first-child {
+    margin-top: 0;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
   p {
     margin: 0.5em 0;
   }
 
   .read-more {
     display: none;
-
-    ~ * {
-      display: none;
-    }
   }
 }
 
-.projCard-Expand {
+.projCard-BtnExpand {
   font-size: 12px;
   color: #07C;
   border: 1px solid transparent;
@@ -133,5 +203,11 @@ export default {
 }
 
 ///// States /////
-
+.projCard-Content-collapse {
+  .read-more {
+    ~ * {
+      display: none;
+    }
+  }
+}
 </style>

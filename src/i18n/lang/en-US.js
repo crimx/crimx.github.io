@@ -1,5 +1,6 @@
 const msg = {
   'expand': 'Read More',
+  'collapse': 'Collapse',
   'projects': {
     'saladict': {
       'title': 'Saladict'

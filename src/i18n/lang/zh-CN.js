@@ -1,5 +1,6 @@
 const msg = {
   'expand': '展开全文',
+  'collapse': '收起全文',
   'projects': {
     'saladict': {
       'title': 'Saladict 沙拉查词'
