@@ -22,6 +22,12 @@ export default {
           stack: ['typescript', 'react', 'redux', 'rxjs', 'dexie', 'sass', 'i18next', 'antd', 'vue']
         },
         {
+          id: 'postcss-safe-important',
+          avatar: 'postcss',
+          url: 'https://github.com/crimx/postcss-safe-important',
+          stack: ['postcss']
+        },
+        {
           id: 'projects',
           url: 'https://github.com/crimx/crimx.github.io/',
           stack: ['vue', 'vue-router', 'vue-ssr', 'vue-i18n', 'sass']

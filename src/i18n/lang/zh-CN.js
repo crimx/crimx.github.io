@@ -6,6 +6,9 @@ const msg = {
     },
     'projects': {
       'title': '本项目'
+    },
+    'postcss-safe-important': {
+      'title': 'PostCSS Safe Important'
     }
   }
 }
