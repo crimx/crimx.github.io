@@ -1,10 +1,23 @@
-[![Github Stars](https://img.shields.io/github/stars/crimx/ext-saladict.svg?label=Stars&style=social)](https://github.com/crimx/ext-saladict)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/d/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?colorB=1a73e8&&maxAge=3600&label=Chrome%20downloads)](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?colorB=1a73e8&&maxAge=3600&label=rating)](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)
-[![Mozilla Add-on](https://img.shields.io/amo/d/ext-saladict.svg?colorB=ff9500&&maxAge=3600&label=Firefox%20downloads)](https://addons.mozilla.org/firefox/addon/ext-saladict/)
-[![Mozilla Add-on](https://img.shields.io/amo/rating/ext-saladict.svg?colorB=ff9500&&maxAge=3600&label=rating)](https://addons.mozilla.org/firefox/addon/ext-saladict/)
+[![Github Stars][img-gh-stars]][gh-stars]
+[![Chrome Web Store][img-chrome-dl]][cws]
+[![Chrome Web Store][img-chrome-rating]][cws]
+[![Mozilla Add-on][img-firefox-dl]][amo]
+[![Mozilla Add-on][img-firefox-rating]][amo]
 
-一款实用、美观的 Chrome / Firefox 划词扩展，其设计与实现得到大量用户的使用与肯定。许多用户[留言评价](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)这是其用过最好用的划词扩展。
+[img-gh-stars]: https://img.shields.io/github/stars/crimx/ext-saladict.svg?label=Stars&style=social
+[gh-stars]: https://github.com/crimx/ext-saladict
+
+[img-chrome-dl]: https://img.shields.io/chrome-web-store/d/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?maxAge=3600&colorB=1a73e8&label=Chrome%20downloads
+[img-chrome-rating]: https://img.shields.io/chrome-web-store/rating/cdonnmffkdaoajfknoeeecmchibpmkmg.svg?maxAge=3600&colorB=1a73e8&label=rating
+[cws]: https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en
+
+[img-firefox-dl]: https://img.shields.io/amo/d/ext-saladict.svg?maxAge=3600&colorB=ff9500&label=Firefox%20downloads
+[img-firefox-rating]: https://img.shields.io/amo/rating/ext-saladict.svg?maxAge=3600&colorB=ff9500&label=rating
+[amo]: https://addons.mozilla.org/firefox/addon/ext-saladict/
+
+
+
+一款实用、美观的 Chrome / Firefox 划词扩展，其设计与实现得到大量用户的肯定。许多用户[留言评价](https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en)这是其用过最好用的划词扩展。
 
 <hr class="read-more" />
 
@@ -21,3 +34,4 @@
 1. 查词面板是植入到网页中去的，使用 iframe 进行隔离，并结合 [React Portal](https://reactjs.org/docs/portals.html) 使到 iframe 内的事件通过 [SyntheticEvent](https://reactjs.org/docs/events.html) 直接冒泡出来，在 React 角度看仿佛就是操作同一个页面。
 1. 整合词典结果需要理解不同词典网页的设计，并从中总结出规律，稳定地提取出需要的信息；还需要阅读理解混淆的代码，如多年没有更新的[有道网页翻译](http://fanyi.youdao.com/web2/)，经过 [Saladict](https://github.com/crimx/ext-saladict) 的整合已支持 https 网页翻译。
 1. HTML 设计考虑到了可用性与可访问性，并兼容 [Vimium](https://github.com/philc/vimium) 全键盘操作。
+1. 自动化构建脚本，代码结构多层抽象，添加词典采用插件式机制载入。
