@@ -1,6 +1,6 @@
-##crimx.github.io
+## crimx.github.io
 
-Vue + Vue Router + i18n + SSR static site.
+Vue + Vue Router + SSR + i18n + Markdown static site.
 
 ## License
 
