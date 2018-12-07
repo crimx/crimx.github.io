@@ -19,11 +19,23 @@ html, body, #app {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: #0366d6;
 
   &:hover {
     text-decoration: underline;
   }
+}
+
+code {
+  display: inline-block;
+  line-height: normal;
+  font-size: .86em;
+  font-family: monaco, menlo, consolas, 'courier new', courier, monospace;
+  margin: 0 .25em;
+  padding: 0 .4em;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  border-radius: 3px;
 }
 
 #app {

@@ -1,6 +1,6 @@
 <template>
   <section :class="['projCard-Wrap', `projCard-Wrap-${isExpand ? 'expand' : 'collapse'}`]">
-    <div class="projCard-Avatar" role="img" :style="{ background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.id}.jpg`)}')` }" />
+    <div class="projCard-Avatar" role="img" :style="{ background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.avatar || project.id}.jpg`)}')` }" />
     <div class="projCard-Main">
       <header>
         <h1 class="projCard-Title">
@@ -34,6 +34,7 @@ export default {
         'antd': ['antd', 'https://github.com/ant-design/ant-design/', 'Ant Design'],
         'dexie': ['dexie', 'https://github.com/dfahlander/Dexie.js', 'Dexie(IndexedDB)'],
         'i18next': ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
+        'postcss': ['postcss', 'https://github.com/postcss/postcss', 'PostCSS'],
         'react': ['react', 'https://github.com/facebook/react/', 'React.js'],
         'redux': ['redux', 'https://github.com/reactjs/redux', 'Redux'],
         'rxjs': ['rxjs', 'https://github.com/ReactiveX/rxjs', 'RxJS'],
@@ -96,6 +97,10 @@ export default {
 
 .projCard-Title {
   margin: 0 0 0.3em;
+
+  a {
+    color: inherit;
+  }
 }
 
 .projCard-Stacks {
