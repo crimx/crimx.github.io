@@ -1,9 +1,12 @@
 <template>
   <div class="projects-Main">
-    <router-link class="projects-LangSwitch" :to="toAnotherLang">{{ anotherLangText }}</router-link>
+    <nuxt-link
+      :to="localePath('Projects', isEnPage ? 'zh' : 'en')"
+      class="projects-LangSwitch"
+    >{{ isEnPage ? '中文' : 'English' }}</nuxt-link>
     <ul class="projects-Projects">
       <li v-for="p in projects" :key="p.id">
-        <project-card :project="p" />
+        <project-card :project="p"/>
       </li>
     </ul>
   </div>
@@ -13,13 +16,27 @@
 import ProjectCard from '@/components/ProjectCard.vue'
 
 export default {
-  data () {
+  components: {
+    ProjectCard
+  },
+  data() {
     return {
       projects: [
         {
           id: 'saladict',
-          url: 'https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en',
-          stack: ['typescript', 'react', 'redux', 'rxjs', 'dexie', 'sass', 'i18next', 'antd', 'vue']
+          url:
+            'https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en',
+          stack: [
+            'typescript',
+            'react',
+            'redux',
+            'rxjs',
+            'dexie',
+            'sass',
+            'i18next',
+            'antd',
+            'vue'
+          ]
         },
         {
           id: 'postcss-safe-important',
@@ -36,20 +53,9 @@ export default {
     }
   },
   computed: {
-    toAnotherLang () {
-      return {
-        name: 'projects',
-        params: {
-          lang: this.$route.params.lang === 'en-US' ? 'zh-CN' : 'en-US'
-        }
-      }
-    },
-    anotherLangText () {
-      return this.$route.params.lang === 'en-US' ? '中文' : 'English'
+    isEnPage() {
+      return this.$route.name.endsWith('en')
     }
-  },
-  components: {
-    ProjectCard
   }
 }
 </script>

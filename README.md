@@ -1,7 +1,22 @@
-## crimx.github.io
+# crimx.github.io
 
-Vue + Vue Router + SSR + i18n + Markdown static site.
+> My site
 
-## License
+## Build Setup
 
-[MIT](http://opensource.org/licenses/MIT)
+``` bash
+# install dependencies
+$ yarn install
+
+# serve with hot reload at localhost:3000
+$ yarn run dev
+
+# build for production and launch server
+$ yarn run build
+$ yarn start
+
+# generate static project
+$ yarn run generate
+```
+
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).

@@ -1,19 +1,18 @@
 <template>
-  <div class="pbg-Container" :style="styleContent">
-    <div class="pbg-Content" :style="contentStyle">
-      <slot />
+  <div :style="styleContent" class="pbg-Container">
+    <div :style="contentStyle" class="pbg-Content">
+      <slot/>
     </div>
-    <div class="pbg-Mask" />
+    <div class="pbg-Mask"/>
     <transition name="fade">
-      <div v-if="!loaded" class="pbg-Thumbnail" :style="styleThumbnail" />
+      <div v-if="!loaded" :style="styleThumbnail" class="pbg-Thumbnail"/>
     </transition>
-    <img v-if="!loaded" class="pbg-TestImg" :src="src" @load="onImgLoad" />
+    <img v-if="!loaded" :src="src" class="pbg-TestImg" @load="onImgLoad">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ProgressiveBackgroundImage',
   props: {
     src: {
       type: String,
@@ -23,25 +22,28 @@ export default {
       type: String,
       required: true
     },
-    contentStyle: String,
+    contentStyle: {
+      type: String,
+      default: ''
+    },
     bgStyle: {
       type: String,
       default: '50% 50%/cover'
     }
   },
-  data () {
+  data() {
     return {
       loaded: false
     }
   },
   computed: {
-    styleContent () {
+    styleContent() {
       return [
         { background: this.bgStyle },
         { backgroundImage: `url(${this.src})` }
       ]
     },
-    styleThumbnail () {
+    styleThumbnail() {
       return [
         { background: this.bgStyle },
         { backgroundImage: `url(${this.thumbnail})` }
@@ -49,7 +51,7 @@ export default {
     }
   },
   methods: {
-    onImgLoad () {
+    onImgLoad() {
       this.loaded = true
     }
   }
@@ -92,11 +94,13 @@ export default {
   opacity: 0;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

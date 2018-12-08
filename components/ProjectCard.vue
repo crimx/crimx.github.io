@@ -1,17 +1,17 @@
 <template>
   <section class="projCard-Wrap">
     <div
-      class="projCard-Avatar"
-      role="img"
       ref="avatar"
       :style="{
         background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.avatar || project.id}.jpg`)}')`,
         height: avatarHeight
       }"
+      class="projCard-Avatar"
+      role="img"
     />
     <div class="projCard-Main">
       <h1 class="projCard-Title">
-        <a :href="project.url" v-t="`projects.${project.id}.title`" target="_blank" rel="nofollow" />
+        <a v-t="`projects.${project.id}.title`" :href="project.url" target="_blank" rel="nofollow"/>
       </h1>
       <div class="projCard-Stacks">
         <stack-icon
@@ -22,13 +22,18 @@
           :name="stacks[name][2]"
         >{{ stacks[name][2] }}</stack-icon>
       </div>
-      <div
-        :class="{ 'projCard-Content': true, 'projCard-Content-collapse': !isContentExpand }"
-        ref="content"
-        v-html="$t(`projects.${project.id}.content`)"
-        :style="{ height: contentHeight }"
-      />
-      <a class="projCard-BtnExpand" href="#" @click="expand">[ {{ $t(isBtnExpand ? 'collapse' : 'expand') }} ]</a>
+      <div :style="{ height: contentHeight }" class="projCard-ContentWrap">
+        <div
+          ref="content"
+          :class="{ 'projCard-Content': true, 'projCard-Content-collapse': !isContentExpand }"
+          v-html="$t(`projects.${project.id}.content`)"
+        />
+      </div>
+      <a
+        class="projCard-BtnExpand"
+        href="#"
+        @click="expand"
+      >[ {{ $t(isBtnExpand ? 'collapse' : 'expand') }} ]</a>
     </div>
   </section>
 </template>
@@ -37,32 +42,56 @@
 import StackIcon from '@/components/StackIcon'
 
 export default {
-  props: ['project'],
-  data () {
+  components: {
+    StackIcon
+  },
+  props: {
+    project: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
     return {
       isContentExpand: false,
       isBtnExpand: false,
-      avatarHeight: false,
-      contentHeight: false,
+      avatarHeight: null,
+      contentHeight: null,
       stacks: {
-        'antd': ['antd', 'https://github.com/ant-design/ant-design/', 'Ant Design'],
-        'dexie': ['dexie', 'https://github.com/dfahlander/Dexie.js', 'Dexie(IndexedDB)'],
-        'i18next': ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
-        'postcss': ['postcss', 'https://github.com/postcss/postcss', 'PostCSS'],
-        'react': ['react', 'https://github.com/facebook/react/', 'React.js'],
-        'redux': ['redux', 'https://github.com/reactjs/redux', 'Redux'],
-        'rxjs': ['rxjs', 'https://github.com/ReactiveX/rxjs', 'RxJS'],
-        'sass': ['sass', 'https://sass-lang.com/', 'Sass'],
-        'typescript': ['typescript', 'https://www.typescriptlang.org/', 'TypeScript'],
-        'vue': ['vue', 'https://github.com/vuejs/vue', 'Vue.js'],
+        antd: [
+          'antd',
+          'https://github.com/ant-design/ant-design/',
+          'Ant Design'
+        ],
+        dexie: [
+          'dexie',
+          'https://github.com/dfahlander/Dexie.js',
+          'Dexie(IndexedDB)'
+        ],
+        i18next: ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
+        postcss: ['postcss', 'https://github.com/postcss/postcss', 'PostCSS'],
+        react: ['react', 'https://github.com/facebook/react/', 'React.js'],
+        redux: ['redux', 'https://github.com/reactjs/redux', 'Redux'],
+        rxjs: ['rxjs', 'https://github.com/ReactiveX/rxjs', 'RxJS'],
+        sass: ['sass', 'https://sass-lang.com/', 'Sass'],
+        typescript: [
+          'typescript',
+          'https://www.typescriptlang.org/',
+          'TypeScript'
+        ],
+        vue: ['vue', 'https://github.com/vuejs/vue', 'Vue.js'],
         'vue-i18n': ['vue', 'https://github.com/kazupon/vue-i18n', 'Vue-i18n'],
-        'vue-router': ['vue', 'https://github.com/vuejs/vue-router', 'Vue-router'],
+        'vue-router': [
+          'vue',
+          'https://github.com/vuejs/vue-router',
+          'Vue-router'
+        ],
         'vue-ssr': ['vue', 'https://ssr.vuejs.org/', 'Vue SSR']
       }
     }
   },
   methods: {
-    async expand (e) {
+    async expand(e) {
       e.preventDefault()
       e.target.blur()
 
@@ -72,24 +101,26 @@ export default {
         this.contentHeight = this._contentCollapseHeight
 
         await new Promise(resolve => {
-          this.$refs.content.addEventListener('transitionend', resolve, { once: true })
+          this.$refs.avatar.addEventListener('transitionend', resolve, {
+            once: true
+          })
         })
 
         this.isContentExpand = false
       } else {
         if (this._avatarCollapseHeight) {
           this.isContentExpand = true
-        } else { // only calculate once
-          const { avatar, content } = this.$refs
-
-          this._avatarCollapseHeight = avatar.offsetHeight + 'px'
-          this._contentCollapseHeight = content.offsetHeight + 'px'
+        } else {
+          // only calculate once
+          this._avatarCollapseHeight = this.$refs.avatar.offsetHeight + 'px'
+          this._contentCollapseHeight = this.$refs.content.offsetHeight + 'px'
           this.isContentExpand = true
 
           await this.$nextTick()
 
-          this._avatarExpandHeight = avatar.offsetWidth * 0.618 + 'px'
-          this._contentExpandHeight = content.offsetHeight + 'px'
+          this._avatarExpandHeight =
+            this.$refs.avatar.offsetWidth * 0.618 + 'px'
+          this._contentExpandHeight = this.$refs.content.offsetHeight + 'px'
 
           this.avatarHeight = this._avatarCollapseHeight
           this.contentHeight = this._contentCollapseHeight
@@ -105,9 +136,6 @@ export default {
         this.contentHeight = this._contentExpandHeight
       }
     }
-  },
-  components: {
-    StackIcon
   }
 }
 </script>
@@ -125,7 +153,7 @@ $height-duration: 0.5s;
   padding: 1em;
   color: inherit;
   background: #fff;
-  box-shadow: 0 6px 6px -6px rgba(0,0,0,.23);
+  box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.23);
   transition: box-shadow 0.4s;
 
   &:hover,
@@ -134,7 +162,7 @@ $height-duration: 0.5s;
   &:focus-within {
     outline: none;
     text-decoration: none;
-    box-shadow: 0 6px 30px -6px rgba(0,0,0,.23);
+    box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.23);
   }
 
   @media all and (max-width: 600px) {
@@ -170,9 +198,12 @@ $height-duration: 0.5s;
   margin-left: -5px;
 }
 
-.projCard-Content {
-  overflow: hidden;
+.projCard-ContentWrap {
   transition: height $height-duration;
+  overflow: hidden;
+}
+
+.projCard-Content {
   padding: 0.5em 0;
 
   *:first-child {
@@ -194,7 +225,7 @@ $height-duration: 0.5s;
 
 .projCard-BtnExpand {
   font-size: 12px;
-  color: #07C;
+  color: #07c;
   border: 1px solid transparent;
 
   &:hover {

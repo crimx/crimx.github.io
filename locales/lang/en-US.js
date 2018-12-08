@@ -1,21 +1,21 @@
 const msg = {
-  'expand': 'Read More',
-  'collapse': 'Collapse',
-  'projects': {
-    'saladict': {
-      'title': 'Saladict'
+  expand: 'Read More',
+  collapse: 'Collapse',
+  projects: {
+    saladict: {
+      title: 'Saladict'
     },
-    'projects': {
-      'title': 'This Project'
+    projects: {
+      title: 'This Project'
     },
     'postcss-safe-important': {
-      'title': 'PostCSS Safe Important'
+      title: 'PostCSS Safe Important'
     }
   }
 }
 
 Object.keys(msg.projects).forEach(name => {
-  msg.projects[name].content = require('@/i18n/projects/' + name + '/en-US.md')
+  msg.projects[name].content = require(`../projects/${name}/en-US.md`)
 })
 
 export default msg

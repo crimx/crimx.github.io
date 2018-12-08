@@ -1,7 +1,11 @@
 <template functional>
-  <a class="stackicon-Wrap" :href="props.href" target="_blank" rel="nofollow">
-    <img class="stackicon-Icon" :src="require(`@/assets/icons/${props.id}.svg`)" :alt="`LOGO ${props.name}`">
-    <slot />
+  <a :href="props.href" class="stackicon-Wrap" target="_blank" rel="nofollow">
+    <img
+      :src="require(`@/assets/icons/${props.id}.svg`)"
+      :alt="`LOGO ${props.name}`"
+      class="stackicon-Icon"
+    >
+    <slot/>
   </a>
 </template>
 
