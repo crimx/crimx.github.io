@@ -32,7 +32,6 @@ export default {
             'redux',
             'rxjs',
             'dexie',
-            'sass',
             'i18next',
             'antd',
             'vue'
@@ -47,7 +46,7 @@ export default {
         {
           id: 'projects',
           url: 'https://github.com/crimx/crimx.github.io/',
-          stack: ['vue', 'vue-router', 'vue-ssr', 'vue-i18n', 'sass']
+          stack: ['nuxt', 'nuxt-i18n', 'vue']
         }
       ]
     }

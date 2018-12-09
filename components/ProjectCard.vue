@@ -69,6 +69,12 @@ export default {
           'Dexie(IndexedDB)'
         ],
         i18next: ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
+        nuxt: ['nuxt', 'https://github.com/nuxt/nuxt.js', 'NUXT'],
+        'nuxt-i18n': [
+          'nuxt',
+          'https://github.com/nuxt-community/nuxt-i18n',
+          'Nuxt-i18n'
+        ],
         postcss: ['postcss', 'https://github.com/postcss/postcss', 'PostCSS'],
         react: ['react', 'https://github.com/facebook/react/', 'React.js'],
         redux: ['redux', 'https://github.com/reactjs/redux', 'Redux'],
