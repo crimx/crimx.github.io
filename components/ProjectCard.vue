@@ -107,29 +107,26 @@ export default {
         })
 
         this.isContentExpand = false
+
+        this.avatarHeight = null
+        this.contentHeight = null
       } else {
-        if (this._avatarCollapseHeight) {
-          this.isContentExpand = true
-        } else {
-          // only calculate once
-          this._avatarCollapseHeight = this.$refs.avatar.offsetHeight + 'px'
-          this._contentCollapseHeight = this.$refs.content.offsetHeight + 'px'
-          this.isContentExpand = true
+        this._avatarCollapseHeight = this.$refs.avatar.offsetHeight + 'px'
+        this._contentCollapseHeight = this.$refs.content.offsetHeight + 'px'
+        this.isContentExpand = true
 
-          await this.$nextTick()
+        await this.$nextTick()
 
-          this._avatarExpandHeight =
-            this.$refs.avatar.offsetWidth * 0.618 + 'px'
-          this._contentExpandHeight = this.$refs.content.offsetHeight + 'px'
+        this._avatarExpandHeight = this.$refs.avatar.offsetWidth * 0.618 + 'px'
+        this._contentExpandHeight = this.$refs.content.offsetHeight + 'px'
 
-          this.avatarHeight = this._avatarCollapseHeight
-          this.contentHeight = this._contentCollapseHeight
+        this.avatarHeight = this._avatarCollapseHeight
+        this.contentHeight = this._contentCollapseHeight
 
-          await this.$nextTick()
-          // force reflow to put everything in position
-          // assign to `this` to avoid being removed in tree-shaking
-          this._reflow = document.body.offsetHeight
-        }
+        await this.$nextTick()
+        // force reflow to put everything in position
+        // assign to `this` to avoid being removed in tree-shaking
+        this._reflow = document.body.offsetHeight
 
         this.isBtnExpand = true
         this.avatarHeight = this._avatarExpandHeight
