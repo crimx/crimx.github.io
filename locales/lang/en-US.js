@@ -8,8 +8,14 @@ const msg = {
     projects: {
       title: 'This Project'
     },
+    'hexo-filter-github-emojis': {
+      title: 'Hexo Filter Github Emojis'
+    },
     'postcss-safe-important': {
       title: 'PostCSS Safe Important'
+    },
+    'ext-github-release-notifier': {
+      title: 'Release Notifier for Github'
     }
   }
 }

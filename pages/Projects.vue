@@ -44,8 +44,18 @@ export default {
           stack: ['postcss']
         },
         {
+          id: 'hexo-filter-github-emojis',
+          url: 'https://github.com/crimx/hexo-filter-github-emojis',
+          stack: ['hexo', 'github-api']
+        },
+        {
+          id: 'ext-github-release-notifier',
+          url: 'https://github.com/crimx/ext-github-release-notifier',
+          stack: ['vue']
+        },
+        {
           id: 'projects',
-          url: 'https://github.com/crimx/crimx.github.io/',
+          url: 'https://github.com/crimx/crimx.github.io',
           stack: ['nuxt', 'nuxt-i18n', 'vue']
         }
       ]

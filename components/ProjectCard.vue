@@ -68,6 +68,12 @@ export default {
           'https://github.com/dfahlander/Dexie.js',
           'Dexie(IndexedDB)'
         ],
+        'github-api': [
+          'github',
+          'https://api.github.com/emojis',
+          'Github APIs'
+        ],
+        hexo: ['hexo', 'https://hexo.io', 'Hexo'],
         i18next: ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
         nuxt: ['nuxt', 'https://github.com/nuxt/nuxt.js', 'NUXT'],
         'nuxt-i18n': [
@@ -219,6 +225,10 @@ $height-duration: 0.5s;
 
   p {
     margin: 0.5em 0;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   .read-more {
