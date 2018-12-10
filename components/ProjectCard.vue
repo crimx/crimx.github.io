@@ -30,6 +30,7 @@
         />
       </div>
       <a
+        v-if="!project.hideExpand"
         class="projCard-BtnExpand"
         href="#"
         @click="expand"
@@ -91,14 +92,21 @@ export default {
           'https://www.typescriptlang.org/',
           'TypeScript'
         ],
+        'vanilla-js': [
+          'javascript',
+          'https://github.com/vuejs/vue',
+          'VanillaJS'
+        ],
         vue: ['vue', 'https://github.com/vuejs/vue', 'Vue.js'],
+        vuex: ['vue', 'https://vuex.vuejs.org/', 'Vuex'],
         'vue-i18n': ['vue', 'https://github.com/kazupon/vue-i18n', 'Vue-i18n'],
         'vue-router': [
           'vue',
           'https://github.com/vuejs/vue-router',
           'Vue-router'
         ],
-        'vue-ssr': ['vue', 'https://ssr.vuejs.org/', 'Vue SSR']
+        'vue-ssr': ['vue', 'https://ssr.vuejs.org/', 'Vue SSR'],
+        webpack: ['webpack', 'https://webpack.js.org', 'Webpack']
       }
     }
   },

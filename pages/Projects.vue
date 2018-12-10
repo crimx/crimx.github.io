@@ -54,9 +54,26 @@ export default {
           stack: ['vue']
         },
         {
+          id: 'weitweet',
+          url: 'https://github.com/crimx/crx-weitweet',
+          stack: ['vue', 'vuex']
+        },
+        {
           id: 'projects',
           url: 'https://github.com/crimx/crimx.github.io',
           stack: ['nuxt', 'nuxt-i18n', 'vue']
+        },
+        {
+          id: 'leetmark',
+          url: 'https://github.com/crimx/crx-leetmark',
+          stack: ['vanilla-js'],
+          hideExpand: true
+        },
+        {
+          id: 'empty-module-loader',
+          url: 'https://github.com/crimx/empty-module-loader',
+          stack: ['webpack'],
+          hideExpand: true
         }
       ]
     }

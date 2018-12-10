@@ -16,6 +16,15 @@ const msg = {
     },
     'ext-github-release-notifier': {
       title: 'Release Notifier for Github'
+    },
+    'empty-module-loader': {
+      title: 'Empty Module Loader'
+    },
+    weitweet: {
+      title: '小推 WeiTweet'
+    },
+    leetmark: {
+      title: 'Leetmark'
     }
   }
 }
