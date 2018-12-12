@@ -1,7 +1,7 @@
 <template>
   <div class="projects-Main">
     <nuxt-link
-      :to="localePath('Projects', isEnPage ? 'zh' : 'en')"
+      :to="localePath('projects', isEnPage ? 'zh' : 'en')"
       class="projects-LangSwitch"
     >{{ isEnPage ? '中文' : 'English' }}</nuxt-link>
     <ul class="projects-Projects">

@@ -14,7 +14,7 @@
       </svg>
       <div class="link-blog-wrap">
         <fancy-btn href="//blog.crimx.com/" title="Blog"/>
-        <fancy-btn :href="localePath('Projects')" title="Projects"/>
+        <fancy-btn :href="localePath('projects')" title="Projects"/>
       </div>
     </div>
   </pbg>
