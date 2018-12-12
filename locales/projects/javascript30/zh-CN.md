@@ -1,4 +1,4 @@
-三十天每天写个小东西，尝鲜一些新的浏览器 API 。灵感来自于 Wes Bos 的 [JavaScript 30](https://javascript30.com/) 。他的例子相对简单，我根据自己的能力实现了些更复杂的点子。
+三十天每天用纯 JavaScript 、CSS 和 HTML 写个小东西，并尝鲜一些新的浏览器 API 。灵感来自于 Wes Bos 的 [JavaScript 30](https://javascript30.com/) 。他的例子相对简单，我根据自己的能力实现了些更复杂的点子。
 
 <hr class="read-more" />
 
