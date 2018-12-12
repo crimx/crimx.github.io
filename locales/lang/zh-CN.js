@@ -1,6 +1,11 @@
 const msg = {
   expand: '展开全文',
   collapse: '收起全文',
+  projectIntro: [
+    '我也非常喜欢造轮子',
+    '无论是解决实际问题，还是尝试新技术',
+    '生命不息，折腾不止'
+  ],
   projects: {
     saladict: {
       title: 'Saladict 沙拉查词'

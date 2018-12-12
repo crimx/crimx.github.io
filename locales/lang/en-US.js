@@ -1,6 +1,11 @@
 const msg = {
   expand: 'Read More',
   collapse: 'Collapse',
+  projectIntro: [
+    'Sometimes, I like to make stuff.',
+    'Some are useful, others are utterly useless.',
+    'But all are good fun.'
+  ],
   projects: {
     saladict: {
       title: 'Saladict'

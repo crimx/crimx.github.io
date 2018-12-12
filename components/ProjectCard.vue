@@ -166,11 +166,11 @@ $height-duration: 0.5s;
   overflow: hidden;
   width: 900px;
   max-width: 100vw;
-  margin-bottom: 2em;
+  margin-bottom: 3em;
   padding: 1em;
   color: inherit;
   background: #fff;
-  box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 6px 6px -6px rgba(0, 0, 0, 0.33);
   transition: box-shadow 0.4s;
 
   &:hover,
@@ -179,7 +179,7 @@ $height-duration: 0.5s;
   &:focus-within {
     outline: none;
     text-decoration: none;
-    box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 6px 30px -6px rgba(0, 0, 0, 0.33);
   }
 
   @media all and (max-width: 600px) {

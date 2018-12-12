@@ -29,6 +29,11 @@ export default {
     FancyBtn,
     Pbg
   },
+  head() {
+    return {
+      title: 'Home'
+    }
+  },
   data() {
     return {
       offsetX: 0,
