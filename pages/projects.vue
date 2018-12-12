@@ -10,12 +10,8 @@
       </header>
       <div class="projects-Intro">
         <h1 v-t="'projectIntro[0]'"/>
-        <p>
-          <small v-t="'projectIntro[1]'"/>
-        </p>
-        <p>
-          <small v-t="'projectIntro[2]'"/>
-        </p>
+        <p v-t="'projectIntro[1]'"/>
+        <p v-t="'projectIntro[2]'"/>
       </div>
     </div>
     <ul class="projects-Projects">
@@ -181,6 +177,18 @@ $top-projects-spacing: 200px;
 
   > li {
     list-style-type: none;
+  }
+}
+
+html[lang^='zh'] {
+  .projects-Intro {
+    h1 {
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: smaller;
+    }
   }
 }
 </style>

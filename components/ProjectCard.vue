@@ -56,8 +56,8 @@ export default {
     return {
       isContentExpand: false,
       isBtnExpand: false,
-      avatarHeight: null,
-      contentHeight: null,
+      avatarHeight: '',
+      contentHeight: '',
       stacks: {
         antd: [
           'antd',
@@ -128,8 +128,8 @@ export default {
 
         this.isContentExpand = false
 
-        this.avatarHeight = null
-        this.contentHeight = null
+        this.avatarHeight = ''
+        this.contentHeight = ''
       } else {
         this._avatarCollapseHeight = this.$refs.avatar.offsetHeight + 'px'
         this._contentCollapseHeight = this.$refs.content.offsetHeight + 'px'
@@ -221,18 +221,15 @@ $height-duration: 0.5s;
 }
 
 .projCard-Content {
-  padding: 0.5em 0;
+  // prevent margin collapse
+  overflow: hidden;
 
-  *:first-child {
-    margin-top: 0;
-  }
-
-  *:last-child {
-    margin-bottom: 0;
+  > * {
+    margin: 0.5em 0;
   }
 
   p {
-    margin: 0.5em 0;
+    line-height: 1.6;
   }
 
   img {
@@ -245,7 +242,7 @@ $height-duration: 0.5s;
 }
 
 .projCard-BtnExpand {
-  font-size: 12px;
+  font-size: 0.8em;
   color: #07c;
   border: 1px solid transparent;
 
@@ -260,6 +257,12 @@ $height-duration: 0.5s;
     ~ * {
       display: none;
     }
+  }
+}
+
+html[lang^='zh'] {
+  .projCard-BtnExpand {
+    font-size: 0.75em;
   }
 }
 </style>
