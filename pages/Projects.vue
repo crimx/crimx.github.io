@@ -24,8 +24,7 @@ export default {
       projects: [
         {
           id: 'saladict',
-          url:
-            'https://chrome.google.com/webstore/detail/cdonnmffkdaoajfknoeeecmchibpmkmg?hl=en',
+          url: 'https://www.crimx.com/ext-saladict/',
           stack: [
             'typescript',
             'react',
@@ -57,6 +56,11 @@ export default {
           id: 'weitweet',
           url: 'https://github.com/crimx/crx-weitweet',
           stack: ['vue', 'vuex']
+        },
+        {
+          id: 'javascript30',
+          url: 'https://codepen.io/collection/DNdQZw/',
+          stack: ['vanilla-js']
         },
         {
           id: 'projects',

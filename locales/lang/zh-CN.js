@@ -20,6 +20,9 @@ const msg = {
     'empty-module-loader': {
       title: 'Empty Module Loader'
     },
+    javascript30: {
+      title: 'JavaScript 30'
+    },
     weitweet: {
       title: '小推 WeiTweet'
     },
