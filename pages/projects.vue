@@ -65,7 +65,7 @@ export default {
         {
           id: 'ext-github-release-notifier',
           url: 'https://github.com/crimx/ext-github-release-notifier',
-          stack: ['vue']
+          stack: ['vue', 'github-api']
         },
         {
           id: 'weitweet',
@@ -75,7 +75,7 @@ export default {
         {
           id: 'javascript30',
           url: 'https://codepen.io/collection/DNdQZw/',
-          stack: ['vanilla-js']
+          stack: ['codepen', 'vanilla-js']
         },
         {
           id: 'projects',
