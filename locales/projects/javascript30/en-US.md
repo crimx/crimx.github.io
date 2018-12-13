@@ -2,7 +2,7 @@
 
 <hr class="read-more" />
 
-Some interesting ones
+Some of my interesting ideas:
 
 - [Day 3 Kaleidoscope](https://codepen.io/straybugs/pen/KQNwKg): Based on device orientation.
 - [Day 4 Queue*2 = Stack](https://codepen.io/straybugs/pen/YeNKoN): Visualized stack based on two queues.

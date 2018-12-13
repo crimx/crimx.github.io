@@ -15,12 +15,12 @@
 [img-firefox-rating]: https://img.shields.io/amo/rating/release-notifier-for-github.svg?maxAge=3600&colorB=ff9500&label=rating
 [amo]: https://addons.mozilla.org/firefox/addon/release-notifier-for-github/
 
-Chrome extension / Firefox Add-on for watching Github releases.
+Chrome / Firefox extension for watching Github releases.
 
 <hr class="read-more" />
 
-Unofficial "polyfill" for watching Github releases. It was based on this lovely idea. A year later Github finally added basic [support](https://blog.github.com/changelog/2018-11-27-watch-releases/).
+Unofficial "polyfill" for watching Github releases. It was based on [this](https://github.com/isaacs/github/issues/410#issuecomment-291797759) lovely idea. A year later Github finally added basic official [support](https://blog.github.com/changelog/2018-11-27-watch-releases/).
 
-It uses Github api and takes advantage of 304 cache.
+It uses Github APIs and takes advantage of 304 cache.
 
 ![screenshot](https://github.com/crimx/ext-github-release-notifier/wiki/images/screen2.png)
