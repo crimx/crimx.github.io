@@ -93,11 +93,7 @@ export default {
           'https://www.typescriptlang.org/',
           'TypeScript'
         ],
-        'vanilla-js': [
-          'javascript',
-          'https://github.com/vuejs/vue',
-          'VanillaJS'
-        ],
+        'vanilla-js': ['javascript', 'http://vanilla-js.com/', 'VanillaJS'],
         vue: ['vue', 'https://github.com/vuejs/vue', 'Vue.js'],
         vuex: ['vue', 'https://vuex.vuejs.org/', 'Vuex'],
         'vue-i18n': ['vue', 'https://github.com/kazupon/vue-i18n', 'Vue-i18n'],
