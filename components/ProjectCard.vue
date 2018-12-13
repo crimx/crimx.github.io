@@ -69,9 +69,10 @@ export default {
           'https://github.com/dfahlander/Dexie.js',
           'Dexie(IndexedDB)'
         ],
+        codepen: ['codepen', 'https://codepen.io/', 'CodePen'],
         'github-api': [
           'github',
-          'https://api.github.com/emojis',
+          'https://developer.github.com/',
           'Github APIs'
         ],
         hexo: ['hexo', 'https://hexo.io', 'Hexo'],
@@ -221,15 +222,11 @@ $height-duration: 0.5s;
 }
 
 .projCard-Content {
-  // prevent margin collapse
-  overflow: hidden;
+  overflow: hidden; // prevent margin collapse
+  line-height: 1.6;
 
   > * {
     margin: 0.5em 0;
-  }
-
-  p {
-    line-height: 1.6;
   }
 
   img {
