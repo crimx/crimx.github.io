@@ -1,8 +1,20 @@
 <template>
   <div id="app">
     <nuxt/>
+    <site-footer v-if="$route.path !== '/'"/>
   </div>
 </template>
+
+<script>
+import SiteFooter from '@/components/SiteFooter.vue'
+
+export default {
+  components: {
+    SiteFooter
+  }
+}
+</script>
+
 
 <style lang="scss">
 @import '~normalize-scss';
