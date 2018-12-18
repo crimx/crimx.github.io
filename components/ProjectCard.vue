@@ -22,7 +22,7 @@
           :name="stacks[name][2]"
         >{{ stacks[name][2] }}</stack-icon>
       </div>
-      <div :style="{ height: contentHeight }" class="projCard-ContentWrap">
+      <div ref="contentWrap" :style="{ height: contentHeight }" class="projCard-ContentWrap">
         <div
           ref="content"
           :class="{ 'projCard-Content': true, 'projCard-Content-collapse': !isContentExpand }"
@@ -118,7 +118,7 @@ export default {
         this.contentHeight = this._contentCollapseHeight
 
         await new Promise(resolve => {
-          this.$refs.avatar.addEventListener('transitionend', resolve, {
+          this.$refs.contentWrap.addEventListener('transitionend', resolve, {
             once: true
           })
         })
@@ -193,6 +193,7 @@ $height-duration: 0.5s;
   transition: height $height-duration;
 
   @media all and (max-width: 600px) {
+    height: auto !important;
     width: 100%;
     padding-top: 60%;
     margin: 0 0 1em 0;
