@@ -52,6 +52,11 @@ export default {
           ]
         },
         {
+          id: 'weitweet',
+          url: 'https://github.com/crimx/crx-weitweet',
+          stack: ['vue', 'vuex']
+        },
+        {
           id: 'postcss-safe-important',
           avatar: 'postcss',
           url: 'https://github.com/crimx/postcss-safe-important',
@@ -66,11 +71,6 @@ export default {
           id: 'ext-github-release-notifier',
           url: 'https://github.com/crimx/ext-github-release-notifier',
           stack: ['vue', 'github-api']
-        },
-        {
-          id: 'weitweet',
-          url: 'https://github.com/crimx/crx-weitweet',
-          stack: ['vue', 'vuex']
         },
         {
           id: 'javascript30',
