@@ -58,53 +58,7 @@ export default {
       isBtnExpand: false,
       avatarHeight: '',
       contentHeight: '',
-      stacks: {
-        antd: [
-          'antd',
-          'https://github.com/ant-design/ant-design/',
-          'Ant Design'
-        ],
-        dexie: [
-          'dexie',
-          'https://github.com/dfahlander/Dexie.js',
-          'Dexie(IndexedDB)'
-        ],
-        codepen: ['codepen', 'https://codepen.io/', 'CodePen'],
-        'github-api': [
-          'github',
-          'https://developer.github.com/',
-          'Github APIs'
-        ],
-        hexo: ['hexo', 'https://hexo.io', 'Hexo'],
-        i18next: ['i18next', 'https://github.com/i18next/i18next', 'I18next'],
-        nuxt: ['nuxt', 'https://github.com/nuxt/nuxt.js', 'NUXT'],
-        'nuxt-i18n': [
-          'nuxt',
-          'https://github.com/nuxt-community/nuxt-i18n',
-          'Nuxt-i18n'
-        ],
-        postcss: ['postcss', 'https://github.com/postcss/postcss', 'PostCSS'],
-        react: ['react', 'https://github.com/facebook/react/', 'React.js'],
-        redux: ['redux', 'https://github.com/reactjs/redux', 'Redux'],
-        rxjs: ['rxjs', 'https://github.com/ReactiveX/rxjs', 'RxJS'],
-        sass: ['sass', 'https://sass-lang.com/', 'Sass'],
-        typescript: [
-          'typescript',
-          'https://www.typescriptlang.org/',
-          'TypeScript'
-        ],
-        'vanilla-js': ['javascript', 'http://vanilla-js.com/', 'VanillaJS'],
-        vue: ['vue', 'https://github.com/vuejs/vue', 'Vue.js'],
-        vuex: ['vue', 'https://vuex.vuejs.org/', 'Vuex'],
-        'vue-i18n': ['vue', 'https://github.com/kazupon/vue-i18n', 'Vue-i18n'],
-        'vue-router': [
-          'vue',
-          'https://github.com/vuejs/vue-router',
-          'Vue-router'
-        ],
-        'vue-ssr': ['vue', 'https://ssr.vuejs.org/', 'Vue SSR'],
-        webpack: ['webpack', 'https://webpack.js.org', 'Webpack']
-      }
+      stacks: require('@/assets/stacks.json')
     }
   },
   methods: {

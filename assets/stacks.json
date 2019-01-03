@@ -1,0 +1,32 @@
+{
+  "antd": ["antd", "https://github.com/ant-design/ant-design/", "Ant Design"],
+  "codepen": ["codepen", "https://codepen.io/", "CodePen"],
+  "dexie": [
+    "dexie",
+    "https://github.com/dfahlander/Dexie.js",
+    "Dexie(IndexedDB)"
+  ],
+  "github-api": ["github", "https://developer.github.com/", "Github APIs"],
+  "hexo": ["hexo", "https://hexo.io", "Hexo"],
+  "i18next": ["i18next", "https://github.com/i18next/i18next", "I18next"],
+  "iview": ["iview", "https://www.iviewui.com/", "IView"],
+  "nuxt": ["nuxt", "https://github.com/nuxt/nuxt.js", "NUXT"],
+  "nuxt-i18n": [
+    "nuxt",
+    "https://github.com/nuxt-community/nuxt-i18n",
+    "Nuxt-i18n"
+  ],
+  "postcss": ["postcss", "https://github.com/postcss/postcss", "PostCSS"],
+  "react": ["react", "https://github.com/facebook/react/", "React.js"],
+  "redux": ["redux", "https://github.com/reactjs/redux", "Redux"],
+  "rxjs": ["rxjs", "https://github.com/ReactiveX/rxjs", "RxJS"],
+  "sass": ["sass", "https://sass-lang.com/", "Sass"],
+  "typescript": ["typescript", "https://www.typescriptlang.org/", "TypeScript"],
+  "vanilla-js": ["javascript", "http: //vanilla-js.com/", "VanillaJS"],
+  "vue": ["vue", "https://github.com/vuejs/vue", "Vue.js"],
+  "vue-i18n": ["vue", "https://github.com/kazupon/vue-i18n", "Vue-i18n"],
+  "vue-router": ["vue", "https://github.com/vuejs/vue-router", "Vue-router"],
+  "vue-ssr": ["vue", "https://ssr.vuejs.org/", "Vue SSR"],
+  "vuex": ["vue", "https://vuex.vuejs.org/", "Vuex"],
+  "webpack": ["webpack", "https://webpack.js.org", "Webpack"]
+}

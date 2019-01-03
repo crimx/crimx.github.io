@@ -54,7 +54,7 @@ export default {
         {
           id: 'weitweet',
           url: 'https://github.com/crimx/crx-weitweet',
-          stack: ['vue', 'vuex']
+          stack: ['typescript', 'vue', 'iview']
         },
         {
           id: 'postcss-safe-important',
