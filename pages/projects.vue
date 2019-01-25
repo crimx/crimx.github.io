@@ -48,13 +48,13 @@ export default {
             'dexie',
             'i18next',
             'antd',
-            'vue'
+            'sass'
           ]
         },
         {
           id: 'weitweet',
           url: 'https://github.com/crimx/crx-weitweet',
-          stack: ['typescript', 'vue', 'iview']
+          stack: ['typescript', 'vue', 'iview', 'sass']
         },
         {
           id: 'postcss-safe-important',
