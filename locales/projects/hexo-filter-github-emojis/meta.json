@@ -1,0 +1,16 @@
+{
+  "title": {
+    "zh-CN": "Hexo Filter Github Emojis",
+    "en-US": "Hexo Filter Github Emojis"
+  },
+  "url": "https://github.com/crimx/hexo-filter-github-emojis",
+  "stack": [
+    "hexo",
+    "github-api"
+  ],
+  "badges": {
+    "github": "crimx/hexo-filter-github-emojis",
+    "npm": "hexo-filter-github-emojis"
+  },
+  "hideExpand": false
+}

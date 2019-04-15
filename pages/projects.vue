@@ -24,6 +24,7 @@
 
 <script>
 import ProjectCard from '@/components/ProjectCard.vue'
+import projects from '@/locales/projects'
 
 export default {
   components: {
@@ -36,110 +37,7 @@ export default {
   },
   data() {
     return {
-      projects: [
-        {
-          id: 'saladict',
-          url: 'https://www.crimx.com/ext-saladict/',
-          stack: [
-            'typescript',
-            'react',
-            'redux',
-            'rxjs',
-            'dexie',
-            'i18next',
-            'antd',
-            'sass'
-          ],
-          badges: {
-            github: 'crimx/ext-saladict',
-            chrome: 'cdonnmffkdaoajfknoeeecmchibpmkmg',
-            firefox: 'ext-saladict'
-          }
-        },
-        {
-          id: 'weitweet',
-          url: 'https://github.com/crimx/crx-weitweet',
-          stack: ['typescript', 'vue', 'iview', 'sass'],
-          badges: {
-            github: 'crimx/crx-weitweet',
-            chrome: 'jcgjbjbbcjgkpdanbnafdbdlbjacdkln',
-            firefox: 'weitweet'
-          }
-        },
-        {
-          id: 'postcss-safe-important',
-          avatar: 'postcss',
-          url: 'https://github.com/crimx/postcss-safe-important',
-          stack: ['postcss'],
-          badges: {
-            github: 'crimx/postcss-safe-important',
-            npm: 'postcss-safe-important'
-          }
-        },
-        {
-          id: 'blog-2019',
-          url: 'https://blog.crimx.com',
-          stack: [
-            'gatsby',
-            'graphql',
-            'react',
-            'bulma',
-            'sass',
-            'netlifycms',
-            'netlify'
-          ],
-          badges: {
-            github: 'crimx/blog-2019'
-          }
-        },
-        {
-          id: 'hexo-filter-github-emojis',
-          url: 'https://github.com/crimx/hexo-filter-github-emojis',
-          stack: ['hexo', 'github-api'],
-          badges: {
-            github: 'crimx/hexo-filter-github-emojis',
-            npm: 'hexo-filter-github-emojis'
-          }
-        },
-        {
-          id: 'ext-github-release-notifier',
-          url: 'https://github.com/crimx/ext-github-release-notifier',
-          stack: ['vue', 'github-api'],
-          badges: {
-            github: 'crimx/ext-github-release-notifier',
-            chrome: 'gjhmlndokehcbkaockjlgeofgkiaiflg',
-            firefox: 'release-notifier-for-github'
-          }
-        },
-        {
-          id: 'javascript30',
-          url: 'https://codepen.io/collection/DNdQZw/',
-          stack: ['codepen', 'vanilla-js']
-        },
-        {
-          id: 'projects',
-          url: 'https://github.com/crimx/crimx.github.io',
-          stack: ['nuxt', 'nuxt-i18n', 'vue']
-        },
-        {
-          id: 'leetmark',
-          url: 'https://github.com/crimx/crx-leetmark',
-          stack: ['vanilla-js'],
-          badges: {
-            chrome: 'pbpcnaodgahdlijbhjeohbjoafbdafdp'
-          },
-          hideExpand: true
-        },
-        {
-          id: 'empty-module-loader',
-          url: 'https://github.com/crimx/empty-module-loader',
-          stack: ['webpack'],
-          badges: {
-            npm: 'empty-module-loader'
-          },
-          hideExpand: true
-        }
-      ]
+      projects
     }
   },
   computed: {

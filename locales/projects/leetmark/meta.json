@@ -1,0 +1,14 @@
+{
+  "title": {
+    "zh-CN": "Leetmark",
+    "en-US": "Leetmark"
+  },
+  "url": "https://github.com/crimx/crx-leetmark",
+  "stack": [
+    "vanilla-js"
+  ],
+  "badges": {
+    "chrome": "pbpcnaodgahdlijbhjeohbjoafbdafdp"
+  },
+  "hideExpand": true
+}

@@ -1,0 +1,14 @@
+{
+  "title": {
+    "zh-CN": "Empty Module Loader",
+    "en-US": "Empty Module Loader"
+  },
+  "url": "https://github.com/crimx/empty-module-loader",
+  "stack": [
+    "webpack"
+  ],
+  "badges": {
+    "npm": "empty-module-loader"
+  },
+  "hideExpand": true
+}

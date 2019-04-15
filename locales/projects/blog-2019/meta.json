@@ -1,0 +1,20 @@
+{
+  "title": {
+    "zh-CN": "CRIMX BLOG",
+    "en-US": "CRIMX BLOG"
+  },
+  "url": "https://blog.crimx.com",
+  "stack": [
+    "gatsby",
+    "graphql",
+    "react",
+    "bulma",
+    "sass",
+    "netlifycms",
+    "netlify"
+  ],
+  "badges": {
+    "github": "crimx/blog-2019"
+  },
+  "hideExpand": false
+}

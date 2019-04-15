@@ -1,0 +1,14 @@
+{
+  "title": {
+    "zh-CN": "PostCSS Safe Important",
+    "en-US": "PostCSS Safe Important"
+  },
+  "url": "https://github.com/crimx/postcss-safe-important",
+  "avatar": "postcss",
+  "stack": ["postcss"],
+  "badges": {
+    "github": "crimx/postcss-safe-important",
+    "npm": "postcss-safe-important"
+  },
+  "hideExpand": false
+}

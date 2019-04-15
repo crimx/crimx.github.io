@@ -1,0 +1,14 @@
+{
+  "title": {
+    "zh-CN": "本项目",
+    "en-US": "This Project"
+  },
+  "url": "https://github.com/crimx/crimx.github.io",
+  "stack": [
+    "nuxt",
+    "nuxt-i18n",
+    "vue"
+  ],
+  "badges": {},
+  "hideExpand": false
+}

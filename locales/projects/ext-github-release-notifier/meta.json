@@ -1,0 +1,17 @@
+{
+  "title": {
+    "zh-CN": "Release Notifier for Github",
+    "en-US": "Release Notifier for Github"
+  },
+  "url": "https://github.com/crimx/ext-github-release-notifier",
+  "stack": [
+    "vue",
+    "github-api"
+  ],
+  "badges": {
+    "github": "crimx/ext-github-release-notifier",
+    "chrome": "gjhmlndokehcbkaockjlgeofgkiaiflg",
+    "firefox": "release-notifier-for-github"
+  },
+  "hideExpand": false
+}

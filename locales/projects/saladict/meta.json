@@ -1,0 +1,23 @@
+{
+  "title": {
+    "zh-CN": "Saladict 沙拉查词",
+    "en-US": "Saladict"
+  },
+  "url": "https://www.crimx.com/ext-saladict/",
+  "stack": [
+    "typescript",
+    "react",
+    "redux",
+    "rxjs",
+    "dexie",
+    "i18next",
+    "antd",
+    "sass"
+  ],
+  "badges": {
+    "github": "crimx/ext-saladict",
+    "chrome": "cdonnmffkdaoajfknoeeecmchibpmkmg",
+    "firefox": "ext-saladict"
+  },
+  "hideExpand": false
+}

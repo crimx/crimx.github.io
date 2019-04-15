@@ -1,3 +1,5 @@
+import projects from '../projects'
+
 const msg = {
   expand: 'Read More',
   collapse: 'Collapse',
@@ -6,38 +8,10 @@ const msg = {
     'Some are useful, others are utterly useless.',
     'But all are good fun.'
   ],
-  projects: {
-    saladict: {
-      title: 'Saladict'
-    },
-    projects: {
-      title: 'This Project'
-    },
-    'blog-2019': {
-      title: 'CRIMX BLOG'
-    },
-    'hexo-filter-github-emojis': {
-      title: 'Hexo Filter Github Emojis'
-    },
-    'postcss-safe-important': {
-      title: 'PostCSS Safe Important'
-    },
-    'ext-github-release-notifier': {
-      title: 'Release Notifier for Github'
-    },
-    'empty-module-loader': {
-      title: 'Empty Module Loader'
-    },
-    javascript30: {
-      title: 'JavaScript 30'
-    },
-    weitweet: {
-      title: 'WeiTweet'
-    },
-    leetmark: {
-      title: 'Leetmark'
-    }
-  }
+  projects: projects.reduce((all, p) => {
+    all[p.id] = { title: p.title['en-US'] }
+    return all
+  }, {})
 }
 
 Object.keys(msg.projects).forEach(name => {

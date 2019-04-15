@@ -1,0 +1,19 @@
+{
+  "title": {
+    "zh-CN": "小推 WeiTweet",
+    "en-US": "WeiTweet"
+  },
+  "url": "https://github.com/crimx/crx-weitweet",
+  "stack": [
+    "typescript",
+    "vue",
+    "iview",
+    "sass"
+  ],
+  "badges": {
+    "github": "crimx/crx-weitweet",
+    "chrome": "jcgjbjbbcjgkpdanbnafdbdlbjacdkln",
+    "firefox": "weitweet"
+  },
+  "hideExpand": false
+}
