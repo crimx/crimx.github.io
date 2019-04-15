@@ -3,7 +3,7 @@
     <div
       ref="avatar"
       :style="{
-        background: `no-repeat 50%/cover url('${require(`@/assets/cover/${project.avatar || project.id}.jpg`)}')`,
+        background: `no-repeat 50%/cover url('${require(`@/projects/${project.id}/cover.jpg`)}')`,
         height: avatarHeight
       }"
       class="projCard-Avatar"

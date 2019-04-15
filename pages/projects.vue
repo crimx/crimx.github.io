@@ -24,7 +24,7 @@
 
 <script>
 import ProjectCard from '@/components/ProjectCard.vue'
-import projects from '@/locales/projects'
+import projects from '@/projects'
 
 export default {
   components: {

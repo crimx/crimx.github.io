@@ -57,7 +57,7 @@ module.exports = {
         detectBrowserLanguage: false,
         vuex: false,
         lazy: true,
-        langDir: 'locales/lang/',
+        langDir: 'locales/',
         locales: [
           {
             code: 'zh',
