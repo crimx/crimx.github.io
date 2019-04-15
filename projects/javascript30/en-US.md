@@ -4,7 +4,6 @@
 
 Some of my interesting ideas:
 
-- [Day 3 Kaleidoscope](https://codepen.io/straybugs/pen/KQNwKg): Based on device orientation.
 - [Day 4 Queue*2 = Stack](https://codepen.io/straybugs/pen/YeNKoN): Visualized stack based on two queues.
 - [Day 7 Stack*2 = Queue](https://codepen.io/straybugs/pen/QQvKjo): Visualized queue based on two stacks.
 - [Day 19 Webcam Fun](https://codepen.io/straybugs/pen/RQYVzm): With canvas transformation.
