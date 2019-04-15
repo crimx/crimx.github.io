@@ -22,6 +22,13 @@
           :name="stacks[name][2]"
         >{{ stacks[name][2] }}</stack-icon>
       </div>
+      <Badges
+        v-if="project.badges"
+        :github="project.badges.github"
+        :npm="project.badges.npm"
+        :chrome="project.badges.chrome"
+        :firefox="project.badges.firefox"
+      />
       <div ref="contentWrap" :style="{ height: contentHeight }" class="projCard-ContentWrap">
         <div
           ref="content"
@@ -41,9 +48,11 @@
 
 <script>
 import StackIcon from '@/components/StackIcon'
+import Badges from '@/components/Badges'
 
 export default {
   components: {
+    Badges,
     StackIcon
   },
   props: {
@@ -164,7 +173,7 @@ $height-duration: 0.5s;
 
 .projCard-Stacks {
   line-height: 1.5;
-  margin-left: -5px;
+  margin: 0 0 0.3em -5px;
 }
 
 .projCard-ContentWrap {

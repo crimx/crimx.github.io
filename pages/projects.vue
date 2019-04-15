@@ -49,28 +49,51 @@ export default {
             'i18next',
             'antd',
             'sass'
-          ]
+          ],
+          badges: {
+            github: 'crimx/ext-saladict',
+            chrome: 'cdonnmffkdaoajfknoeeecmchibpmkmg',
+            firefox: 'ext-saladict'
+          }
         },
         {
           id: 'weitweet',
           url: 'https://github.com/crimx/crx-weitweet',
-          stack: ['typescript', 'vue', 'iview', 'sass']
+          stack: ['typescript', 'vue', 'iview', 'sass'],
+          badges: {
+            github: 'crimx/crx-weitweet',
+            chrome: 'jcgjbjbbcjgkpdanbnafdbdlbjacdkln',
+            firefox: 'weitweet'
+          }
         },
         {
           id: 'postcss-safe-important',
           avatar: 'postcss',
           url: 'https://github.com/crimx/postcss-safe-important',
-          stack: ['postcss']
+          stack: ['postcss'],
+          badges: {
+            github: 'crimx/postcss-safe-important',
+            npm: 'postcss-safe-important'
+          }
         },
         {
           id: 'hexo-filter-github-emojis',
           url: 'https://github.com/crimx/hexo-filter-github-emojis',
-          stack: ['hexo', 'github-api']
+          stack: ['hexo', 'github-api'],
+          badges: {
+            github: 'crimx/hexo-filter-github-emojis',
+            npm: 'hexo-filter-github-emojis'
+          }
         },
         {
           id: 'ext-github-release-notifier',
           url: 'https://github.com/crimx/ext-github-release-notifier',
-          stack: ['vue', 'github-api']
+          stack: ['vue', 'github-api'],
+          badges: {
+            github: 'crimx/ext-github-release-notifier',
+            chrome: 'gjhmlndokehcbkaockjlgeofgkiaiflg',
+            firefox: 'release-notifier-for-github'
+          }
         },
         {
           id: 'javascript30',
@@ -86,12 +109,18 @@ export default {
           id: 'leetmark',
           url: 'https://github.com/crimx/crx-leetmark',
           stack: ['vanilla-js'],
+          badges: {
+            chrome: 'pbpcnaodgahdlijbhjeohbjoafbdafdp'
+          },
           hideExpand: true
         },
         {
           id: 'empty-module-loader',
           url: 'https://github.com/crimx/empty-module-loader',
           stack: ['webpack'],
+          badges: {
+            npm: 'empty-module-loader'
+          },
           hideExpand: true
         }
       ]

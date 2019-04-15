@@ -1,10 +1,3 @@
-[![NPM Downloads Monthly][img-dm]][npm]
-[![NPM Downloads Total][img-dt]][npm]
-
-[img-dt]: https://img.shields.io/npm/dt/hexo-filter-github-emojis.svg?maxAge=3600
-[img-dm]: https://img.shields.io/npm/dm/hexo-filter-github-emojis.svg?maxAge=3600
-[npm]: https://www.npmjs.com/package/hexo-filter-github-emojis
-
 Hexo 插件，利用 [Github Emojis API](https://api.github.com/emojis) 支持在 Markdown 和 HTML 模板中添加语义化的 emojis 。
 
 <hr class="read-more" />

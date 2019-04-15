@@ -1,10 +1,3 @@
-[![NPM Downloads Monthly][img-dm]][npm]
-[![NPM Downloads Total][img-dt]][npm]
-
-[img-dt]: https://img.shields.io/npm/dt/postcss-safe-important.svg?maxAge=3600
-[img-dm]: https://img.shields.io/npm/dm/postcss-safe-important.svg?maxAge=3600
-[npm]: https://www.npmjs.com/package/postcss-safe-important
-
 [PostCSS](https://github.com/postcss/postcss) plugin that adds `!important` to style declarations safely. Used and recommended by many large projects like [Uppy](https://github.com/transloadit/uppy), [stylelint](https://stylelint.io/user-guide/rules/declaration-no-important/), [vmd](https://github.com/yoshuawuyts/vmd) and [HoverCards](https://github.com/kogg/hovercards).
 
 <hr class="read-more" />
