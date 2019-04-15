@@ -1,15 +1,20 @@
 {
   "antd": ["antd", "https://github.com/ant-design/ant-design/", "Ant Design"],
+  "bulma": ["bulma", "https://github.com/jgthms/bulma/", "Bulma"],
   "codepen": ["codepen", "https://codepen.io/", "CodePen"],
   "dexie": [
     "dexie",
     "https://github.com/dfahlander/Dexie.js",
     "Dexie(IndexedDB)"
   ],
+  "gatsby": ["gatsby", "https://www.gatsbyjs.org/", "Gatsby"],
   "github-api": ["github", "https://developer.github.com/", "Github APIs"],
+  "graphql": ["graphql", "https://graphql.org/", "GraphQL"],
   "hexo": ["hexo", "https://hexo.io", "Hexo"],
   "i18next": ["i18next", "https://github.com/i18next/i18next", "I18next"],
   "iview": ["iview", "https://www.iviewui.com/", "IView"],
+  "netlify": ["netlify", "https://www.netlify.com/", "Netlify"],
+  "netlifycms": ["netlifycms", "https://www.netlifycms.org/", "Netlify CMS"],
   "nuxt": ["nuxt", "https://github.com/nuxt/nuxt.js", "NUXT"],
   "nuxt-i18n": [
     "nuxt",

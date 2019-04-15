@@ -13,6 +13,9 @@ const msg = {
     projects: {
       title: '本项目'
     },
+    'blog-2019': {
+      title: 'CRIMX BLOG'
+    },
     'hexo-filter-github-emojis': {
       title: 'Hexo Filter Github Emojis'
     },

@@ -77,6 +77,22 @@ export default {
           }
         },
         {
+          id: 'blog-2019',
+          url: 'https://blog.crimx.com',
+          stack: [
+            'gatsby',
+            'graphql',
+            'react',
+            'bulma',
+            'sass',
+            'netlifycms',
+            'netlify'
+          ],
+          badges: {
+            github: 'crimx/blog-2019'
+          }
+        },
+        {
           id: 'hexo-filter-github-emojis',
           url: 'https://github.com/crimx/hexo-filter-github-emojis',
           stack: ['hexo', 'github-api'],
