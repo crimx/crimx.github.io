@@ -2,7 +2,7 @@
 
 <hr class="read-more" />
 
-这次开发也是全程用 React Hooks 取代 Class 的尝试，开发过程更加轻便清晰。
+具体更换原因见博文[《为什么选 Gatsby》](https://blog.crimx.com/2019/04/18/%E6%90%AD%E5%BB%BA-gatsby-%E5%8D%9A%E5%AE%A2%E4%B8%80%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89-gatsby/)。
 
 利用 GraphQL 统一管理信息和资源为开发带来了极大的便利。
 
