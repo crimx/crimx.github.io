@@ -1,0 +1,12 @@
+{
+  "title": {
+    "zh-CN": "Neutrino WebExtension",
+    "en-US": "Neutrino WebExtension"
+  },
+  "url": "https://github.com/crimx/neutrino-webextension",
+  "stack": ["neutrino", "webpack"],
+  "badges": {
+    "github": "crimx/neutrino-webextension"
+  },
+  "hideExpand": false
+}

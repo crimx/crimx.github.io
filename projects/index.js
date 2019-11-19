@@ -1,7 +1,8 @@
 const projects = [
   'saladict',
-  'weitweet',
   'postcss-safe-important',
+  'weitweet',
+  'neutrino-webextension',
   'blog-2019',
   'hexo-filter-github-emojis',
   'ext-github-release-notifier',
