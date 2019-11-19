@@ -7,12 +7,17 @@
   "stack": [
     "typescript",
     "react",
+    "observable-hooks",
     "redux",
+    "redux-observable",
+    "redux-thunk",
     "rxjs",
     "dexie",
     "i18next",
     "antd",
-    "sass"
+    "sass",
+    "neutrino",
+    "storybook"
   ],
   "badges": {
     "github": "crimx/ext-saladict",
