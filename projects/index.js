@@ -1,5 +1,6 @@
 const projects = [
   'saladict',
+  'observable-hooks',
   'postcss-safe-important',
   'weitweet',
   'neutrino-webextension',

@@ -1,0 +1,12 @@
+{
+  "title": {
+    "zh-CN": "Observable Hooks",
+    "en-US": "Observable Hooks"
+  },
+  "url": "https://github.com/crimx/observable-hooks",
+  "stack": ["react", "rxjs"],
+  "badges": {
+    "github": "crimx/observable-hooks"
+  },
+  "hideExpand": false
+}
