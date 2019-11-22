@@ -6,7 +6,8 @@
   "url": "https://github.com/crimx/observable-hooks",
   "stack": ["react", "rxjs"],
   "badges": {
-    "github": "crimx/observable-hooks"
+    "github": "crimx/observable-hooks",
+    "npm": "observable-hooks"
   },
   "hideExpand": false
 }
