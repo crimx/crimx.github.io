@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "Use Suspensible",
+    "en-US": "Use Suspensible"
+  },
+  "url": "https://github.com/crimx/use-suspensible",
+  "stack": ["react", "rxjs"],
+  "badges": {
+    "github": "crimx/use-suspensible",
+    "npm": "use-suspensible"
+  },
+  "hideExpand": false
+}

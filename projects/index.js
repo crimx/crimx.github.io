@@ -1,9 +1,10 @@
 const projects = [
   'saladict',
   'observable-hooks',
+  'use-suspensible',
   'postcss-safe-important',
-  'weitweet',
   'neutrino-webextension',
+  'weitweet',
   'blog-2019',
   'hexo-filter-github-emojis',
   'ext-github-release-notifier',
