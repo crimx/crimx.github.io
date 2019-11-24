@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "React Resize Reporter",
+    "en-US": "React Resize Reporter"
+  },
+  "url": "https://github.com/crimx/react-resize-reporter",
+  "stack": ["typescript", "react"],
+  "badges": {
+    "github": "crimx/react-resize-reporter",
+    "npm": "react-resize-reporter"
+  },
+  "hideExpand": false
+}

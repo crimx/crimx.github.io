@@ -3,6 +3,7 @@ const projects = [
   'observable-hooks',
   'use-suspensible',
   'postcss-safe-important',
+  'react-resize-reporter',
   'neutrino-webextension',
   'weitweet',
   'blog-2019',
