@@ -4,7 +4,7 @@
     "en-US": "Observable Hooks"
   },
   "url": "https://github.com/crimx/observable-hooks",
-  "stack": ["react", "rxjs"],
+  "stack": ["typescript", "react", "rxjs"],
   "badges": {
     "github": "crimx/observable-hooks",
     "npm": "observable-hooks"
