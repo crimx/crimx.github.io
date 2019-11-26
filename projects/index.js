@@ -7,6 +7,7 @@ const projects = [
   'neutrino-webextension',
   'weitweet',
   'blog-2019',
+  'get-selection-more',
   'hexo-filter-github-emojis',
   'ext-github-release-notifier',
   'javascript30',

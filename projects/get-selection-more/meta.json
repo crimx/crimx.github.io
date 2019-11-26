@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "Get Selection More",
+    "en-US": "Get Selection More"
+  },
+  "url": "https://github.com/crimx/get-selection-more",
+  "stack": ["typescript"],
+  "badges": {
+    "github": "crimx/get-selection-more",
+    "npm": "get-selection-more"
+  },
+  "hideExpand": true
+}
