@@ -1,6 +1,7 @@
 const projects = [
   'saladict',
   'observable-hooks',
+  'retux',
   'use-suspensible',
   'postcss-safe-important',
   'react-resize-reporter',

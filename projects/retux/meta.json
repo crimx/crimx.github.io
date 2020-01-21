@@ -1,0 +1,12 @@
+{
+  "title": {
+    "zh-CN": "Retux",
+    "en-US": "Retux"
+  },
+  "url": "https://github.com/crimx/retux",
+  "stack": ["typescript", "redux", "lerna"],
+  "badges": {
+    "github": "crimx/retux"
+  },
+  "hideExpand": false
+}
