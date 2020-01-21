@@ -11,7 +11,7 @@
     />
     <div class="projCard-Main">
       <h1 class="projCard-Title">
-        <a v-t="`projects.${project.id}.title`" :href="project.url" target="_blank" rel="nofollow"/>
+        <a v-t="`projects.${project.id}.title`" :href="project.url" target="_blank" rel="nofollow" />
       </h1>
       <div class="projCard-Stacks">
         <stack-icon
@@ -191,6 +191,11 @@ $height-duration: 0.5s;
 
   img {
     max-width: 100%;
+  }
+
+  > ol,
+  > ul {
+    padding-left: 2em;
   }
 
   .read-more {
