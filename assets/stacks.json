@@ -9,6 +9,7 @@
   "hexo": ["hexo", "https://hexo.io", "Hexo"],
   "i18next": ["i18next", "https://github.com/i18next/i18next", "I18next"],
   "iview": ["iview", "https://www.iviewui.com/", "IView"],
+  "lerna": ["lerna", "https://lerna.js.org/", "Lerna"],
   "netlify": ["netlify", "https://www.netlify.com/", "Netlify"],
   "netlifycms": ["netlifycms", "https://www.netlifycms.org/", "Netlify CMS"],
   "neutrino": ["neutrino", "https://neutrinojs.org", "Neutrino"],
