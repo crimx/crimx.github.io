@@ -14,4 +14,5 @@ Features:
 - States, Props and Observables can interconvert into each other seamlessly.
 - Observables can be operated directly, whether they are hooks generated or from outside of the Component.
 - Operations on Observables are pure just like [Epic](https://redux-observable.js.org/docs/basics/Epics.html) in Redux Observable which can be reused and isolated for testing.
+- Supports [Render-as-You-Fetch](https://observable-hooks.js.org/guide/render-as-you-fetch-suspense.html#observable-suspense-hook) pattern with Suspense.
 - Fully tested. Stable API.

@@ -14,4 +14,5 @@
 - States 和 Props 可以无缝与 Observables 互相转换。
 - 可对多个 Observables 直接进行各种操作，无论是 hooks 中生成的还是组件以外的。
 - Observables 的操作是纯净的，类似于 Redux Observable 的 [Epic](https://redux-observable.js.org/docs/basics/Epics.html)，可以复用以及单独进行测试。
+- 支持结合 Suspense 实现 [Render-as-You-Fetch](https://observable-hooks.js.org/guide/render-as-you-fetch-suspense.html#observable-suspense-hook) 模式。
 - 完善的测试，API 稳定。
