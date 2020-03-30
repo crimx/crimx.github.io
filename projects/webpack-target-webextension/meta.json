@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "Webpack Target WebExtension",
+    "en-US": "Webpack Target WebExtension"
+  },
+  "url": "https://github.com/crimx/webpack-target-webextension",
+  "stack": ["webpack"],
+  "badges": {
+    "github": "crimx/webpack-target-webextension",
+    "npm": "webpack-target-webextension"
+  },
+  "hideExpand": false
+}
