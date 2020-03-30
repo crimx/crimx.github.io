@@ -9,14 +9,14 @@
         >{{ isEnPage ? '中文' : 'English' }}</nuxt-link>
       </header>
       <div class="projects-Intro">
-        <h1 v-t="'projectIntro[0]'"/>
-        <p v-t="'projectIntro[1]'"/>
-        <p v-t="'projectIntro[2]'"/>
+        <h1 v-t="'projectIntro[0]'" />
+        <p v-t="'projectIntro[1]'" />
+        <p v-t="'projectIntro[2]'" />
       </div>
     </div>
     <ul class="projects-Projects">
       <li v-for="p in projects" :key="p.id">
-        <project-card :project="p"/>
+        <project-card :project="p" />
       </li>
     </ul>
   </div>
@@ -55,11 +55,12 @@ export default {
 }
 
 $top-projects-spacing: 200px;
+$intro-font-color: #fff;
 
 .projects-Top {
   position: relative;
   padding: 20px 20px $top-projects-spacing;
-  color: #f4f0e6;
+  color: $intro-font-color;
 
   &::before {
     content: '';
@@ -69,7 +70,8 @@ $top-projects-spacing: 200px;
     left: 0;
     right: 0;
     margin: auto;
-    background: #212129;
+    background-color: #20bf55;
+    background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
     transform: skewY(-4deg);
     transform-origin: top left;
   }
@@ -92,22 +94,22 @@ $top-projects-spacing: 200px;
   height: 1.5em;
   line-height: 1.5em;
   text-align: center;
-  border: 1px solid #f4f0e6;
+  border: 1px solid $intro-font-color;
   border-radius: 4px;
-  color: #f4f0e6;
+  color: $intro-font-color;
   transition: all 0.4s;
 
   &:hover {
     text-decoration: none;
     color: #333;
-    background: #f4f0e6;
+    background: $intro-font-color;
   }
 }
 
 .projects-Intro {
   position: relative;
   text-align: center;
-  color: #f4f0e6;
+  color: $intro-font-color;
 }
 
 .projects-Projects {
