@@ -15,7 +15,7 @@
   "neutrino": ["neutrino", "https://neutrinojs.org", "Neutrino"],
   "nuxt": ["nuxt", "https://github.com/nuxt/nuxt.js", "NUXT"],
   "nuxt-i18n": ["nuxt", "https://github.com/nuxt-community/nuxt-i18n", "Nuxt-i18n"],
-  "observable-hooks": ["react", "https://github.com/crimx/observable-hooks", "Observable Hooks"],
+  "observable-hooks": ["observable-hooks", "https://github.com/crimx/observable-hooks", "Observable Hooks"],
   "postcss": ["postcss", "https://github.com/postcss/postcss", "PostCSS"],
   "react": ["react", "https://github.com/facebook/react/", "React.js"],
   "redux": ["redux", "https://github.com/reactjs/redux", "Redux"],
