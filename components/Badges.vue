@@ -7,7 +7,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://img.shields.io/github/stars/${github}.svg?maxAge=3600&label=Stars&style=social`"
+        :src="`https://badgen.net/github/stars/${github}?icon=github`"
         alt="Github Stars"
       >
     </a>
@@ -18,7 +18,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://img.shields.io/npm/dm/${npm}.svg?maxAge=3600`"
+        :src="`https://badgen.net/npm/dm/${npm}`"
         alt="NPM Downloads Monthly"
       >
     </a>
@@ -28,7 +28,10 @@
       target="_blank"
       rel="nofollow noreferrer noopener"
     >
-      <img :src="`https://img.shields.io/npm/dt/${npm}.svg?maxAge=3600`" alt="NPM Downloads Total">
+      <img
+        :src="`https://badgen.net/npm/dt/${npm}`"
+        alt="NPM Downloads Total"
+      >
     </a>
     <a
       v-if="chrome"
@@ -37,7 +40,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://img.shields.io/chrome-web-store/users/${chrome}.svg?maxAge=3600&colorB=1a73e8&label=Chrome%20users`"
+        :src="`https://badgen.net/chrome-web-store/users/${chrome}?icon=chrome&color=0f9d58`"
         alt="Chrome Web Store Users"
       >
     </a>
@@ -48,7 +51,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://img.shields.io/chrome-web-store/rating/${chrome}.svg?maxAge=3600&colorB=1a73e8&label=rating`"
+        :src="`https://badgen.net/chrome-web-store/rating/${chrome}?icon=chrome&color=0f9d58`"
         alt="Chrome Web Store Rating"
       >
     </a>
@@ -59,7 +62,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://img.shields.io/amo/users/${firefox}.svg?maxAge=3600&colorB=ff9500&label=Firefoxe%20users`"
+        :src="`https://badgen.net/amo/users/${firefox}?icon=firefox&color=ff9500`"
         alt="Mozilla Add-on Users"
       >
     </a>
@@ -70,7 +73,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://img.shields.io/amo/rating/${firefox}.svg?maxAge=3600&colorB=ff9500&label=rating`"
+        :src="`https://badgen.net/amo/rating/${firefox}?icon=firefox&color=ff9500`"
         alt="Mozilla Add-on Rating"
       >
     </a>
