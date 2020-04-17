@@ -15,5 +15,5 @@
 1. 大量使用 [React Hooks](https://reactjs.org/docs/hooks-intro.html) 为组件复用异步交互逻辑，利用 [RxJS](https://github.com/ReactiveX/rxjs) 处理复杂的用户输入，同时为此开发出另一项目 [observable-hooks](https://github.com/crimx/observable-hooks)。
 1. 使用 [Storybook](https://storybook.js.org) 开发组件，在可视化环境中快速调试。
 1. 在 React 上使用 [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) 以较低成本隔离词典面板以及各个词典的样式。
-1. 整合词典结果需要理解不同词典网页的设计，并从中总结出规律，稳定地为用户提炼展现有用的信息。对于多年没有更新的[有道网页翻译](http://fanyi.youdao.com/web2/)，经过 [Saladict](https://github.com/crimx/ext-saladict) 的修改整合已支持 https 网页翻译。
+1. 整合词典结果需要理解不同词典网页的设计，并从中总结出规律，稳定地为用户提炼展现有用的信息。
 1. 自动化构建脚本，为此开发出专用脚手架插件 [neutrino-webextension](https://github.com/crimx/neutrino-webextension)。代码结构多层抽象，添加词典采用插件式机制载入。

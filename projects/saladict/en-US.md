@@ -15,5 +15,4 @@ Highlights in terms of technical implementation:
 1. Mass use of [React Hooks](https://reactjs.org/docs/hooks-intro.html) for abstracting Component async UI logic, with [RxJS](https://github.com/ReactiveX/rxjs) handling complex user inputs(See my other project [observable-hooks](https://github.com/crimx/observable-hooks)).
 1. Components are built with [Storybook](https://storybook.js.org) which enables rapid UI development.
 1. Syltes of dictionary panel and each dictionary are isolated with [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) with lower cost of performance.
-1. Extraction of dictionary results requires thorough understanding of page DOM structure pattern and obfuscated JavaScript code. Saladict has revived some of the abandoned services like [Youdao page translation](http://fanyi.youdao.com/web2/).
 1. Automation are introduced into the build process(with my other project [neutrino-webextension](https://github.com/crimx/neutrino-webextension)). Dictionaries are loaded with a plugin mechanism.
