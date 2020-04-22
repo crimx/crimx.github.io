@@ -1,4 +1,4 @@
-[PostCSS](https://github.com/postcss/postcss) 插件，安全地为 CSS 中所有样式添加 `!important` 。已被许多大型项目使用与推荐，如 [Uppy](https://github.com/transloadit/uppy)、[stylelint](https://stylelint.io/user-guide/rules/declaration-no-important/)、[vmd](https://github.com/yoshuawuyts/vmd)、[HoverCards](https://github.com/kogg/hovercards) 等。
+[PostCSS](https://github.com/postcss/postcss) 插件，安全地为 CSS 中所有样式添加 `!important` 。已被许多大型项目使用与推荐，如 [Uppy](https://github.com/transloadit/uppy/blob/23f3bf9edcd2248d7d2535a9e29dd48fd70690e7/package.json#L174)、[stylelint](https://stylelint.io/user-guide/rules/declaration-no-important/)、[vmd](https://github.com/yoshuawuyts/vmd/blob/1f220068c1bf69c02f53bb2c8ac308cba3f8ccfb/package.json#L33)、[HoverCards](https://github.com/kogg/hovercards/blob/34c4aac817bf67cbfcc98baca999bc4a21259b74/package.json#L136) 等。
 
 <hr class="read-more" />
 

@@ -1,4 +1,4 @@
-[PostCSS](https://github.com/postcss/postcss) plugin that adds `!important` to style declarations safely. Used and recommended by many large projects like [Uppy](https://github.com/transloadit/uppy), [stylelint](https://stylelint.io/user-guide/rules/declaration-no-important/), [vmd](https://github.com/yoshuawuyts/vmd) and [HoverCards](https://github.com/kogg/hovercards).
+[PostCSS](https://github.com/postcss/postcss) plugin that adds `!important` to style declarations safely. Used and recommended by many large projects like [Uppy](https://github.com/transloadit/uppy/blob/23f3bf9edcd2248d7d2535a9e29dd48fd70690e7/package.json#L174), [stylelint](https://stylelint.io/user-guide/rules/declaration-no-important/), [vmd](https://github.com/yoshuawuyts/vmd/blob/1f220068c1bf69c02f53bb2c8ac308cba3f8ccfb/package.json#L33) and [HoverCards](https://github.com/kogg/hovercards/blob/34c4aac817bf67cbfcc98baca999bc4a21259b74/package.json#L136).
 
 <hr class="read-more" />
 
