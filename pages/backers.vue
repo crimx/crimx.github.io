@@ -3,8 +3,15 @@
     <h1>感谢小伙伴们的捐赠支持！</h1>
     <small>Thank you for your kind donation!</small>
 
-    <p>谢谢你们的慷慨捐赠，用行动支持高质量、开放、自由的作品。在每日愈下的中文局域网环境中尤其需要这样的力量，谢谢你们！</p>
-    <p>Thank you for making the effort to support high-quality, free and open works.</p>
+    <div class="p-pair">
+      <p>谢谢你们的慷慨捐赠，用行动支持高质量、开放、自由的作品。在每日愈下的中文局域网环境中尤其需要这样的力量，谢谢你们！</p>
+      <p>Thank you for making the effort to support high-quality, free and open works.</p>
+    </div>
+
+    <div class="p-pair">
+      <p>列表每月更新，因保护原因隐去数额和留言。</p>
+      <p>Lists are updated monthly. Comments and amounts are hidden for protection reason.</p>
+    </div>
 
     <section v-for="field of fields" :key="field.id" class="backers-section">
       <header>
@@ -122,6 +129,14 @@ export default {
   th {
     border: 1px solid #827886;
     padding: 0.6em 1em;
+  }
+}
+
+.p-pair {
+  margin: 1em 0;
+
+  p {
+    margin: 0;
   }
 }
 
