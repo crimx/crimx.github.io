@@ -5,12 +5,12 @@
 
     <div class="p-pair">
       <p>谢谢你们的慷慨捐赠，用行动支持高质量、开放、自由的作品。在每日愈下的中文局域网环境中尤其需要这样的力量，谢谢你们！</p>
-      <p>Thank you for making the effort to support high-quality, free and open works.</p>
+      <small>Thank you for making the effort to support high-quality, free and open works.</small>
     </div>
 
     <div class="p-pair">
       <p>列表每月更新，因保护原因隐去数额和留言。</p>
-      <p>Lists are updated monthly. Comments and amounts are hidden for protection reason.</p>
+      <small>Lists are updated monthly. Comments and amounts are hidden for protection reason.</small>
     </div>
 
     <section v-for="field of fields" :key="field.id" class="backers-section">
@@ -57,14 +57,9 @@ export default {
           eng: 'Special Thanks: Multiple Donations'
         },
         {
-          id: 'tea',
-          chs: '感谢：喝上咖啡，精神抖擞',
-          eng: 'Thank you: I get my daily dose of bubble tea!'
-        },
-        {
-          id: 'allowance',
-          chs: '感谢：喝上奶茶，甜入心扉',
-          eng: "Thanks: I'll get myself a taco. "
+          id: 'others',
+          chs: '感谢你们的支持',
+          eng: 'Thank you for your donation'
         }
       ]
     }
