@@ -1,16 +1,10 @@
 <template>
   <div class="backers-container">
-    <h1>感谢小伙伴们的捐赠支持！</h1>
-    <small>Thank you for your kind donation!</small>
+    <Latte />
 
     <div class="p-pair">
-      <p>谢谢你们的慷慨捐赠，用行动支持高质量、开放、自由的作品。在每日愈下的中文局域网环境中尤其需要这样的力量，谢谢你们！</p>
+      <p>谢谢你们的慷慨捐赠，用行动支持高质量、开放、自由的作品。改善中文局域网环境尤其需要这样的力量，谢谢你们！</p>
       <small>Thank you for making the effort to support high-quality, free and open works.</small>
-    </div>
-
-    <div class="p-pair">
-      <p>列表每月更新，因保护原因隐去数额和留言。</p>
-      <small>Lists are updated monthly. Comments and amounts are hidden for protection reason.</small>
     </div>
 
     <section v-for="field of fields" :key="field.id" class="backers-section">
@@ -30,7 +24,7 @@
         <tbody>
           <tr v-for="p in backers[field.id]" :key="p.name + p.date">
             <td class="backers-date">{{ p.date }}</td>
-            <th v-if="field.id === 'multiple'" class="backers-times">{{ p.times }}</th>
+            <td v-if="field.id === 'multiple'" class="backers-times">{{ p.times }}</td>
             <td class="backers-name">{{ p.name }}</td>
           </tr>
         </tbody>
@@ -41,7 +35,12 @@
 </template>
 
 <script>
+import Latte from '@/components/Latte'
+
 export default {
+  components: {
+    Latte
+  },
   data() {
     return {
       backers: require('@/assets/backers.json'),
@@ -71,8 +70,8 @@ export default {
 .backers-container {
   text-align: center;
   padding-top: 1em;
-  background: #c7d2c4;
-  color: #655c68;
+  background: #2b2726;
+  color: #e2d2c0;
 
   h1,
   h2 {
@@ -88,8 +87,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 1px #827886 dashed;
-  margin: 0 20px;
+  border-top: 1px #875e3a dashed;
 
   &:first-of-type {
     border-top: none;
@@ -97,38 +95,41 @@ export default {
 
   header {
     position: sticky;
+    z-index: 100;
     top: 0;
-    width: 100vw;
+    width: 100%;
     padding: 10px;
-    background: #c7d2c4;
+    background: #2b2726;
   }
 
   table {
     table-layout: fixed;
     border-collapse: collapse;
-    margin: 0 0 1rem 0;
+    margin: 0 1rem 1rem;
     display: block;
     overflow-x: auto;
+    color: #875e3a;
     background: #f8f3da;
   }
 
   tr {
-    border-top: 1px solid #827886;
+    border-top: 1px solid #875e3a;
   }
 
+  th,
   tr:nth-child(2n) {
     background-color: #f5e4c6;
   }
 
   td,
   th {
-    border: 1px solid #827886;
+    border: 1px solid #875e3a;
     padding: 0.6em 1em;
   }
 }
 
 .p-pair {
-  margin: 1em 0;
+  margin: 2em 0;
 
   p {
     margin: 0;
