@@ -67,6 +67,10 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  background: #2b2726;
+}
+
 .backers-container {
   text-align: center;
   padding-top: 1em;
