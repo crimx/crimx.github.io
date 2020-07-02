@@ -7,6 +7,11 @@
       <small>Thank you for making the effort to support high-quality, free and open works.</small>
     </div>
 
+    <div class="dp-pair">
+      <p>（列表每月更新）</p>
+      <small>(Update monthly)</small>
+    </div>
+
     <section v-for="field of fields" :key="field.id" class="backers-section">
       <header>
         <h2>{{ field.chs }}</h2>
@@ -138,6 +143,11 @@ html {
   p {
     margin: 0;
   }
+}
+
+.dp-pair {
+  @extend .p-pair;
+  opacity: 0.7;
 }
 
 .backers-date {
