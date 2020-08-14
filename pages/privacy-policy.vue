@@ -14,6 +14,8 @@
       <p>Saladict uses Chrome (Chromium) or WebExtensions Storage Sync API for storing user's settings and browser's local database (IndexedDB) for storing user-collected words. User may also choose to enable third party sync services which may collect synced data.</p>
 
       <p>Saladict may send search text and releated cookies to third party dictionary services(just like how you would search on their websites). If you do not want third party services to collect you data, remove the dictionaries at "Dictionaries" settings.</p>
+
+      <footer><a href="https://github.com/crimx/crimx.github.io/commits/dev/pages/privacy-policy.vue">Update history</a></footer>
     </main>
   </article>
 </template>
