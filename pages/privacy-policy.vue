@@ -11,7 +11,9 @@
 
       <h2>Third Party Services</h2>
 
-      <p>Saladict uses Chrome (Chromium) or WebExtensions Storage Sync API for storing user's settings and browser's local database (IndexedDB) for storing user-collected words. User may also choose to enable third party sync services which may collect synced data.</p>
+      <p>Browser extensions use Chrome (Chromium) or WebExtensions Storage Sync API for storing user's settings.</p>
+
+      <p>Saladict uses browser's local database (IndexedDB) for storing user-collected words. User may also choose to enable third party sync services which may collect synced data.</p>
 
       <p>Saladict may send search text and releated cookies to third party dictionary services(just like how you would search on their websites). If you do not want third party services to collect you data, remove the dictionaries at "Dictionaries" settings.</p>
 
