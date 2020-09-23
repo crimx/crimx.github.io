@@ -93,9 +93,7 @@ html {
 }
 
 .backers-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
   border-top: 1px #875e3a dashed;
 
   &:first-of-type {
@@ -112,10 +110,10 @@ html {
   }
 
   table {
+    display: inline-table;
     table-layout: fixed;
     border-collapse: collapse;
     margin: 0 1rem 1rem;
-    display: block;
     overflow-x: auto;
     color: #875e3a;
     background: #f8f3da;
