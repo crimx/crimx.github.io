@@ -67,6 +67,11 @@ export default {
         }
       ]
     }
+  },
+  head() {
+    return {
+      title: 'Backers'
+    }
   }
 }
 </script>

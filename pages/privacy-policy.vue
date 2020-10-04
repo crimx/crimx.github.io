@@ -22,6 +22,16 @@
   </article>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      title: 'Privacy Policy'
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
 article {
   padding: 1em;
