@@ -7,7 +7,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/github/stars/${github}?icon=github`"
+        :src="`https://img.shields.io/github/stars/${github}?logo=github&style=social`"
         alt="Github Stars"
       >
     </a>
@@ -18,8 +18,8 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/npm/dm/${npm}`"
-        alt="NPM Downloads Monthly"
+        :src="`https://img.shields.io/npm/dt/${npm}`"
+        alt="NPM Downloads Total"
       >
     </a>
     <a
@@ -29,8 +29,8 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/npm/dt/${npm}`"
-        alt="NPM Downloads Total"
+        :src="`https://img.shields.io/npm/dm/${npm}`"
+        alt="NPM Downloads Monthly"
       >
     </a>
     <a
@@ -40,7 +40,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/chrome-web-store/users/${chrome}?icon=chrome&color=0f9d58`"
+        :src="`https://img.shields.io/chrome-web-store/users/${chrome}?color=0f9d58&logo=google-chrome&logoColor=%23fff`"
         alt="Chrome Web Store Users"
       >
     </a>
@@ -51,7 +51,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/chrome-web-store/rating/${chrome}?icon=chrome&color=0f9d58`"
+        :src="`https://img.shields.io/chrome-web-store/rating/${chrome}?color=0f9d58&logo=google-chrome&logoColor=%23fff`"
         alt="Chrome Web Store Rating"
       >
     </a>
@@ -62,7 +62,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/amo/users/${firefox}?icon=firefox&color=ff9500`"
+        :src="`https://img.shields.io/amo/users/${firefox}?color=%23ff9500&logo=firefox-browser&logoColor=%23fff`"
         alt="Mozilla Add-on Users"
       >
     </a>
@@ -73,7 +73,7 @@
       rel="nofollow noreferrer noopener"
     >
       <img
-        :src="`https://badgen.net/amo/rating/${firefox}?icon=firefox&color=ff9500`"
+        :src="`https://img.shields.io/amo/rating/${firefox}?color=%23ff9500&logo=firefox-browser&logoColor=%23fff`"
         alt="Mozilla Add-on Rating"
       >
     </a>
