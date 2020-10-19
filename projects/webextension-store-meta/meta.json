@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "Webextension Store Meta",
+    "en-US": "Webextension Store Meta"
+  },
+  "url": "https://github.com/crimx/webextension-store-meta",
+  "stack": [],
+  "badges": {
+    "github": "crimx/webextension-store-meta",
+    "npm": "webextension-store-meta"
+  },
+  "hideExpand": true
+}
