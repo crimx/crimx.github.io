@@ -3,7 +3,7 @@
     "zh-CN": "Saladict 沙拉查词",
     "en-US": "Saladict"
   },
-  "url": "https://www.crimx.com/ext-saladict/",
+  "url": "https://saladict.crimx.com/",
   "stack": [
     "typescript",
     "react",
