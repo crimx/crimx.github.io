@@ -2,6 +2,7 @@ const projects = [
   'saladict',
   'observable-hooks',
   'postcss-safe-important',
+  'side-effect-manager',
   'webextension-store-meta',
   'neutrino-webextension',
   'webpack-target-webextension',

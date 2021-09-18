@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "Side Effect Manager",
+    "en-US": "Side Effect Manager"
+  },
+  "url": "https://github.com/crimx/side-effect-manager",
+  "stack": ["typescript"],
+  "badges": {
+    "github": "crimx/side-effect-manager",
+    "npm": "side-effect-manager"
+  },
+  "hideExpand": true
+}
