@@ -3,6 +3,7 @@ const projects = [
   'observable-hooks',
   'postcss-safe-important',
   'side-effect-manager',
+  'value-enhancer',
   'webextension-store-meta',
   'neutrino-webextension',
   'webpack-target-webextension',

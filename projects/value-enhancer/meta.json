@@ -1,0 +1,13 @@
+{
+  "title": {
+    "zh-CN": "Value Enhancer",
+    "en-US": "Value Enhancer"
+  },
+  "url": "https://github.com/crimx/value-enhancer",
+  "stack": ["typescript"],
+  "badges": {
+    "github": "crimx/value-enhancer",
+    "npm": "value-enhancer"
+  },
+  "hideExpand": true
+}
